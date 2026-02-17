@@ -42,65 +42,70 @@
     }
   };
 
-  // ---- Mobile Nav ----
+  // ---- Mobile Nav (shared state) ----
+  var mobileNavOpen = false;
+
+  function closeMobileNav() {
+    mobileNavOpen = false;
+    document.body.style.overflow = "";
+    m.redraw();
+  }
+
+  function toggleMobileNav() {
+    mobileNavOpen = !mobileNavOpen;
+    document.body.style.overflow = mobileNavOpen ? "hidden" : "";
+    m.redraw();
+  }
+
+  // Hamburger button (mounted inside navbar)
   var MobileNav = {
-    oninit: function () {
-      this.open = false;
-    },
-    close: function () {
-      this.open = false;
-      document.body.style.overflow = "";
-    },
-    toggleOpen: function () {
-      this.open = !this.open;
-      document.body.style.overflow = this.open ? "hidden" : "";
-    },
     view: function () {
-      var self = this;
+      return m("button", {
+        class: "btn btn-ghost btn-circle lg:hidden",
+        "aria-label": "Toggle navigation menu",
+        "aria-expanded": String(mobileNavOpen),
+        onclick: function () { toggleMobileNav(); }
+      }, [
+        m("svg", { class: "w-6 h-6", fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor" }, [
+          mobileNavOpen
+            ? m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })
+            : m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M4 6h16M4 12h16M4 18h16" })
+        ])
+      ]);
+    }
+  };
+
+  // Fullscreen overlay (mounted outside navbar to avoid backdrop-filter containing block)
+  var MobileNavOverlay = {
+    view: function () {
       var links = [
         { href: "#features", label: "Features" },
         { href: "#pricing", label: "Pricing" },
         { href: "#faq", label: "FAQ" }
       ];
 
-      return [
-        // Hamburger button
-        m("button", {
-          class: "btn btn-ghost btn-circle lg:hidden",
-          "aria-label": "Toggle navigation menu",
-          "aria-expanded": String(self.open),
-          onclick: function () { self.toggleOpen(); }
+      return m("div", {
+        class: "mobile-nav-overlay " + (mobileNavOpen ? "open" : ""),
+        onclick: function () { closeMobileNav(); }
+      }, [
+        m("nav", {
+          class: "flex flex-col items-center justify-center h-full gap-8",
+          onclick: function (e) { e.stopPropagation(); }
         }, [
-          m("svg", { class: "w-6 h-6", fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor" }, [
-            self.open
-              ? m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })
-              : m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M4 6h16M4 12h16M4 18h16" })
-          ])
-        ]),
-        // Overlay
-        m("div", {
-          class: "mobile-nav-overlay " + (self.open ? "open" : ""),
-          onclick: function () { self.close(); }
-        }, [
-          m("nav", {
-            class: "flex flex-col items-center justify-center h-full gap-8",
-            onclick: function (e) { e.stopPropagation(); }
-          }, [
-            links.map(function (link) {
-              return m("a", {
-                href: link.href,
-                class: "text-2xl font-display font-bold hover:text-primary transition-colors",
-                onclick: function () { self.close(); }
-              }, link.label);
-            }),
-            m("a", {
-              href: "#pricing",
-              class: "btn btn-primary btn-lg mt-4",
-              onclick: function () { self.close(); }
-            }, "Get Started Free")
-          ])
+          links.map(function (link) {
+            return m("a", {
+              href: link.href,
+              class: "text-2xl font-display font-bold hover:text-primary transition-colors",
+              onclick: function () { closeMobileNav(); }
+            }, link.label);
+          }),
+          m("a", {
+            href: "#pricing",
+            class: "btn btn-primary btn-lg mt-4",
+            onclick: function () { closeMobileNav(); }
+          }, "Get Started Free")
         ])
-      ];
+      ]);
     }
   };
 
@@ -291,6 +296,9 @@
 
     var mobileNavEl = document.getElementById("mobile-nav");
     if (mobileNavEl) m.mount(mobileNavEl, MobileNav);
+
+    var mobileNavOverlayEl = document.getElementById("mobile-nav-overlay");
+    if (mobileNavOverlayEl) m.mount(mobileNavOverlayEl, MobileNavOverlay);
 
     var typewriterEl = document.getElementById("typewriter-slot");
     if (typewriterEl) m.mount(typewriterEl, TypewriterHero);
