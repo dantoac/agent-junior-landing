@@ -149,67 +149,54 @@
     }
   };
 
-  // ---- Typewriter Hero ----
-  var TypewriterHero = {
+  // ---- Fade Rotator Hero ----
+  var FadeRotator = {
     oninit: function () {
       this.phrases = [
-        "manages your email",
-        "schedules your meetings",
-        "tracks your tasks",
-        "organizes your contacts",
-        "handles your GitHub issues",
-        "creates your content"
+        "focus on what matters",
+        "finish work on time",
+        "take longer lunches",
+        "actually enjoy Mondays",
+        "finally reply to that email from 2024",
+        "pretend you have a secretary",
+        "stop forgetting birthdays",
+        "nap between meetings",
+        "tell your boss you're 'delegating'",
+        "touch grass once in a while"
       ];
       this.current = 0;
-      this.text = "";
-      this.deleting = false;
+      this.fading = false;
       this.tick = null;
     },
     oncreate: function () {
       var self = this;
-      var speed = 60;
-      var deleteSpeed = 35;
-      var pause = 2000;
+      var displayTime = 3000;
+      var fadeTime = 400;
 
-      function type() {
-        var full = self.phrases[self.current];
-        if (!self.deleting) {
-          self.text = full.substring(0, self.text.length + 1);
-          if (self.text === full) {
-            self.tick = setTimeout(function () {
-              self.deleting = true;
-              m.redraw();
-              self.tick = setTimeout(type, deleteSpeed);
-            }, pause);
-            m.redraw();
-            return;
-          }
-        } else {
-          self.text = full.substring(0, self.text.length - 1);
-          if (self.text === "") {
-            self.deleting = false;
-            self.current = (self.current + 1) % self.phrases.length;
-          }
-        }
+      function next() {
+        self.fading = true;
         m.redraw();
-        self.tick = setTimeout(type, self.deleting ? deleteSpeed : speed);
+        self.tick = setTimeout(function () {
+          self.current = (self.current + 1) % self.phrases.length;
+          self.fading = false;
+          m.redraw();
+          self.tick = setTimeout(next, displayTime);
+        }, fadeTime);
       }
 
-      // Respect reduced motion
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        self.text = self.phrases[0];
         return;
       }
-      self.tick = setTimeout(type, 800);
+      self.tick = setTimeout(next, displayTime);
     },
     onremove: function () {
       clearTimeout(this.tick);
     },
     view: function () {
-      return m("span", [
-        this.text,
-        m("span", { class: "typewriter-cursor", "aria-hidden": "true" })
-      ]);
+      return m("span", {
+        class: "fade-phrase" + (this.fading ? " fade-out" : ""),
+        "aria-live": "polite"
+      }, this.phrases[this.current]);
     }
   };
 
@@ -300,8 +287,8 @@
     var mobileNavOverlayEl = document.getElementById("mobile-nav-overlay");
     if (mobileNavOverlayEl) m.mount(mobileNavOverlayEl, MobileNavOverlay);
 
-    var typewriterEl = document.getElementById("typewriter-slot");
-    if (typewriterEl) m.mount(typewriterEl, TypewriterHero);
+    var rotateEl = document.getElementById("rotate-slot");
+    if (rotateEl) m.mount(rotateEl, FadeRotator);
 
     var faqEl = document.getElementById("faq-accordion");
     if (faqEl) m.mount(faqEl, { view: function () { return m(FAQAccordion, { items: faqData }); } });

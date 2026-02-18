@@ -193,20 +193,16 @@ h1, h2, h3, h4, h5, h6,
 .reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
 .reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
 
-/* --- Typewriter cursor --- */
-.typewriter-cursor {
+/* --- Fade Rotator --- */
+.fade-phrase {
   display: inline-block;
-  width: 3px;
-  height: 1em;
-  background: oklch(65% 0.22 15);
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  animation: blink 1s step-end infinite;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
 }
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.fade-phrase.fade-out {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 /* --- Comparison Table --- */
@@ -261,9 +257,10 @@ h1, h2, h3, h4, h5, h6,
     opacity: 1;
     transform: none;
   }
-  .typewriter-cursor {
-    animation: none;
+  .fade-phrase {
+    transition: none;
     opacity: 1;
+    transform: none;
   }
 }
 
