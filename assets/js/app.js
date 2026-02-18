@@ -149,22 +149,42 @@
     }
   };
 
-  // ---- Paired Fade Rotator Hero ----
-  var heroPairs = [
-    { feature: "manages your inbox",        benefit: "focus on what matters" },
-    { feature: "schedules your meetings",   benefit: "take longer lunches" },
-    { feature: "tracks your deadlines",     benefit: "actually enjoy Mondays" },
-    { feature: "organizes your contacts",   benefit: "stop forgetting birthdays" },
-    { feature: "handles your GitHub issues", benefit: "pretend you have a secretary" },
-    { feature: "drafts your content",       benefit: "finally reply to that email from 2024" },
-    { feature: "triages your notifications", benefit: "nap between meetings" },
-    { feature: "plans your day",            benefit: "tell your boss you're 'delegating'" },
-    { feature: "remembers what you forget", benefit: "touch grass once in a while" },
-    { feature: "does the boring stuff",     benefit: "finish work on time" }
+  // ---- Randomized Fade Rotator Hero ----
+  var heroFeatures = [
+    "manages your inbox",
+    "schedules your meetings",
+    "tracks your deadlines",
+    "organizes your contacts",
+    "handles your GitHub issues",
+    "drafts your content",
+    "triages your notifications",
+    "plans your day",
+    "remembers what you forget",
+    "does the boring stuff"
   ];
 
+  var heroBenefits = [
+    "focus on what matters",
+    "take longer lunches",
+    "actually enjoy Mondays",
+    "stop forgetting birthdays",
+    "pretend you have a secretary",
+    "finally reply to that email from 2024",
+    "nap between meetings",
+    "tell your boss you're 'delegating'",
+    "touch grass once in a while",
+    "finish work on time"
+  ];
+
+  function randomIdx(len, exclude) {
+    var next;
+    do { next = Math.floor(Math.random() * len); } while (next === exclude);
+    return next;
+  }
+
   var heroRotation = {
-    current: 0,
+    featureIdx: 0,
+    benefitIdx: 0,
     fading: false,
     tick: null,
     started: false,
@@ -178,7 +198,8 @@
         heroRotation.fading = true;
         m.redraw();
         heroRotation.tick = setTimeout(function () {
-          heroRotation.current = (heroRotation.current + 1) % heroPairs.length;
+          heroRotation.featureIdx = randomIdx(heroFeatures.length, heroRotation.featureIdx);
+          heroRotation.benefitIdx = randomIdx(heroBenefits.length, heroRotation.benefitIdx);
           heroRotation.fading = false;
           m.redraw();
           heroRotation.tick = setTimeout(next, displayTime);
@@ -199,7 +220,7 @@
       return m("span", {
         class: "fade-phrase" + (heroRotation.fading ? " fade-out" : ""),
         "aria-live": "polite"
-      }, heroPairs[heroRotation.current].feature);
+      }, heroFeatures[heroRotation.featureIdx]);
     }
   };
 
@@ -208,7 +229,7 @@
       return m("span", {
         class: "fade-phrase" + (heroRotation.fading ? " fade-out" : ""),
         "aria-live": "polite"
-      }, heroPairs[heroRotation.current].benefit);
+      }, heroBenefits[heroRotation.benefitIdx]);
     }
   };
 
