@@ -149,54 +149,66 @@
     }
   };
 
-  // ---- Fade Rotator Hero ----
-  var FadeRotator = {
-    oninit: function () {
-      this.phrases = [
-        "focus on what matters",
-        "finish work on time",
-        "take longer lunches",
-        "actually enjoy Mondays",
-        "finally reply to that email from 2024",
-        "pretend you have a secretary",
-        "stop forgetting birthdays",
-        "nap between meetings",
-        "tell your boss you're 'delegating'",
-        "touch grass once in a while"
-      ];
-      this.current = 0;
-      this.fading = false;
-      this.tick = null;
-    },
-    oncreate: function () {
-      var self = this;
+  // ---- Paired Fade Rotator Hero ----
+  var heroPairs = [
+    { feature: "manages your inbox",        benefit: "focus on what matters" },
+    { feature: "schedules your meetings",   benefit: "take longer lunches" },
+    { feature: "tracks your deadlines",     benefit: "actually enjoy Mondays" },
+    { feature: "organizes your contacts",   benefit: "stop forgetting birthdays" },
+    { feature: "handles your GitHub issues", benefit: "pretend you have a secretary" },
+    { feature: "drafts your content",       benefit: "finally reply to that email from 2024" },
+    { feature: "triages your notifications", benefit: "nap between meetings" },
+    { feature: "plans your day",            benefit: "tell your boss you're 'delegating'" },
+    { feature: "remembers what you forget", benefit: "touch grass once in a while" },
+    { feature: "does the boring stuff",     benefit: "finish work on time" }
+  ];
+
+  var heroRotation = {
+    current: 0,
+    fading: false,
+    tick: null,
+    started: false,
+    start: function () {
+      if (heroRotation.started) return;
+      heroRotation.started = true;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       var displayTime = 3000;
       var fadeTime = 400;
-
       function next() {
-        self.fading = true;
+        heroRotation.fading = true;
         m.redraw();
-        self.tick = setTimeout(function () {
-          self.current = (self.current + 1) % self.phrases.length;
-          self.fading = false;
+        heroRotation.tick = setTimeout(function () {
+          heroRotation.current = (heroRotation.current + 1) % heroPairs.length;
+          heroRotation.fading = false;
           m.redraw();
-          self.tick = setTimeout(next, displayTime);
+          heroRotation.tick = setTimeout(next, displayTime);
         }, fadeTime);
       }
+      heroRotation.tick = setTimeout(next, displayTime);
+    },
+    stop: function () {
+      clearTimeout(heroRotation.tick);
+      heroRotation.started = false;
+    }
+  };
 
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        return;
-      }
-      self.tick = setTimeout(next, displayTime);
-    },
-    onremove: function () {
-      clearTimeout(this.tick);
-    },
+  var FeatureSlot = {
+    oncreate: function () { heroRotation.start(); },
+    onremove: function () { heroRotation.stop(); },
     view: function () {
       return m("span", {
-        class: "fade-phrase" + (this.fading ? " fade-out" : ""),
+        class: "fade-phrase" + (heroRotation.fading ? " fade-out" : ""),
         "aria-live": "polite"
-      }, this.phrases[this.current]);
+      }, heroPairs[heroRotation.current].feature);
+    }
+  };
+
+  var BenefitSlot = {
+    view: function () {
+      return m("span", {
+        class: "fade-phrase" + (heroRotation.fading ? " fade-out" : ""),
+        "aria-live": "polite"
+      }, heroPairs[heroRotation.current].benefit);
     }
   };
 
@@ -287,8 +299,11 @@
     var mobileNavOverlayEl = document.getElementById("mobile-nav-overlay");
     if (mobileNavOverlayEl) m.mount(mobileNavOverlayEl, MobileNavOverlay);
 
-    var rotateEl = document.getElementById("rotate-slot");
-    if (rotateEl) m.mount(rotateEl, FadeRotator);
+    var featureEl = document.getElementById("rotate-feature");
+    if (featureEl) m.mount(featureEl, FeatureSlot);
+
+    var benefitEl = document.getElementById("rotate-benefit");
+    if (benefitEl) m.mount(benefitEl, BenefitSlot);
 
     var faqEl = document.getElementById("faq-accordion");
     if (faqEl) m.mount(faqEl, { view: function () { return m(FAQAccordion, { items: faqData }); } });
