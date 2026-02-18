@@ -285,7 +285,7 @@
     },
     {
       q: "Why no shell access or browser automation?",
-      a: "Security. In a shared multi-tenant environment, shell access and browser automation create unacceptable security risks. We deliberately limit capabilities to keep your data safe — what AgentJunior can't do is just as important as what it can."
+      a: "Because security is a design choice, not a tradeoff. We deliberately exclude shell access and browser automation — not because we can't build them, but because in a multi-tenant environment, your safety matters more than a feature checklist. What AgentJunior can't do is just as important as what it can."
     }
   ];
 
