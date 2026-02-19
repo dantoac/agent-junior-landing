@@ -180,38 +180,32 @@
             <span class="text-base-content/50">shouldn't be a full-time job</span>
           </h2>
         </div>
-        <div class="grid md:grid-cols-3 gap-8 reveal-stagger">
-          <!-- Pain point 1 -->
-          <div class="reveal flex flex-col items-center text-center p-8">
-            <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
-              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
-              </svg>
+        <div id="problem-carousel" class="reveal"></div>
+        <noscript>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="flex flex-col items-center text-center p-8">
+              <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+              </div>
+              <h3 class="font-display font-bold text-lg mb-2">Inbox overload</h3>
+              <p class="text-base-content/60">Hours spent sorting, reading, and responding to emails that could be triaged automatically.</p>
             </div>
-            <h3 class="font-display font-bold text-lg mb-2">Inbox overload</h3>
-            <p class="text-base-content/60">Hours spent sorting, reading, and responding to emails that could be triaged automatically.</p>
-          </div>
-          <!-- Pain point 2 -->
-          <div class="reveal flex flex-col items-center text-center p-8">
-            <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
-              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
-              </svg>
+            <div class="flex flex-col items-center text-center p-8">
+              <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+              </div>
+              <h3 class="font-display font-bold text-lg mb-2">Calendar chaos</h3>
+              <p class="text-base-content/60">Back-to-back meetings, double bookings, and forgotten follow-ups drain your mental energy.</p>
             </div>
-            <h3 class="font-display font-bold text-lg mb-2">Calendar chaos</h3>
-            <p class="text-base-content/60">Back-to-back meetings, double bookings, and forgotten follow-ups drain your mental energy.</p>
-          </div>
-          <!-- Pain point 3 -->
-          <div class="reveal flex flex-col items-center text-center p-8">
-            <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
-              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15a2.25 2.25 0 012.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25"/>
-              </svg>
+            <div class="flex flex-col items-center text-center p-8">
+              <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
+                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15a2.25 2.25 0 012.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25"/></svg>
+              </div>
+              <h3 class="font-display font-bold text-lg mb-2">Task fragmentation</h3>
+              <p class="text-base-content/60">Action items scattered across apps, chats, and sticky notes — nothing gets tracked properly.</p>
             </div>
-            <h3 class="font-display font-bold text-lg mb-2">Task fragmentation</h3>
-            <p class="text-base-content/60">Action items scattered across apps, chats, and sticky notes — nothing gets tracked properly.</p>
           </div>
-        </div>
+        </noscript>
       </div>
     </section>
 
@@ -305,29 +299,39 @@
         <div class="mt-16 text-center reveal">
           <p class="text-sm text-base-content/40 mb-6 uppercase tracking-widest font-semibold">Works where you work</p>
           <div class="channel-logos">
-            <span class="text-base-content/40 font-semibold text-sm flex items-center gap-1.5">
+            <!-- Active integrations (colored) -->
+            <span class="channel-logo-active font-semibold text-sm flex items-center gap-1.5">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#EA4335"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+              Gmail
+            </span>
+            <span class="channel-logo-active font-semibold text-sm flex items-center gap-1.5">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#4285F4"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H5.684v5.684h12.632zM5.684 18.316H0V5.684h5.684v12.632zM18.316 18.316H24v5.684h-5.684v-5.684zM0 18.316v5.684h5.684v-5.684H0z"/></svg>
+              Google Calendar
+            </span>
+            <span class="channel-logo-active font-semibold text-sm flex items-center gap-1.5">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </span>
+            <span class="channel-logo-active font-semibold text-sm flex items-center gap-1.5">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="#26A5E4"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Telegram
+            </span>
+            <span class="channel-logo-active font-semibold text-sm flex items-center gap-1.5">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+              Web
+            </span>
+            <!-- Coming soon (dimmed) -->
+            <span class="channel-logo-inactive font-semibold text-sm flex items-center gap-1.5">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
               Slack <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
             </span>
-            <span class="text-base-content/40 font-semibold text-sm flex items-center gap-1.5">
+            <span class="channel-logo-inactive font-semibold text-sm flex items-center gap-1.5">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.404 6.65l-5.998-5.608c-.564-.527-1.255-.79-1.952-.79-.696 0-1.389.264-1.95.79l-5.997 5.607c-.568.53-.9 1.266-.9 2.035v8.578c0 1.513 1.228 2.741 2.741 2.741h2.233V13.7c0-.684.555-1.238 1.239-1.238h5.36c.684 0 1.239.554 1.239 1.238v6.304h2.233c1.513 0 2.741-1.228 2.741-2.741V8.686c0-.77-.332-1.506-.9-2.036z"/></svg>
               Teams <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
             </span>
-            <span class="text-base-content/40 font-semibold text-sm flex items-center gap-1.5">
+            <span class="channel-logo-inactive font-semibold text-sm flex items-center gap-1.5">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               WhatsApp <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
-            </span>
-            <span class="text-base-content/60 font-semibold text-sm flex items-center gap-1.5">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-              Telegram <span class="badge badge-xs badge-warning opacity-80">Beta</span>
-            </span>
-            <span class="text-base-content/60 font-semibold text-sm flex items-center gap-1.5">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-              Email
-            </span>
-            <span class="text-base-content/60 font-semibold text-sm flex items-center gap-1.5">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-              Web
             </span>
           </div>
         </div>
@@ -464,7 +468,7 @@
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Web + Telegram <span class="badge badge-xs badge-warning">Beta</span>
+                  Web + Telegram
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
@@ -501,10 +505,6 @@
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
                   7-day conversation memory <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Custom prompts <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
-                </li>
               </ul>
               <a href="mailto:hello@ainvirion.com?subject=AgentJunior%20Pro%20—%20Beta%20Access" class="btn btn-primary w-full">Get Started</a>
             </div>
@@ -529,11 +529,15 @@
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Custom agents <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+                  Custom prompts
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  API access + webhooks <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+                  Custom agents
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                  Webhooks + scheduled jobs
                 </li>
               </ul>
               <a href="mailto:hello@ainvirion.com?subject=AgentJunior%20Ultimate%20—%20Beta%20Access" class="btn btn-outline btn-primary w-full">Get Started</a>
@@ -583,7 +587,7 @@
             </details>
             <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
               <summary class="collapse-title text-lg font-display font-bold">What integrations are supported?</summary>
-              <div class="collapse-content"><p>AgentJunior currently connects with Gmail, Google Calendar, and GitHub. Telegram is available in beta. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon.</p></div>
+              <div class="collapse-content"><p>AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon.</p></div>
             </details>
             <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
               <summary class="collapse-title text-lg font-display font-bold">How does billing work?</summary>
@@ -603,7 +607,7 @@
             </details>
             <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
               <summary class="collapse-title text-lg font-display font-bold">Is there an API for developers?</summary>
-              <div class="collapse-content"><p>We're building API access for power users. Webhook triggers and custom automation endpoints are on our roadmap.</p></div>
+              <div class="collapse-content"><p>The Ultimate plan includes webhooks, scheduled jobs, custom prompts, and custom agents. These let you integrate AgentJunior into your own workflows and automate recurring tasks.</p></div>
             </details>
             <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
               <summary class="collapse-title text-lg font-display font-bold">Why no shell access or browser automation?</summary>

@@ -273,6 +273,184 @@
     });
   }
 
+  // ---- Problem Carousel ----
+  var pcSlides = [
+    {
+      type: "email",
+      message: "Triage my inbox",
+      items: [
+        { sender: "John Smith", subject: "Q4 Report — Review needed", tag: "Urgent", color: "error" },
+        { sender: "Sarah Lee", subject: "Meeting tomorrow at 3pm", tag: "Follow-up", color: "warning" },
+        { sender: "GitHub", subject: "PR #42 successfully merged", tag: "FYI", color: "success" },
+        { sender: "Newsletter", subject: "Weekly digest — Dec 16", tag: "Archive", color: "ghost" }
+      ]
+    },
+    {
+      type: "calendar",
+      message: "Schedule team sync tomorrow at 2pm",
+      slots: [
+        { time: "1:00 PM", event: null },
+        { time: "2:00 PM", event: { title: "Team Sync", meta: "1hr \u00b7 4 people", isNew: true } },
+        { time: "3:00 PM", event: null },
+        { time: "4:00 PM", event: { title: "Focus time", meta: "2hr block", isNew: false } }
+      ]
+    },
+    {
+      type: "tasks",
+      message: "Extract action items from today's emails",
+      tasks: [
+        { text: "Confirm meeting time", source: "From Sarah\u2019s email", done: true },
+        { text: "Review Q4 report", source: "From John\u2019s email", done: false },
+        { text: "Follow up on PR feedback", source: "From GitHub notification", done: false }
+      ]
+    }
+  ];
+
+  var ProblemCarousel = {
+    oninit: function () {
+      this.current = 0;
+      this.morphed = false;
+      this.timer = null;
+      this.morphTimer = null;
+    },
+    oncreate: function () {
+      this._startTimer();
+      this._triggerMorph();
+    },
+    onremove: function () {
+      clearInterval(this.timer);
+      clearTimeout(this.morphTimer);
+    },
+    _reducedMotion: function () {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    },
+    _triggerMorph: function () {
+      var self = this;
+      clearTimeout(self.morphTimer);
+      if (self._reducedMotion()) { self.morphed = true; return; }
+      self.morphTimer = setTimeout(function () {
+        self.morphed = true;
+        m.redraw();
+      }, 2200);
+    },
+    _startTimer: function () {
+      var self = this;
+      clearInterval(self.timer);
+      if (self._reducedMotion()) return;
+      self.timer = setInterval(function () {
+        self.morphed = false;
+        self.current = (self.current + 1) % pcSlides.length;
+        m.redraw();
+        self._triggerMorph();
+      }, 6000);
+    },
+    _goto: function (i) {
+      if (i === this.current) return;
+      this.morphed = false;
+      this.current = i;
+      m.redraw();
+      this._triggerMorph();
+      this._startTimer();
+    },
+    view: function () {
+      var self = this;
+      return m("div", [
+        m("div", { class: "pc-wrap" },
+          pcSlides.map(function (slide, i) {
+            var isActive = self.current === i;
+            return m("div", { class: "pc-slide" + (isActive ? " active" : ""), key: "pc-" + i }, [
+              m("div", { class: "pc-bubble inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-2xl rounded-br-md px-5 py-3 mb-6 max-w-lg" }, [
+                m("svg", { class: "w-4 h-4 text-primary flex-shrink-0", fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor" }, [
+                  m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" })
+                ]),
+                m("span", { class: "text-sm font-semibold" }, slide.message)
+              ]),
+              m("div", { class: "pc-response w-full max-w-lg bg-base-100/80 border border-base-300/40 rounded-2xl overflow-hidden shadow-lg" },
+                self._renderSlide(slide, isActive)
+              )
+            ]);
+          })
+        ),
+        m("div", { class: "flex justify-center gap-2 mt-8" },
+          pcSlides.map(function (_, i) {
+            return m("button", {
+              class: "pc-indicator " + (self.current === i ? "active bg-primary" : "bg-base-content/20"),
+              "aria-label": "Slide " + (i + 1),
+              onclick: function () { self._goto(i); }
+            });
+          })
+        )
+      ]);
+    },
+    _renderSlide: function (slide, isActive) {
+      if (slide.type === "email") return this._renderEmail(slide, isActive);
+      if (slide.type === "calendar") return this._renderCalendar(slide, isActive);
+      if (slide.type === "tasks") return this._renderTasks(slide, isActive);
+    },
+    _renderEmail: function (slide, isActive) {
+      var morphed = this.morphed && isActive;
+      var dotColors = { error: "bg-error", warning: "bg-warning", success: "bg-success", ghost: "bg-base-content/20" };
+      var tagColors = { error: "badge-error", warning: "badge-warning", success: "badge-success", ghost: "badge-ghost opacity-50" };
+      return slide.items.map(function (item, i) {
+        var isLast = i === slide.items.length - 1;
+        return m("div", { class: "pc-item flex items-center gap-3 px-5 py-3" + (isLast ? "" : " border-b border-base-300/20") + (item.color === "ghost" && morphed ? " opacity-40" : "") }, [
+          m("span", {
+            class: "w-2.5 h-2.5 rounded-full flex-shrink-0 pc-dot-morph " + (morphed ? dotColors[item.color] : "bg-base-content/20"),
+            style: { transitionDelay: morphed ? (i * 0.15) + "s" : "0s" }
+          }),
+          m("div", { class: "flex-1 min-w-0" }, [
+            m("p", { class: "font-semibold text-sm truncate" }, item.sender),
+            m("p", { class: "text-xs text-base-content/50 truncate" }, item.subject)
+          ]),
+          m("span", {
+            class: "pc-tag badge badge-xs " + tagColors[item.color] + (morphed ? " visible" : ""),
+            style: { transitionDelay: morphed ? (0.2 + i * 0.15) + "s" : "0s" }
+          }, item.tag)
+        ]);
+      });
+    },
+    _renderCalendar: function (slide, isActive) {
+      var morphed = this.morphed && isActive;
+      return slide.slots.map(function (slot, i) {
+        return m("div", { class: "pc-item flex gap-3 px-5 py-2.5" }, [
+          m("span", { class: "text-xs text-base-content/40 w-16 flex-shrink-0 pt-1 font-mono" }, slot.time),
+          slot.event
+            ? m("div", {
+                class: "flex-1 rounded-lg border-l-4 px-4 py-3 " +
+                  (slot.event.isNew
+                    ? "pc-event-new bg-primary/10 border-primary" + (morphed ? " visible" : "")
+                    : "bg-base-200/50 border-base-content/10 opacity-40"),
+                style: slot.event.isNew ? { transitionDelay: morphed ? "0.3s" : "0s" } : {}
+              }, [
+                m("p", { class: "font-semibold text-sm" }, slot.event.title),
+                m("p", { class: "text-xs text-base-content/50" }, slot.event.meta)
+              ])
+            : m("div", { class: "flex-1 border-b border-dashed border-base-300/20 min-h-8" })
+        ]);
+      });
+    },
+    _renderTasks: function (slide, isActive) {
+      var morphed = this.morphed && isActive;
+      return slide.tasks.map(function (task, i) {
+        var isDone = task.done && morphed;
+        var isLast = i === slide.tasks.length - 1;
+        return m("div", { class: "pc-item flex items-start gap-3 px-5 py-3" + (isLast ? "" : " border-b border-base-300/20") }, [
+          m("div", {
+            class: "pc-check mt-0.5" + (isDone ? " done" : ""),
+            style: { transitionDelay: morphed ? "0.1s" : "0s" }
+          }),
+          m("div", [
+            m("p", {
+              class: "font-semibold text-sm pc-done-text" + (isDone ? " struck" : ""),
+              style: { transitionDelay: morphed ? "0.15s" : "0s" }
+            }, task.text),
+            m("p", { class: "text-xs text-base-content/40 mt-0.5" }, task.source)
+          ])
+        ]);
+      });
+    }
+  };
+
   // ---- FAQ Data ----
   var faqData = [
     {
@@ -281,7 +459,7 @@
     },
     {
       q: "What integrations are supported?",
-      a: "AgentJunior currently connects with Gmail, Google Calendar, and GitHub. Telegram is available in beta. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
+      a: "AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
     },
     {
       q: "How does billing work?",
@@ -301,7 +479,7 @@
     },
     {
       q: "Is there an API for developers?",
-      a: "We're building API access for power users who want to integrate AgentJunior into their own workflows. Webhook triggers and custom automation endpoints are on our roadmap."
+      a: "The Ultimate plan includes webhooks, scheduled jobs, custom prompts, and custom agents. These let you integrate AgentJunior into your own workflows and automate recurring tasks."
     },
     {
       q: "Why no shell access or browser automation?",
@@ -325,6 +503,9 @@
 
     var benefitEl = document.getElementById("rotate-benefit");
     if (benefitEl) m.mount(benefitEl, BenefitSlot);
+
+    var pcEl = document.getElementById("problem-carousel");
+    if (pcEl) m.mount(pcEl, ProblemCarousel);
 
     var faqEl = document.getElementById("faq-accordion");
     if (faqEl) m.mount(faqEl, { view: function () { return m(FAQAccordion, { items: faqData }); } });
