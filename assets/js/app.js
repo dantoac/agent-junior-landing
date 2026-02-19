@@ -281,11 +281,11 @@
     },
     {
       q: "What integrations are supported?",
-      a: "AgentJunior connects with Gmail, Google Calendar, GitHub, and more. Enterprise channels including Slack, Microsoft Teams, WhatsApp, and Telegram are supported so your assistant meets you where you work."
+      a: "AgentJunior currently connects with Gmail, Google Calendar, and GitHub. Telegram is available in beta. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
     },
     {
       q: "How does billing work?",
-      a: "Choose a plan that fits your needs. All plans are billed monthly with no long-term commitment. You can upgrade, downgrade, or cancel at any time. We offer a free tier to get started."
+      a: "AgentJunior is currently in free beta — no credit card required. When billing launches, all plans will be billed monthly with no long-term commitment. You'll be able to upgrade, downgrade, or cancel at any time."
     },
     {
       q: "What happens to my data if I cancel?",
