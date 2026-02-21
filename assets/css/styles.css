@@ -267,6 +267,8 @@ h1, h2, h3, h4, h5, h6,
   .pc-slide { position: relative !important; opacity: 1 !important; pointer-events: auto !important; }
   .pc-bubble, .pc-response, .pc-item, .pc-tag { opacity: 1 !important; transform: none !important; }
   .pc-event-new { transform: scaleY(1) !important; opacity: 1 !important; }
+  .pc-draft-field { opacity: 1 !important; }
+  .pc-rank, .pc-row-top { transition: none !important; }
 }
 
 /* --- Navbar Blur --- */
@@ -456,6 +458,26 @@ h1, h2, h3, h4, h5, h6,
 .pc-done-text.struck {
   text-decoration: line-through;
   opacity: 0.4;
+}
+
+/* Morph: spreadsheet row highlight */
+.pc-row-top {
+  background-color: oklch(65% 0.22 15 / 0.06);
+  transition: background-color 0.4s ease;
+}
+
+/* Morph: rank circle */
+.pc-rank {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Morph: draft field fill */
+.pc-draft-field {
+  transition: opacity 0.4s ease;
+  opacity: 0.5;
+}
+.pc-draft-field.filled {
+  opacity: 1;
 }
 
 /* Carousel indicators */

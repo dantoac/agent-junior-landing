@@ -310,6 +310,44 @@
         { text: "Review Q4 report", source: "From John\u2019s email", done: false },
         { text: "Follow up on PR feedback", source: "From GitHub notification", done: false }
       ]
+    },
+    {
+      type: "pdf",
+      message: "Summarize this quarterly report",
+      sections: [
+        { title: "Executive Summary", finding: "Revenue up 23% YoY", badge: "Key Finding", color: "success" },
+        { title: "Market Analysis", finding: "3 new competitors entered", badge: "Action Item", color: "warning" },
+        { title: "Financial Details", finding: "12 pages of tables", badge: "Skip", color: "ghost" },
+        { title: "Recommendations", finding: "Expand to APAC market", badge: "Key Finding", color: "success" }
+      ]
+    },
+    {
+      type: "spreadsheet",
+      message: "What were our top 3 products last quarter?",
+      rows: [
+        { product: "Enterprise Suite", revenue: "$1.2M", rank: 1, isTop: true },
+        { product: "Pro Plan", revenue: "$890K", rank: 2, isTop: true },
+        { product: "Starter Pack", revenue: "$650K", rank: 3, isTop: true },
+        { product: "Add-ons", revenue: "$120K", rank: null, isTop: false }
+      ]
+    },
+    {
+      type: "research",
+      message: "Research competitor pricing for CRM tools",
+      results: [
+        { title: "Salesforce \u2014 Enterprise CRM", source: "salesforce.com", snippet: "Starting at $25/user/mo", badge: "Leader" },
+        { title: "HubSpot \u2014 Free CRM", source: "hubspot.com", snippet: "Free tier, paid from $20/mo", badge: "Freemium" },
+        { title: "Pipedrive \u2014 Sales CRM", source: "pipedrive.com", snippet: "From $14.90/user/mo", badge: "Budget" }
+      ]
+    },
+    {
+      type: "draft",
+      message: "Draft a follow-up email to the client",
+      fields: [
+        { label: "To", value: "sarah.chen@acme.co" },
+        { label: "Subject", value: "Re: Project timeline update" },
+        { label: "Body", value: "Hi Sarah, following up on our discussion yesterday. The revised timeline is attached with all milestones updated per your feedback." }
+      ]
     }
   ];
 
@@ -393,6 +431,10 @@
       if (slide.type === "email") return this._renderEmail(slide, isActive);
       if (slide.type === "calendar") return this._renderCalendar(slide, isActive);
       if (slide.type === "tasks") return this._renderTasks(slide, isActive);
+      if (slide.type === "pdf") return this._renderPdf(slide, isActive);
+      if (slide.type === "spreadsheet") return this._renderSpreadsheet(slide, isActive);
+      if (slide.type === "research") return this._renderResearch(slide, isActive);
+      if (slide.type === "draft") return this._renderDraft(slide, isActive);
     },
     _renderEmail: function (slide, isActive) {
       var morphed = this.morphed && isActive;
@@ -452,6 +494,87 @@
               style: { transitionDelay: morphed ? "0.15s" : "0s" }
             }, task.text),
             m("p", { class: "text-xs text-base-content/40 mt-0.5" }, task.source)
+          ])
+        ]);
+      });
+    },
+    _renderPdf: function (slide, isActive) {
+      var morphed = this.morphed && isActive;
+      var dotColors = { success: "bg-success", warning: "bg-warning", ghost: "bg-base-content/20" };
+      var tagColors = { success: "badge-success", warning: "badge-warning", ghost: "badge-ghost opacity-50" };
+      return slide.sections.map(function (section, i) {
+        var isLast = i === slide.sections.length - 1;
+        return m("div", { class: "pc-item flex items-center gap-3 px-5 py-3" + (isLast ? "" : " border-b border-base-300/20") + (section.color === "ghost" && morphed ? " opacity-40" : "") }, [
+          m("span", {
+            class: "w-2.5 h-2.5 rounded-full flex-shrink-0 pc-dot-morph " + (morphed ? dotColors[section.color] : "bg-base-content/20"),
+            style: { transitionDelay: morphed ? (i * 0.15) + "s" : "0s" }
+          }),
+          m("div", { class: "flex-1 min-w-0" }, [
+            m("p", { class: "font-semibold text-sm truncate" }, section.title),
+            m("p", { class: "text-xs text-base-content/50 truncate" }, section.finding)
+          ]),
+          m("span", {
+            class: "pc-tag badge badge-xs " + tagColors[section.color] + (morphed ? " visible" : ""),
+            style: { transitionDelay: morphed ? (0.2 + i * 0.15) + "s" : "0s" }
+          }, section.badge)
+        ]);
+      });
+    },
+    _renderSpreadsheet: function (slide, isActive) {
+      var morphed = this.morphed && isActive;
+      return slide.rows.map(function (row, i) {
+        var isTop = row.isTop && morphed;
+        var isLast = i === slide.rows.length - 1;
+        return m("div", {
+          class: "pc-item flex items-center gap-3 px-5 py-3" + (isLast ? "" : " border-b border-base-300/20") + (isTop ? " pc-row-top" : "") + (!row.isTop && morphed ? " opacity-40" : ""),
+        }, [
+          row.rank
+            ? m("span", {
+                class: "pc-rank w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 " + (isTop ? "bg-primary text-primary-content" : "bg-base-content/10 text-base-content/40"),
+                style: { transitionDelay: morphed ? (i * 0.15) + "s" : "0s" }
+              }, "#" + row.rank)
+            : m("span", { class: "w-6 h-6 flex-shrink-0" }),
+          m("div", { class: "flex-1 min-w-0" }, [
+            m("p", { class: "font-semibold text-sm truncate" }, row.product)
+          ]),
+          m("span", { class: "text-sm font-mono text-base-content/60" }, row.revenue)
+        ]);
+      });
+    },
+    _renderResearch: function (slide, isActive) {
+      var morphed = this.morphed && isActive;
+      return slide.results.map(function (result, i) {
+        var isLast = i === slide.results.length - 1;
+        return m("div", { class: "pc-item px-5 py-3" + (isLast ? "" : " border-b border-base-300/20") }, [
+          m("div", { class: "flex items-center gap-2 mb-1" }, [
+            m("p", { class: "font-semibold text-sm truncate flex-1" }, result.title),
+            m("span", {
+              class: "pc-tag badge badge-xs badge-primary" + (morphed ? " visible" : ""),
+              style: { transitionDelay: morphed ? (0.2 + i * 0.15) + "s" : "0s" }
+            }, result.badge)
+          ]),
+          m("p", { class: "text-xs text-primary/60 mb-0.5" }, result.source),
+          m("p", { class: "text-xs text-base-content/50 truncate" }, result.snippet)
+        ]);
+      });
+    },
+    _renderDraft: function (slide, isActive) {
+      var morphed = this.morphed && isActive;
+      return slide.fields.map(function (field, i) {
+        var isFilled = morphed;
+        var isLast = i === slide.fields.length - 1;
+        var isBody = field.label === "Body";
+        return m("div", { class: "pc-item px-5 py-2.5" + (isLast ? "" : " border-b border-base-300/20") }, [
+          m("div", { class: "flex items-start gap-3" }, [
+            m("span", { class: "text-xs text-base-content/40 w-12 flex-shrink-0 pt-0.5 font-semibold uppercase" }, field.label),
+            m("div", {
+              class: "flex-1 min-w-0 pc-draft-field" + (isFilled ? " filled" : ""),
+              style: { transitionDelay: morphed ? (0.15 + i * 0.2) + "s" : "0s" }
+            }, [
+              isFilled
+                ? m("p", { class: "text-sm" + (isBody ? "" : " truncate") }, field.value)
+                : m("div", { class: "rounded " + (isBody ? "h-12 bg-base-content/5" : "h-4 bg-base-content/5 w-3/4") })
+            ])
           ])
         ]);
       });
