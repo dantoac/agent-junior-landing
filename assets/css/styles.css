@@ -192,6 +192,8 @@ h1, h2, h3, h4, h5, h6,
 .reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
 .reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
 .reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+.reveal-stagger > .reveal:nth-child(7) { transition-delay: 480ms; }
+.reveal-stagger > .reveal:nth-child(8) { transition-delay: 560ms; }
 
 /* --- Fade Rotator --- */
 .fade-phrase {

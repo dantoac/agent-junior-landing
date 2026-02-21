@@ -80,6 +80,7 @@
     view: function () {
       var links = [
         { href: "#features", label: "Features" },
+        { href: "#skills", label: "Skills" },
         { href: "#pricing", label: "Pricing" },
         { href: "#faq", label: "FAQ" }
       ];
@@ -160,7 +161,11 @@
     "triages your notifications",
     "plans your day",
     "remembers what you forget",
-    "does the boring stuff"
+    "does the boring stuff",
+    "parses your documents",
+    "takes encrypted notes",
+    "transcribes your voice messages",
+    "automates your routines"
   ];
 
   var heroBenefits = [
@@ -173,7 +178,9 @@
     "nap between meetings",
     "tell your boss you're 'delegating'",
     "touch grass once in a while",
-    "finish work on time"
+    "finish work on time",
+    "stop copy-pasting from PDFs",
+    "automate the repetitive stuff"
   ];
 
   function randomIdx(len, exclude) {
@@ -459,7 +466,7 @@
     },
     {
       q: "What integrations are supported?",
-      a: "AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
+      a: "AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. It supports voice message transcription and a Skills Marketplace with pre-built skills like PDF reading, web research, and more. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
     },
     {
       q: "How does billing work?",
@@ -479,7 +486,11 @@
     },
     {
       q: "Is there an API for developers?",
-      a: "The Ultimate plan includes webhooks, scheduled jobs, custom prompts, and custom agents. These let you integrate AgentJunior into your own workflows and automate recurring tasks."
+      a: "The Ultimate plan includes webhooks API, scheduled jobs, custom prompts (triggered via /command), and custom agents (triggered via @agent). These let you integrate AgentJunior into your own workflows and automate recurring tasks programmatically."
+    },
+    {
+      q: "What is the Skills Marketplace?",
+      a: "The Skills Marketplace is a curated collection of pre-built capabilities you can add to your AgentJunior with one click. Skills include PDF reading, spreadsheet analysis, web research, meeting notes generation, and more. All skills are vetted for security and quality. Available on Pro and Ultimate plans."
     },
     {
       q: "Why no shell access or browser automation?",
