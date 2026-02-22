@@ -149,54 +149,93 @@
     return next;
   }
 
-  var heroRotation = {
-    featureIdx: 0,
-    benefitIdx: 0,
-    fading: false,
-    tick: null,
-    started: false,
-    start: function () {
-      if (heroRotation.started) return;
-      heroRotation.started = true;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      var displayTime = 3000;
-      var fadeTime = 400;
-      function next() {
-        heroRotation.fading = true;
-        m.redraw();
-        heroRotation.tick = setTimeout(function () {
-          heroRotation.featureIdx = randomIdx(heroFeatures.length, heroRotation.featureIdx);
-          heroRotation.benefitIdx = randomIdx(heroBenefits.length, heroRotation.benefitIdx);
-          heroRotation.fading = false;
+  function createRotator(phrases, displayTime) {
+    var fadeTime = 400;
+    var r = {
+      idx: 0,
+      fading: false,
+      tick: null,
+      started: false,
+      start: function () {
+        if (r.started) return;
+        r.started = true;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        function next() {
+          r.fading = true;
           m.redraw();
-          heroRotation.tick = setTimeout(next, displayTime);
-        }, fadeTime);
+          r.tick = setTimeout(function () {
+            r.idx = randomIdx(phrases.length, r.idx);
+            r.fading = false;
+            m.redraw();
+            r.tick = setTimeout(next, displayTime);
+          }, fadeTime);
+        }
+        r.tick = setTimeout(next, displayTime);
+      },
+      stop: function () {
+        clearTimeout(r.tick);
+        r.started = false;
       }
-      heroRotation.tick = setTimeout(next, displayTime);
-    },
-    stop: function () {
-      clearTimeout(heroRotation.tick);
-      heroRotation.started = false;
+    };
+    return r;
+  }
+
+  var featureRotator = createRotator(heroFeatures, 3000);
+  var benefitRotator = createRotator(heroBenefits, 4200);
+
+  function lockRotatorHeight(el, phrases) {
+    var p = el.closest("p");
+    if (!p) return function () {};
+    function recalc() {
+      var saved = el.textContent;
+      p.style.minHeight = "";
+      var maxH = 0;
+      for (var i = 0; i < phrases.length; i++) {
+        el.textContent = phrases[i];
+        var h = p.offsetHeight;
+        if (h > maxH) maxH = h;
+      }
+      el.textContent = saved;
+      p.style.minHeight = maxH + "px";
     }
-  };
+    recalc();
+    var tid;
+    function onResize() { clearTimeout(tid); tid = setTimeout(recalc, 150); }
+    window.addEventListener("resize", onResize);
+    return function () { window.removeEventListener("resize", onResize); };
+  }
 
   var FeatureSlot = {
-    oncreate: function () { heroRotation.start(); },
-    onremove: function () { heroRotation.stop(); },
+    oncreate: function (vnode) {
+      vnode._unlockHeight = lockRotatorHeight(vnode.dom, heroFeatures);
+      featureRotator.start();
+    },
+    onremove: function (vnode) {
+      if (vnode._unlockHeight) vnode._unlockHeight();
+      featureRotator.stop();
+    },
     view: function () {
       return m("span", {
-        class: "fade-phrase" + (heroRotation.fading ? " fade-out" : ""),
+        class: "fade-phrase" + (featureRotator.fading ? " fade-out" : ""),
         "aria-live": "polite"
-      }, heroFeatures[heroRotation.featureIdx]);
+      }, heroFeatures[featureRotator.idx]);
     }
   };
 
   var BenefitSlot = {
+    oncreate: function (vnode) {
+      vnode._unlockHeight = lockRotatorHeight(vnode.dom, heroBenefits);
+      benefitRotator.start();
+    },
+    onremove: function (vnode) {
+      if (vnode._unlockHeight) vnode._unlockHeight();
+      benefitRotator.stop();
+    },
     view: function () {
       return m("span", {
-        class: "fade-phrase" + (heroRotation.fading ? " fade-out" : ""),
+        class: "fade-phrase" + (benefitRotator.fading ? " fade-out" : ""),
         "aria-live": "polite"
-      }, heroBenefits[heroRotation.benefitIdx]);
+      }, heroBenefits[benefitRotator.idx]);
     }
   };
 
