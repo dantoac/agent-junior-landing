@@ -518,7 +518,7 @@
     var FAQPage = {
       oninit: function () {
         this.activeCategory = "all";
-        this.openIndex = -1;
+        this.openIndex = null;
         // Check URL hash for category deep-link
         var hash = window.location.hash.replace("#", "");
         if (hash) {
@@ -532,10 +532,10 @@
       },
       setCategory: function (id) {
         this.activeCategory = id;
-        this.openIndex = -1;
+        this.openIndex = null;
       },
-      toggle: function (index) {
-        this.openIndex = this.openIndex === index ? -1 : index;
+      toggle: function (id) {
+        this.openIndex = this.openIndex === id ? null : id;
       },
       view: function () {
         var self = this;
@@ -551,16 +551,15 @@
           ? faqCategories
           : faqCategories.filter(function (cat) { return cat.id === self.activeCategory; });
 
-        // Global index counter for open/close state
-        var globalIndex = 0;
-
         return m("div", [
           // Category tabs
-          m("div", { class: "flex flex-wrap gap-2 mb-8 justify-center" },
+          m("div", { class: "flex flex-wrap gap-2 mb-8 justify-center", role: "tablist", "aria-label": "FAQ categories" },
             tabs.map(function (tab) {
               var isActive = self.activeCategory === tab.id;
               return m("button", {
                 class: "btn btn-sm " + (isActive ? "btn-primary" : "btn-ghost"),
+                role: "tab",
+                "aria-selected": String(isActive),
                 onclick: function () { self.setCategory(tab.id); }
               }, tab.label);
             })
@@ -569,17 +568,21 @@
           // FAQ items by category
           m("div", { class: "space-y-2" },
             visibleCategories.map(function (cat, catIdx) {
-              var categoryItems = cat.items.map(function (item) {
-                var idx = globalIndex++;
-                var isOpen = self.openIndex === idx;
+              var categoryItems = cat.items.map(function (item, i) {
+                var itemId = cat.id + "-" + i;
+                var btnId = "faq-btn-" + cat.id + "-" + i;
+                var panelId = "faq-" + cat.id + "-" + i;
+                var isOpen = self.openIndex === itemId;
                 return m("div", {
                   class: "bg-base-200 rounded-2xl relative",
-                  key: cat.id + "-" + idx
+                  key: itemId
                 }, [
                   m("button", {
+                    id: btnId,
                     class: "w-full text-left px-6 py-5 text-lg font-display font-bold pr-14 cursor-pointer",
                     "aria-expanded": String(isOpen),
-                    onclick: function () { self.toggle(idx); }
+                    "aria-controls": panelId,
+                    onclick: function () { self.toggle(itemId); }
                   }, [
                     item.q,
                     m("svg", {
@@ -590,7 +593,7 @@
                       m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M19 9l-7 7-7-7" })
                     ])
                   ]),
-                  m("div", { class: "faq-content " + (isOpen ? "open" : "") }, [
+                  m("div", { id: panelId, role: "region", "aria-labelledby": btnId, class: "faq-content " + (isOpen ? "open" : "") }, [
                     m("div", { class: "px-6 pb-5 text-base-content/70" }, item.a)
                   ])
                 ]);
