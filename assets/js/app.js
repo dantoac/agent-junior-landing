@@ -82,7 +82,7 @@
         { href: "#features", label: "Features" },
         { href: "#skills", label: "Skills" },
         { href: "#pricing", label: "Pricing" },
-        { href: "#faq", label: "FAQ" }
+        { href: "faq.html", label: "FAQ" }
       ];
 
       return m("div", {
@@ -107,46 +107,6 @@
           }, "Get Started Free")
         ])
       ]);
-    }
-  };
-
-  // ---- FAQ Accordion ----
-  var FAQAccordion = {
-    oninit: function (vnode) {
-      this.openIndex = -1;
-      // Read FAQ data from existing HTML or use provided data
-      this.items = vnode.attrs.items || [];
-    },
-    toggle: function (index) {
-      this.openIndex = this.openIndex === index ? -1 : index;
-    },
-    view: function () {
-      var self = this;
-      return m("div", { class: "space-y-3" }, self.items.map(function (item, i) {
-        var isOpen = self.openIndex === i;
-        return m("div", {
-          class: "bg-base-200 rounded-2xl relative",
-          key: i
-        }, [
-          m("button", {
-            class: "w-full text-left px-6 py-5 text-lg font-display font-bold pr-14 cursor-pointer",
-            "aria-expanded": String(isOpen),
-            onclick: function () { self.toggle(i); }
-          }, [
-            item.q,
-            m("svg", {
-              class: "faq-chevron w-5 h-5 absolute right-6 top-6 " + (isOpen ? "open" : ""),
-              fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor",
-              "aria-hidden": "true"
-            }, [
-              m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M19 9l-7 7-7-7" })
-            ])
-          ]),
-          m("div", { class: "faq-content " + (isOpen ? "open" : "") }, [
-            m("div", { class: "px-6 pb-5 text-base-content/70" }, item.a)
-          ])
-        ]);
-      }));
     }
   };
 
@@ -581,46 +541,6 @@
     }
   };
 
-  // ---- FAQ Data ----
-  var faqData = [
-    {
-      q: "How does AgentJunior protect my data?",
-      a: "Your data is encrypted at rest, isolated per user with PostgreSQL Row-Level Security, and automatically cleaned up based on your retention settings. We don't use your data for model training. Ever."
-    },
-    {
-      q: "What integrations are supported?",
-      a: "AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. It supports voice message transcription and a Skills Marketplace with pre-built skills like PDF reading, web research, and more. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
-    },
-    {
-      q: "How does billing work?",
-      a: "AgentJunior is currently in free beta — no credit card required. When billing launches, all plans will be billed monthly with no long-term commitment. You'll be able to upgrade, downgrade, or cancel at any time."
-    },
-    {
-      q: "What happens to my data if I cancel?",
-      a: "Your data is automatically cleaned up according to your tier's retention policy. When you cancel, remaining data is purged within 30 days. You can request immediate deletion at any time."
-    },
-    {
-      q: "How is this different from self-hosted alternatives?",
-      a: "Self-hosted solutions require you to manage infrastructure, security patches, and updates. AgentJunior gives you the same productivity benefits with zero DevOps overhead, proper multi-user isolation, and enterprise integrations built in."
-    },
-    {
-      q: "Can I use AgentJunior with my team?",
-      a: "Yes! AgentJunior is built as a multi-tenant platform from the ground up. Each user gets their own isolated workspace with proper security boundaries. Team plans with shared features are coming soon."
-    },
-    {
-      q: "Is there an API for developers?",
-      a: "The Ultimate plan includes webhooks API, scheduled jobs, custom prompts (triggered via /command), and custom agents (triggered via @agent). These let you integrate AgentJunior into your own workflows and automate recurring tasks programmatically."
-    },
-    {
-      q: "What is the Skills Marketplace?",
-      a: "The Skills Marketplace is a curated collection of pre-built capabilities you can add to your AgentJunior with one click. Skills include PDF reading, spreadsheet analysis, web research, meeting notes generation, and more. All skills are vetted for security and quality. Available on Pro and Ultimate plans."
-    },
-    {
-      q: "Why no shell access or browser automation?",
-      a: "Because security is a design choice, not a tradeoff. We deliberately exclude shell access and browser automation — not because we can't build them, but because in a multi-tenant environment, your safety matters more than a feature checklist. What AgentJunior can't do is just as important as what it can."
-    }
-  ];
-
   // ---- Mount Everything ----
   function init() {
     var themeEl = document.getElementById("theme-toggle");
@@ -640,9 +560,6 @@
 
     var pcEl = document.getElementById("problem-carousel");
     if (pcEl) m.mount(pcEl, ProblemCarousel);
-
-    var faqEl = document.getElementById("faq-accordion");
-    if (faqEl) m.mount(faqEl, { view: function () { return m(FAQAccordion, { items: faqData }); } });
 
     initScrollReveal();
     initSmoothScroll();
