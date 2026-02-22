@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="agentjunior-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — AgentJunior</title>
+  <meta name="description" content="Frequently asked questions about AgentJunior — security, billing, integrations, Skills Marketplace, and more.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://agent-junior.com/faq.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agent-junior.com/faq.html">
+  <meta property="og:title" content="FAQ — AgentJunior">
+  <meta property="og:description" content="Frequently asked questions about AgentJunior — security, billing, integrations, Skills Marketplace, and more.">
+  <meta property="og:site_name" content="AgentJunior">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ — AgentJunior">
+  <meta name="twitter:description" content="Frequently asked questions about AgentJunior — security, billing, integrations, Skills Marketplace, and more.">
+
+  <!-- Theme: prevent FOUC -->
+  <script>
+    (function(){
+      var t;
+      try { t = localStorage.getItem("aj-theme"); } catch(e){}
+      if (!t) t = window.matchMedia("(prefers-color-scheme: light)").matches ? "agentjunior-light" : "agentjunior-dark";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+
+  <!-- Tailwind CSS v4 (browser build) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- DaisyUI v5 -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom Styles -->
+  <link href="assets/css/styles.css" rel="stylesheet">
+
+  <!-- Schema.org FAQ JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does AgentJunior protect my data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your data is encrypted at rest, isolated per user with PostgreSQL Row-Level Security, and automatically cleaned up based on your retention settings. We don't use your data for model training. Ever."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to my data if I cancel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your data is automatically cleaned up according to your tier's retention policy. When you cancel, remaining data is purged within 30 days. You can request immediate deletion at any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does billing work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AgentJunior is currently in free beta — no credit card required. When billing launches, all plans will be billed monthly with no long-term commitment. You'll be able to upgrade, downgrade, or cancel at any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What integrations are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. It supports voice message transcription and a Skills Marketplace with pre-built skills like PDF reading, web research, and more. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Skills Marketplace?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Skills Marketplace is a curated collection of pre-built capabilities you can add to your AgentJunior with one click. Skills include PDF reading, spreadsheet analysis, web research, meeting notes generation, and more. All skills are vetted for security and quality. Available on Pro and Ultimate plans."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there an API for developers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Ultimate plan includes webhooks API, scheduled jobs, custom prompts (triggered via /command), and custom agents (triggered via @agent). These let you integrate AgentJunior into your own workflows and automate recurring tasks programmatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why no shell access or browser automation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because security is a design choice, not a tradeoff. We deliberately exclude shell access and browser automation — not because we can't build them, but because in a multi-tenant environment, your safety matters more than a feature checklist. What AgentJunior can't do is just as important as what it can."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from self-hosted alternatives?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Self-hosted solutions require you to manage infrastructure, security patches, and updates. AgentJunior gives you the same productivity benefits with zero DevOps overhead, proper multi-user isolation, and enterprise integrations built in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use AgentJunior with my team?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! AgentJunior is built as a multi-tenant platform from the ground up. Each user gets their own isolated workspace with proper security boundaries. Team plans with shared features are coming soon."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-base-100 text-base-content">
+
+  <!-- Skip to content -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ====== NAVBAR ====== -->
+  <header class="navbar navbar-blur bg-base-100/80 fixed top-0 left-0 right-0 z-70 border-b border-base-300/50">
+    <div class="max-w-7xl mx-auto w-full px-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 font-display text-xl font-bold" aria-label="AgentJunior Home">
+        <!-- Inline icon -->
+        <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="nav-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f97066"/>
+              <stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient>
+          </defs>
+          <path d="M20 2 L26 14 L38 20 L26 26 L20 38 L14 26 L2 20 L14 14 Z" fill="url(#nav-grad)" opacity="0.9"/>
+          <circle cx="20" cy="20" r="5" fill="white" opacity="0.25"/>
+          <circle cx="20" cy="4" r="2" fill="url(#nav-grad)"/>
+          <circle cx="36" cy="20" r="2" fill="url(#nav-grad)"/>
+          <circle cx="20" cy="36" r="2" fill="url(#nav-grad)"/>
+          <circle cx="4" cy="20" r="2" fill="url(#nav-grad)"/>
+        </svg>
+        <span>Agent<span class="gradient-text">Junior</span></span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+        <a href="/#features" class="text-sm font-semibold hover:text-primary transition-colors">Features</a>
+        <a href="/#skills" class="text-sm font-semibold hover:text-primary transition-colors">Skills</a>
+        <a href="/#pricing" class="text-sm font-semibold hover:text-primary transition-colors">Pricing</a>
+        <a href="faq.html" class="text-sm font-semibold text-primary transition-colors">FAQ</a>
+      </nav>
+
+      <!-- Right side: theme toggle + CTA + mobile nav -->
+      <div class="flex items-center gap-2">
+        <div id="theme-toggle"></div>
+        <a href="/#pricing" class="btn btn-primary btn-sm hidden lg:inline-flex">Get Started Free</a>
+        <div id="mobile-nav" class="lg:hidden"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav overlay (must be outside header to avoid backdrop-filter containing block) -->
+  <div id="mobile-nav-overlay"></div>
+
+  <!-- ====== MAIN ====== -->
+  <main id="main">
+
+    <!-- ====== HERO ====== -->
+    <section class="relative py-16 overflow-hidden noise-overlay">
+      <div class="hero-glow hero-glow--coral" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--cyan" aria-hidden="true"></div>
+
+      <div class="max-w-3xl mx-auto px-4 pt-24 pb-4 relative z-10 text-center">
+        <!-- Breadcrumb -->
+        <nav class="text-sm text-base-content/50 mb-6" aria-label="Breadcrumb">
+          <ol class="flex items-center justify-center gap-2">
+            <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+            <li aria-hidden="true"><svg class="w-4 h-4 inline" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></li>
+            <li class="text-base-content/80 font-semibold" aria-current="page">FAQ</li>
+          </ol>
+        </nav>
+
+        <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">
+          Frequently asked<br>
+          <span class="gradient-text">questions</span>
+        </h1>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ====== FAQ CONTENT ====== -->
+    <section class="py-16 scroll-mt-20">
+      <div class="max-w-3xl mx-auto px-4">
+        <!-- Mithril mount point -->
+        <div id="faq-page"></div>
+
+        <!-- Noscript fallback -->
+        <noscript>
+          <div class="space-y-8">
+            <!-- Security & Privacy -->
+            <div>
+              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">Security &amp; Privacy</h3>
+              <div class="space-y-3">
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">How does AgentJunior protect my data?</summary>
+                  <div class="collapse-content"><p>Your data is encrypted at rest, isolated per user with PostgreSQL Row-Level Security, and automatically cleaned up based on your retention settings. We don't use your data for model training. Ever.</p></div>
+                </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">What happens to my data if I cancel?</summary>
+                  <div class="collapse-content"><p>Your data is automatically cleaned up according to your tier's retention policy. When you cancel, remaining data is purged within 30 days. You can request immediate deletion at any time.</p></div>
+                </details>
+              </div>
+            </div>
+            <!-- Billing -->
+            <div>
+              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">Billing</h3>
+              <div class="space-y-3">
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">How does billing work?</summary>
+                  <div class="collapse-content"><p>AgentJunior is currently in free beta — no credit card required. When billing launches, all plans will be billed monthly with no long-term commitment. You'll be able to upgrade, downgrade, or cancel at any time.</p></div>
+                </details>
+              </div>
+            </div>
+            <!-- Features & Integrations -->
+            <div>
+              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">Features &amp; Integrations</h3>
+              <div class="space-y-3">
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">What integrations are supported?</summary>
+                  <div class="collapse-content"><p>AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. It supports voice message transcription and a Skills Marketplace with pre-built skills like PDF reading, web research, and more. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon.</p></div>
+                </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">What is the Skills Marketplace?</summary>
+                  <div class="collapse-content"><p>The Skills Marketplace is a curated collection of pre-built capabilities you can add to your AgentJunior with one click. Skills include PDF reading, spreadsheet analysis, web research, meeting notes generation, and more. All skills are vetted for security and quality. Available on Pro and Ultimate plans.</p></div>
+                </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">Is there an API for developers?</summary>
+                  <div class="collapse-content"><p>The Ultimate plan includes webhooks API, scheduled jobs, custom prompts (triggered via /command), and custom agents (triggered via @agent). These let you integrate AgentJunior into your own workflows and automate recurring tasks programmatically.</p></div>
+                </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">Why no shell access or browser automation?</summary>
+                  <div class="collapse-content"><p>Because security is a design choice, not a tradeoff. We deliberately exclude shell access and browser automation — not because we can't build them, but because in a multi-tenant environment, your safety matters more than a feature checklist. What AgentJunior can't do is just as important as what it can.</p></div>
+                </details>
+              </div>
+            </div>
+            <!-- General -->
+            <div>
+              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">General</h3>
+              <div class="space-y-3">
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">How is this different from self-hosted alternatives?</summary>
+                  <div class="collapse-content"><p>Self-hosted solutions require you to manage infrastructure, security patches, and updates. AgentJunior gives you the same productivity benefits with zero DevOps overhead, proper multi-user isolation, and enterprise integrations built in.</p></div>
+                </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
+                  <summary class="collapse-title text-lg font-display font-bold">Can I use AgentJunior with my team?</summary>
+                  <div class="collapse-content"><p>Yes! AgentJunior is built as a multi-tenant platform from the ground up. Each user gets their own isolated workspace with proper security boundaries. Team plans with shared features are coming soon.</p></div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ====== CONTACT CTA ====== -->
+    <section class="py-16 bg-base-200">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <div class="reveal card bg-base-100 rounded-2xl card-glow border border-base-300/50">
+          <div class="card-body py-12">
+            <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight mb-3">
+              Still have <span class="gradient-text">questions?</span>
+            </h2>
+            <p class="text-base-content/60 mb-6 max-w-md mx-auto">
+              We'd love to hear from you. Drop us a line and we'll get back to you as soon as possible.
+            </p>
+            <div class="flex justify-center">
+              <a href="mailto:hello@ainvirion.com?subject=AgentJunior%20—%20Question" class="btn btn-primary btn-lg px-8">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                </svg>
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer footer-center bg-base-300 text-base-content p-10">
+    <div class="max-w-6xl mx-auto w-full">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 w-full text-left mb-10">
+        <div>
+          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Product</h4>
+          <ul class="space-y-2 mt-3">
+            <li><a href="/#features" class="link link-hover text-sm">Features</a></li>
+            <li><a href="/#pricing" class="link link-hover text-sm">Pricing</a></li>
+            <li><a href="faq.html" class="link link-hover text-sm">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Company</h4>
+          <ul class="space-y-2 mt-3">
+            <li><a href="https://ainvirion.com" class="link link-hover text-sm" rel="noopener">About</a></li>
+            <li><a href="mailto:hello@ainvirion.com" class="link link-hover text-sm">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Legal</h4>
+          <ul class="space-y-2 mt-3">
+            <li><a href="#" class="link link-hover text-sm">Privacy Policy</a></li>
+            <li><a href="#" class="link link-hover text-sm">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Connect</h4>
+          <ul class="space-y-2 mt-3">
+            <li><a href="mailto:hello@ainvirion.com" class="link link-hover text-sm">hello@ainvirion.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-base-content/10 pt-6">
+        <p class="text-sm text-base-content/40">&copy; 2026 AInvirion. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mithril.js v2 -->
+  <script src="https://unpkg.com/mithril@2/mithril.min.js"></script>
+  <!-- FAQ Page App (inline) -->
+  <script>
+  (function () {
+    "use strict";
+
+    // ---- Theme Toggle ----
+    var ThemeToggle = {
+      oninit: function () {
+        this.dark = document.documentElement.getAttribute("data-theme") === "agentjunior-dark";
+      },
+      toggle: function () {
+        this.dark = !this.dark;
+        var theme = this.dark ? "agentjunior-dark" : "agentjunior-light";
+        document.documentElement.setAttribute("data-theme", theme);
+        try { localStorage.setItem("aj-theme", theme); } catch (e) { /* ignore */ }
+      },
+      view: function () {
+        var self = this;
+        return m("button", {
+          class: "btn btn-ghost btn-circle swap swap-rotate",
+          "aria-label": self.dark ? "Switch to light mode" : "Switch to dark mode",
+          onclick: function () { self.toggle(); }
+        }, [
+          // Sun icon (shown when dark)
+          m("svg", {
+            class: "w-5 h-5 " + (self.dark ? "" : "hidden"),
+            fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor"
+          }, [
+            m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" })
+          ]),
+          // Moon icon (shown when light)
+          m("svg", {
+            class: "w-5 h-5 " + (self.dark ? "hidden" : ""),
+            fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor"
+          }, [
+            m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" })
+          ])
+        ]);
+      }
+    };
+
+    // ---- Mobile Nav (shared state) ----
+    var mobileNavOpen = false;
+
+    function closeMobileNav() {
+      mobileNavOpen = false;
+      document.body.style.overflow = "";
+      m.redraw();
+    }
+
+    function toggleMobileNav() {
+      mobileNavOpen = !mobileNavOpen;
+      document.body.style.overflow = mobileNavOpen ? "hidden" : "";
+      m.redraw();
+    }
+
+    // Hamburger button (mounted inside navbar)
+    var MobileNav = {
+      view: function () {
+        return m("button", {
+          class: "btn btn-ghost btn-circle lg:hidden",
+          "aria-label": "Toggle navigation menu",
+          "aria-expanded": String(mobileNavOpen),
+          onclick: function () { toggleMobileNav(); }
+        }, [
+          m("svg", { class: "w-6 h-6", fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor" }, [
+            mobileNavOpen
+              ? m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })
+              : m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M4 6h16M4 12h16M4 18h16" })
+          ])
+        ]);
+      }
+    };
+
+    // Fullscreen overlay (mounted outside navbar to avoid backdrop-filter containing block)
+    var MobileNavOverlay = {
+      view: function () {
+        var links = [
+          { href: "/#features", label: "Features" },
+          { href: "/#skills", label: "Skills" },
+          { href: "/#pricing", label: "Pricing" },
+          { href: "faq.html", label: "FAQ" }
+        ];
+
+        return m("div", {
+          class: "mobile-nav-overlay " + (mobileNavOpen ? "open" : ""),
+          onclick: function () { closeMobileNav(); }
+        }, [
+          m("nav", {
+            class: "flex flex-col items-center justify-center h-full gap-8",
+            onclick: function (e) { e.stopPropagation(); }
+          }, [
+            links.map(function (link) {
+              return m("a", {
+                href: link.href,
+                class: "text-2xl font-display font-bold hover:text-primary transition-colors" + (link.href === "faq.html" ? " text-primary" : ""),
+                onclick: function () { closeMobileNav(); }
+              }, link.label);
+            }),
+            m("a", {
+              href: "/#pricing",
+              class: "btn btn-primary btn-lg mt-4",
+              onclick: function () { closeMobileNav(); }
+            }, "Get Started Free")
+          ])
+        ]);
+      }
+    };
+
+    // ---- FAQ Data with Categories ----
+    var faqCategories = [
+      {
+        id: "security",
+        label: "Security & Privacy",
+        items: [
+          {
+            q: "How does AgentJunior protect my data?",
+            a: "Your data is encrypted at rest, isolated per user with PostgreSQL Row-Level Security, and automatically cleaned up based on your retention settings. We don\u2019t use your data for model training. Ever."
+          },
+          {
+            q: "What happens to my data if I cancel?",
+            a: "Your data is automatically cleaned up according to your tier\u2019s retention policy. When you cancel, remaining data is purged within 30 days. You can request immediate deletion at any time."
+          }
+        ]
+      },
+      {
+        id: "billing",
+        label: "Billing",
+        items: [
+          {
+            q: "How does billing work?",
+            a: "AgentJunior is currently in free beta \u2014 no credit card required. When billing launches, all plans will be billed monthly with no long-term commitment. You\u2019ll be able to upgrade, downgrade, or cancel at any time."
+          }
+        ]
+      },
+      {
+        id: "features",
+        label: "Features & Integrations",
+        items: [
+          {
+            q: "What integrations are supported?",
+            a: "AgentJunior connects with Gmail, Google Calendar, GitHub, and Telegram. It supports voice message transcription and a Skills Marketplace with pre-built skills like PDF reading, web research, and more. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
+          },
+          {
+            q: "What is the Skills Marketplace?",
+            a: "The Skills Marketplace is a curated collection of pre-built capabilities you can add to your AgentJunior with one click. Skills include PDF reading, spreadsheet analysis, web research, meeting notes generation, and more. All skills are vetted for security and quality. Available on Pro and Ultimate plans."
+          },
+          {
+            q: "Is there an API for developers?",
+            a: "The Ultimate plan includes webhooks API, scheduled jobs, custom prompts (triggered via /command), and custom agents (triggered via @agent). These let you integrate AgentJunior into your own workflows and automate recurring tasks programmatically."
+          },
+          {
+            q: "Why no shell access or browser automation?",
+            a: "Because security is a design choice, not a tradeoff. We deliberately exclude shell access and browser automation \u2014 not because we can\u2019t build them, but because in a multi-tenant environment, your safety matters more than a feature checklist. What AgentJunior can\u2019t do is just as important as what it can."
+          }
+        ]
+      },
+      {
+        id: "general",
+        label: "General",
+        items: [
+          {
+            q: "How is this different from self-hosted alternatives?",
+            a: "Self-hosted solutions require you to manage infrastructure, security patches, and updates. AgentJunior gives you the same productivity benefits with zero DevOps overhead, proper multi-user isolation, and enterprise integrations built in."
+          },
+          {
+            q: "Can I use AgentJunior with my team?",
+            a: "Yes! AgentJunior is built as a multi-tenant platform from the ground up. Each user gets their own isolated workspace with proper security boundaries. Team plans with shared features are coming soon."
+          }
+        ]
+      }
+    ];
+
+    // ---- FAQPage Component ----
+    var FAQPage = {
+      oninit: function () {
+        this.activeCategory = "all";
+        this.openIndex = -1;
+        // Check URL hash for category deep-link
+        var hash = window.location.hash.replace("#", "");
+        if (hash) {
+          for (var i = 0; i < faqCategories.length; i++) {
+            if (faqCategories[i].id === hash) {
+              this.activeCategory = hash;
+              break;
+            }
+          }
+        }
+      },
+      setCategory: function (id) {
+        this.activeCategory = id;
+        this.openIndex = -1;
+      },
+      toggle: function (index) {
+        this.openIndex = this.openIndex === index ? -1 : index;
+      },
+      view: function () {
+        var self = this;
+
+        // Build tab list
+        var tabs = [{ id: "all", label: "All" }];
+        faqCategories.forEach(function (cat) {
+          tabs.push({ id: cat.id, label: cat.label });
+        });
+
+        // Filter categories
+        var visibleCategories = self.activeCategory === "all"
+          ? faqCategories
+          : faqCategories.filter(function (cat) { return cat.id === self.activeCategory; });
+
+        // Global index counter for open/close state
+        var globalIndex = 0;
+
+        return m("div", [
+          // Category tabs
+          m("div", { class: "flex flex-wrap gap-2 mb-8 justify-center" },
+            tabs.map(function (tab) {
+              var isActive = self.activeCategory === tab.id;
+              return m("button", {
+                class: "btn btn-sm " + (isActive ? "btn-primary" : "btn-ghost"),
+                onclick: function () { self.setCategory(tab.id); }
+              }, tab.label);
+            })
+          ),
+
+          // FAQ items by category
+          m("div", { class: "space-y-2" },
+            visibleCategories.map(function (cat, catIdx) {
+              var categoryItems = cat.items.map(function (item) {
+                var idx = globalIndex++;
+                var isOpen = self.openIndex === idx;
+                return m("div", {
+                  class: "bg-base-200 rounded-2xl relative",
+                  key: cat.id + "-" + idx
+                }, [
+                  m("button", {
+                    class: "w-full text-left px-6 py-5 text-lg font-display font-bold pr-14 cursor-pointer",
+                    "aria-expanded": String(isOpen),
+                    onclick: function () { self.toggle(idx); }
+                  }, [
+                    item.q,
+                    m("svg", {
+                      class: "faq-chevron w-5 h-5 absolute right-6 top-6 " + (isOpen ? "open" : ""),
+                      fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor",
+                      "aria-hidden": "true"
+                    }, [
+                      m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M19 9l-7 7-7-7" })
+                    ])
+                  ]),
+                  m("div", { class: "faq-content " + (isOpen ? "open" : "") }, [
+                    m("div", { class: "px-6 pb-5 text-base-content/70" }, item.a)
+                  ])
+                ]);
+              });
+
+              return m("div", { key: cat.id }, [
+                m("h3", {
+                  class: "font-display text-lg font-bold text-base-content/50 mb-3" + (catIdx > 0 ? " mt-8" : "")
+                }, cat.label),
+                m("div", { class: "space-y-3" }, categoryItems)
+              ]);
+            })
+          )
+        ]);
+      }
+    };
+
+    // ---- Scroll Reveal (IntersectionObserver) ----
+    function initScrollReveal() {
+      if (!("IntersectionObserver" in window)) {
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          el.classList.add("visible");
+        });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        observer.observe(el);
+      });
+    }
+
+    // ---- Mount Everything ----
+    function init() {
+      var themeEl = document.getElementById("theme-toggle");
+      if (themeEl) m.mount(themeEl, ThemeToggle);
+
+      var mobileNavEl = document.getElementById("mobile-nav");
+      if (mobileNavEl) m.mount(mobileNavEl, MobileNav);
+
+      var mobileNavOverlayEl = document.getElementById("mobile-nav-overlay");
+      if (mobileNavOverlayEl) m.mount(mobileNavOverlayEl, MobileNavOverlay);
+
+      var faqPageEl = document.getElementById("faq-page");
+      if (faqPageEl) m.mount(faqPageEl, FAQPage);
+
+      initScrollReveal();
+    }
+
+    // Run on DOM ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+</body>
+</html>
