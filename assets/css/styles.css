@@ -844,13 +844,19 @@ html {
   }
 }
 
-/* 481–768px: hide step labels */
+/* 481–768px: hide step labels, links, brand text */
 @media (max-width: 768px) {
   .island-step-label {
     display: none;
   }
   .island-step {
     padding: 6px 10px;
+  }
+  .island-link {
+    display: none;
+  }
+  .island-brand-text {
+    display: none;
   }
 }
 
