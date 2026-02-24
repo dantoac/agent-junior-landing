@@ -90,13 +90,12 @@
   <!-- Skip to content -->
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <!-- ====== NAVBAR ====== -->
-  <header class="navbar navbar-blur bg-base-100/80 fixed top-0 left-0 right-0 z-70 border-b border-base-300/50">
-    <div class="max-w-7xl mx-auto w-full px-4 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 font-display text-xl font-bold" aria-label="AgentJunior Home">
-        <!-- Inline icon -->
-        <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ====== ISLAND NAVBAR ====== -->
+  <nav class="navbar navbar--island" aria-label="Main navigation">
+    <div class="navbar-island">
+      <!-- Brand -->
+      <a href="/" class="island-brand" aria-label="AgentJunior Home">
+        <svg class="island-brand-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             <linearGradient id="nav-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#f97066"/>
@@ -105,33 +104,108 @@
           </defs>
           <path d="M20 2 L26 14 L38 20 L26 26 L20 38 L14 26 L2 20 L14 14 Z" fill="url(#nav-grad)" opacity="0.9"/>
           <circle cx="20" cy="20" r="5" fill="white" opacity="0.25"/>
-          <circle cx="20" cy="4" r="2" fill="url(#nav-grad)"/>
-          <circle cx="36" cy="20" r="2" fill="url(#nav-grad)"/>
-          <circle cx="20" cy="36" r="2" fill="url(#nav-grad)"/>
-          <circle cx="4" cy="20" r="2" fill="url(#nav-grad)"/>
         </svg>
-        <span>Agent<span class="gradient-text">Junior</span></span>
+        <span class="island-brand-text">Agent<span class="gradient-text">Junior</span></span>
       </a>
+      <div class="island-divider" aria-hidden="true"></div>
 
-      <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
-        <a href="#features" class="text-sm font-semibold hover:text-primary transition-colors">Features</a>
-        <a href="#skills" class="text-sm font-semibold hover:text-primary transition-colors">Skills</a>
-        <a href="#pricing" class="text-sm font-semibold hover:text-primary transition-colors">Pricing</a>
-        <a href="faq.html" class="text-sm font-semibold hover:text-primary transition-colors">FAQ</a>
-      </nav>
+      <!-- Steps -->
+      <div class="island-steps">
+        <a href="#features" class="island-step" data-section="features">
+          <span class="island-step-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </span>
+          <span class="island-step-label">Features</span>
+        </a>
+        <a href="#skills" class="island-step" data-section="skills">
+          <span class="island-step-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </span>
+          <span class="island-step-label">Skills</span>
+        </a>
+        <a href="#pricing" class="island-step" data-section="pricing">
+          <span class="island-step-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </span>
+          <span class="island-step-label">Pricing</span>
+        </a>
+        <div class="island-indicator" aria-hidden="true"></div>
+      </div>
+      <div class="island-divider" aria-hidden="true"></div>
 
-      <!-- Right side: theme toggle + CTA + mobile nav -->
-      <div class="flex items-center gap-2">
-        <div id="theme-toggle"></div>
-        <a href="#pricing" class="btn btn-primary btn-sm hidden lg:inline-flex">Get Started Free</a>
-        <div id="mobile-nav" class="lg:hidden"></div>
+      <!-- Links -->
+      <a href="faq.html" class="island-link">FAQ</a>
+      <div class="island-divider" aria-hidden="true"></div>
+
+      <!-- Actions -->
+      <div class="island-actions">
+        <button class="island-theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+          <svg class="island-sun" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg class="island-moon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+        <button class="island-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="island-menu">
+          <span class="island-hamburger-bar"></span>
+          <span class="island-hamburger-bar"></span>
+          <span class="island-hamburger-bar"></span>
+        </button>
+        <a href="#pricing" class="island-cta">Get Started</a>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="island-menu" id="island-menu" role="region" aria-label="Navigation menu">
+        <a href="#features" class="island-menu-item" data-section="features">
+          <span class="island-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </span>
+          <span class="island-menu-label">Features</span>
+        </a>
+        <a href="#skills" class="island-menu-item" data-section="skills">
+          <span class="island-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </span>
+          <span class="island-menu-label">Skills</span>
+        </a>
+        <a href="#pricing" class="island-menu-item" data-section="pricing">
+          <span class="island-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </span>
+          <span class="island-menu-label">Pricing</span>
+        </a>
+        <a href="faq.html" class="island-menu-item">
+          <span class="island-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </span>
+          <span class="island-menu-label">FAQ</span>
+        </a>
+        <a href="#pricing" class="island-menu-item">
+          <span class="island-menu-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+          <span class="island-menu-label">Get Started</span>
+        </a>
       </div>
     </div>
-  </header>
-
-  <!-- Mobile nav overlay (must be outside header to avoid backdrop-filter containing block) -->
-  <div id="mobile-nav-overlay"></div>
+  </nav>
 
   <!-- ====== MAIN ====== -->
   <main id="main">
@@ -143,7 +217,7 @@
       <div class="hero-glow hero-glow--coral" aria-hidden="true"></div>
       <div class="hero-glow hero-glow--cyan" aria-hidden="true"></div>
 
-      <div class="max-w-7xl mx-auto px-4 pt-32 pb-20 relative z-10 text-center">
+      <div class="max-w-7xl mx-auto px-4 pt-28 pb-20 relative z-10 text-center">
         <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">
           Your AI chief of staff.<br>
           <span class="gradient-text">Managed, Secure, Ready.</span>

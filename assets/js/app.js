@@ -1,114 +1,145 @@
 /* ============================================
-   AgentJunior — Mithril Progressive Enhancement
+   AgentJunior — App Scripts
    ============================================ */
 
+// === Theme Toggle (vanilla) ===
 (function () {
   "use strict";
+  var btn = document.getElementById("theme-toggle");
+  if (!btn) return;
 
-  // ---- Theme Toggle ----
-  var ThemeToggle = {
-    oninit: function () {
-      // Already set by inline script in <head>; read current value
-      this.dark = document.documentElement.getAttribute("data-theme") === "agentjunior-dark";
-    },
-    toggle: function () {
-      this.dark = !this.dark;
-      var theme = this.dark ? "agentjunior-dark" : "agentjunior-light";
-      document.documentElement.setAttribute("data-theme", theme);
-      try { localStorage.setItem("aj-theme", theme); } catch (e) { /* ignore */ }
-    },
-    view: function () {
-      var self = this;
-      return m("button", {
-        class: "btn btn-ghost btn-circle swap swap-rotate",
-        "aria-label": self.dark ? "Switch to light mode" : "Switch to dark mode",
-        onclick: function () { self.toggle(); }
-      }, [
-        // Sun icon (shown when dark)
-        m("svg", {
-          class: "w-5 h-5 " + (self.dark ? "" : "hidden"),
-          fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor"
-        }, [
-          m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" })
-        ]),
-        // Moon icon (shown when light)
-        m("svg", {
-          class: "w-5 h-5 " + (self.dark ? "hidden" : ""),
-          fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor"
-        }, [
-          m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" })
-        ])
-      ]);
-    }
-  };
-
-  // ---- Mobile Nav (shared state) ----
-  var mobileNavOpen = false;
-
-  function closeMobileNav() {
-    mobileNavOpen = false;
-    document.body.style.overflow = "";
-    m.redraw();
+  function labelForTheme() {
+    var isDark = document.documentElement.getAttribute("data-theme") === "agentjunior-dark";
+    return isDark ? "Switch to light mode" : "Switch to dark mode";
   }
 
-  function toggleMobileNav() {
-    mobileNavOpen = !mobileNavOpen;
-    document.body.style.overflow = mobileNavOpen ? "hidden" : "";
-    m.redraw();
+  // Sync initial label with whatever the FOUC script chose
+  btn.setAttribute("aria-label", labelForTheme());
+
+  btn.addEventListener("click", function () {
+    var isDark = document.documentElement.getAttribute("data-theme") === "agentjunior-dark";
+    var theme = isDark ? "agentjunior-light" : "agentjunior-dark";
+    document.documentElement.setAttribute("data-theme", theme);
+    btn.setAttribute("aria-label", labelForTheme());
+    try { localStorage.setItem("aj-theme", theme); } catch (e) { /* ignore */ }
+  });
+})();
+
+// === Island Navbar: Scroll-linked Active State ===
+(function () {
+  "use strict";
+  var islandSteps = document.querySelectorAll(".island-step[data-section]");
+  var islandLinks = document.querySelectorAll(".island-link[data-section]");
+  var islandIndicator = document.querySelector(".island-indicator");
+  var islandMenuItems = document.querySelectorAll(".island-menu-item[data-section]");
+  var sectionIds = ["features", "skills", "pricing"];
+  var stepSectionMap = {};
+
+  sectionIds.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) stepSectionMap[id] = el;
+  });
+
+  // No sections found = graceful no-op (e.g. faq.html)
+  if (Object.keys(stepSectionMap).length === 0) return;
+
+  function updateIslandIndicator(activeEl) {
+    if (!islandIndicator || !activeEl) return;
+    var container = activeEl.closest(".island-steps");
+    if (!container) return;
+    var cRect = container.getBoundingClientRect();
+    var eRect = activeEl.getBoundingClientRect();
+    islandIndicator.style.left = (eRect.left - cRect.left) + "px";
+    islandIndicator.style.width = eRect.width + "px";
   }
 
-  // Hamburger button (mounted inside navbar)
-  var MobileNav = {
-    view: function () {
-      return m("button", {
-        class: "btn btn-ghost btn-circle lg:hidden",
-        "aria-label": "Toggle navigation menu",
-        "aria-expanded": String(mobileNavOpen),
-        onclick: function () { toggleMobileNav(); }
-      }, [
-        m("svg", { class: "w-6 h-6", fill: "none", viewBox: "0 0 24 24", "stroke-width": "2", stroke: "currentColor" }, [
-          mobileNavOpen
-            ? m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })
-            : m("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M4 6h16M4 12h16M4 18h16" })
-        ])
-      ]);
-    }
-  };
+  function setActiveIslandStep(sectionName) {
+    islandSteps.forEach(function (step) {
+      var isActive = sectionName && step.dataset.section === sectionName;
+      step.classList.toggle("island-step--active", isActive);
+      if (isActive) updateIslandIndicator(step);
+    });
+    islandLinks.forEach(function (link) {
+      link.classList.toggle("island-link--active",
+        sectionName && link.dataset.section === sectionName);
+    });
+    islandMenuItems.forEach(function (item) {
+      item.classList.toggle("island-menu-item--active",
+        sectionName && item.dataset.section === sectionName);
+    });
+    if (islandIndicator) islandIndicator.style.opacity = sectionName ? "1" : "0";
+  }
 
-  // Fullscreen overlay (mounted outside navbar to avoid backdrop-filter containing block)
-  var MobileNavOverlay = {
-    view: function () {
-      var links = [
-        { href: "#features", label: "Features" },
-        { href: "#skills", label: "Skills" },
-        { href: "#pricing", label: "Pricing" },
-        { href: "faq.html", label: "FAQ" }
-      ];
-
-      return m("div", {
-        class: "mobile-nav-overlay " + (mobileNavOpen ? "open" : ""),
-        onclick: function () { closeMobileNav(); }
-      }, [
-        m("nav", {
-          class: "flex flex-col items-center justify-center h-full gap-8",
-          onclick: function (e) { e.stopPropagation(); }
-        }, [
-          links.map(function (link) {
-            return m("a", {
-              href: link.href,
-              class: "text-2xl font-display font-bold hover:text-primary transition-colors",
-              onclick: function () { closeMobileNav(); }
-            }, link.label);
-          }),
-          m("a", {
-            href: "#pricing",
-            class: "btn btn-primary btn-lg mt-4",
-            onclick: function () { closeMobileNav(); }
-          }, "Get Started Free")
-        ])
-      ]);
+  function updateIslandActive() {
+    var scrollY = window.scrollY + window.innerHeight * 0.35;
+    var active = null;
+    for (var i = sectionIds.length - 1; i >= 0; i--) {
+      var el = stepSectionMap[sectionIds[i]];
+      if (el && el.offsetTop <= scrollY) { active = sectionIds[i]; break; }
     }
-  };
+    setActiveIslandStep(active);
+  }
+
+  window.addEventListener("scroll", updateIslandActive, { passive: true });
+  requestAnimationFrame(updateIslandActive);
+})();
+
+// === Island Navbar: Mobile Hamburger Menu ===
+(function () {
+  "use strict";
+  var hamburger = document.querySelector(".island-hamburger");
+  var navbarIsland = document.querySelector(".navbar-island");
+  var menuItems = document.querySelectorAll(".island-menu-item");
+  if (!hamburger || !navbarIsland) return;
+
+  var scrollGuard = 0;
+
+  function openMenu() {
+    navbarIsland.classList.add("island-open");
+    hamburger.classList.add("is-open");
+    hamburger.setAttribute("aria-expanded", "true");
+    hamburger.setAttribute("aria-label", "Close navigation menu");
+    scrollGuard = Date.now();
+  }
+
+  function closeMenu() {
+    navbarIsland.classList.remove("island-open");
+    hamburger.classList.remove("is-open");
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.setAttribute("aria-label", "Open navigation menu");
+  }
+
+  function isOpen() {
+    return navbarIsland.classList.contains("island-open");
+  }
+
+  hamburger.addEventListener("click", function () {
+    isOpen() ? closeMenu() : openMenu();
+  });
+
+  menuItems.forEach(function (item) {
+    item.addEventListener("click", function () { closeMenu(); });
+  });
+
+  window.addEventListener("scroll", function () {
+    if (isOpen() && Date.now() - scrollGuard > 150) closeMenu();
+  }, { passive: true });
+
+  document.addEventListener("click", function (e) {
+    if (isOpen() && !navbarIsland.contains(e.target)) closeMenu();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isOpen()) {
+      closeMenu();
+      hamburger.focus();
+    }
+  });
+})();
+
+// === Mithril Components ===
+(function () {
+  "use strict";
 
   // ---- Randomized Fade Rotator Hero ----
   var heroFeatures = [
@@ -582,15 +613,6 @@
 
   // ---- Mount Everything ----
   function init() {
-    var themeEl = document.getElementById("theme-toggle");
-    if (themeEl) m.mount(themeEl, ThemeToggle);
-
-    var mobileNavEl = document.getElementById("mobile-nav");
-    if (mobileNavEl) m.mount(mobileNavEl, MobileNav);
-
-    var mobileNavOverlayEl = document.getElementById("mobile-nav-overlay");
-    if (mobileNavOverlayEl) m.mount(mobileNavOverlayEl, MobileNavOverlay);
-
     var featureEl = document.getElementById("rotate-feature");
     if (featureEl) m.mount(featureEl, FeatureSlot);
 
