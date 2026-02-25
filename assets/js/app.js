@@ -1,5 +1,5 @@
 /* ============================================
-   AgentJunior — App Scripts
+   AgenticJunior — App Scripts
    ============================================ */
 
 // === Theme Toggle (vanilla) ===
@@ -9,7 +9,7 @@
   if (!btn) return;
 
   function labelForTheme() {
-    var isDark = document.documentElement.getAttribute("data-theme") === "agentjunior-dark";
+    var isDark = document.documentElement.getAttribute("data-theme") === "agenticjunior-dark";
     return isDark ? "Switch to light mode" : "Switch to dark mode";
   }
 
@@ -17,8 +17,8 @@
   btn.setAttribute("aria-label", labelForTheme());
 
   btn.addEventListener("click", function () {
-    var isDark = document.documentElement.getAttribute("data-theme") === "agentjunior-dark";
-    var theme = isDark ? "agentjunior-light" : "agentjunior-dark";
+    var isDark = document.documentElement.getAttribute("data-theme") === "agenticjunior-dark";
+    var theme = isDark ? "agenticjunior-light" : "agenticjunior-dark";
     document.documentElement.setAttribute("data-theme", theme);
     btn.setAttribute("aria-label", labelForTheme());
     try { localStorage.setItem("aj-theme", theme); } catch (e) { /* ignore */ }

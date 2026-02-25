@@ -1,12 +1,12 @@
 /* ============================================
-   AgentJunior — Custom Theme & Styles
+   AgenticJunior — Custom Theme & Styles
    ============================================ */
 
 /* --- Typography: DM Sans (display) + Source Sans 3 (body) --- */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,700;1,9..40,400&family=Source+Sans+3:wght@400;600&display=swap');
 
 /* --- DaisyUI v5 Theme: Dark (default) --- */
-[data-theme="agentjunior-dark"] {
+[data-theme="agenticjunior-dark"] {
   color-scheme: dark;
   --color-primary: oklch(65% 0.22 15);
   --color-primary-content: oklch(98% 0.01 15);
@@ -50,7 +50,7 @@
 }
 
 /* --- DaisyUI v5 Theme: Light --- */
-[data-theme="agentjunior-light"] {
+[data-theme="agenticjunior-light"] {
   color-scheme: light;
   --color-primary: oklch(55% 0.20 15);
   --color-primary-content: oklch(98% 0.01 15);
@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6,
   right: -100px;
 }
 
-[data-theme="agentjunior-light"] .hero-glow {
+[data-theme="agenticjunior-light"] .hero-glow {
   opacity: 0.08;
 }
 
@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6,
   transform: translateY(-2px);
 }
 
-[data-theme="agentjunior-light"] .card-glow:hover {
+[data-theme="agenticjunior-light"] .card-glow:hover {
   box-shadow: 0 4px 30px -5px oklch(55% 0.20 15 / 0.15), 0 8px 40px -10px oklch(50% 0.15 195 / 0.1);
 }
 
@@ -335,7 +335,7 @@ h1, h2, h3, h4, h5, h6,
   background: linear-gradient(90deg, transparent, oklch(65% 0.22 15 / 0.3), oklch(72% 0.15 195 / 0.3), transparent);
 }
 
-[data-theme="agentjunior-light"] .section-divider {
+[data-theme="agenticjunior-light"] .section-divider {
   background: linear-gradient(90deg, transparent, oklch(55% 0.20 15 / 0.2), oklch(50% 0.15 195 / 0.2), transparent);
 }
 
@@ -532,7 +532,7 @@ html {
     0 12px 40px rgba(0, 0, 0, 0.03);
 }
 
-[data-theme="agentjunior-dark"] .navbar-island {
+[data-theme="agenticjunior-dark"] .navbar-island {
   border-color: var(--island-border-strong);
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.04),
@@ -703,11 +703,11 @@ html {
 }
 
 /* Dark mode: show sun, hide moon */
-[data-theme="agentjunior-dark"] .island-sun { display: block; }
-[data-theme="agentjunior-dark"] .island-moon { display: none; }
+[data-theme="agenticjunior-dark"] .island-sun { display: block; }
+[data-theme="agenticjunior-dark"] .island-moon { display: none; }
 /* Light mode: show moon, hide sun */
-[data-theme="agentjunior-light"] .island-sun { display: none; }
-[data-theme="agentjunior-light"] .island-moon { display: block; }
+[data-theme="agenticjunior-light"] .island-sun { display: none; }
+[data-theme="agenticjunior-light"] .island-moon { display: block; }
 
 .island-cta {
   padding: 6px 16px;
@@ -911,7 +911,7 @@ html {
     transition: opacity 250ms ease, visibility 250ms ease, transform 250ms var(--ease-out-expo);
   }
 
-  [data-theme="agentjunior-dark"] .island-menu {
+  [data-theme="agenticjunior-dark"] .island-menu {
     border-color: var(--island-border-strong);
     box-shadow:
       0 4px 16px rgba(0, 0, 0, 0.2),
