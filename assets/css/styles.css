@@ -46,6 +46,7 @@
   --island-accent-30: oklch(65% 0.22 15 / 0.30);
   --island-text: oklch(93% 0.005 260);
   --island-text-secondary: oklch(75% 0.01 260);
+  --island-top-offset: 0px;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -90,8 +91,11 @@
   --island-accent-30: oklch(55% 0.20 15 / 0.30);
   --island-text: oklch(20% 0.02 260);
   --island-text-secondary: oklch(45% 0.01 260);
+  --island-top-offset: 0px;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+body.scrolled-past-hero { --island-top-offset: 12px; }
 
 /* --- Base Styles --- */
 html {
@@ -286,8 +290,7 @@ h1, h2, h3, h4, h5, h6,
   .pc-event-new { transform: scaleY(1) !important; opacity: 1 !important; }
   .pc-draft-field { opacity: 1 !important; }
   .pc-rank, .pc-row-top { transition: none !important; }
-  .navbar--island { animation: none !important; }
-  .island-indicator, .island-step, .navbar-island { transition: none !important; }
+  .island-indicator, .island-step, .navbar-island, .navbar-island::before { transition: none !important; }
   .island-menu-item { animation: none !important; opacity: 1 !important; }
 }
 
@@ -506,33 +509,66 @@ html {
 
 .navbar--island {
   position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0; left: 0; right: 0;
   z-index: 200;
-  width: fit-content;
-  max-width: calc(100vw - 32px);
-  animation: island-entrance 0.6s var(--ease-out-expo) both;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .navbar-island {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 4px;
+  width: 100%;
   height: 48px;
+  padding: 4px clamp(1.25rem, 5vw, 3rem);
+  margin-top: var(--island-top-offset);
+  pointer-events: auto;
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  transition:
+    width 400ms var(--ease-out-expo),
+    border-radius 400ms var(--ease-out-expo),
+    background 400ms var(--ease-out-expo),
+    border-color 400ms var(--ease-out-expo),
+    box-shadow 400ms var(--ease-out-expo),
+    margin-top 400ms var(--ease-out-expo),
+    height 300ms var(--ease-out-expo),
+    padding 300ms var(--ease-out-expo),
+    gap 300ms var(--ease-out-expo);
+}
+
+.navbar-island::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out-expo);
+  z-index: -1;
+  pointer-events: none;
+}
+
+body.scrolled-past-hero .navbar-island {
+  width: var(--island-scroll-width, fit-content);
   padding: 4px 6px;
   border-radius: 2rem;
   background: var(--island-bg);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  backdrop-filter: blur(20px) saturate(1.4);
-  border: 1px solid var(--island-border);
+  border-color: var(--island-border);
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.04),
     0 4px 16px rgba(0, 0, 0, 0.06),
     0 12px 40px rgba(0, 0, 0, 0.03);
 }
+body.scrolled-past-hero .navbar-island::before { opacity: 1; }
 
-[data-theme="agenticjunior-dark"] .navbar-island {
+[data-theme="agenticjunior-dark"] body.scrolled-past-hero .navbar-island {
   border-color: var(--island-border-strong);
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.04),
@@ -541,9 +577,10 @@ html {
     0 0 40px var(--island-accent-15);
 }
 
-@keyframes island-entrance {
-  from { opacity: 0; transform: translateX(-50%) scale(0.95); }
-  to   { opacity: 1; transform: translateX(-50%) scale(1); }
+.navbar--no-transition,
+.navbar--no-transition .navbar-island,
+.navbar--no-transition .navbar-island::before {
+  transition: none !important;
 }
 
 /* Brand */
@@ -587,7 +624,10 @@ html {
   align-items: center;
   gap: 2px;
   position: relative;
+  margin-left: auto;
 }
+
+.island-brand + .island-divider { display: none; }
 
 .island-step {
   display: flex;
@@ -863,9 +903,11 @@ html {
 /* ≤480px: hamburger + dropdown menu */
 @media (max-width: 480px) {
   .navbar-island {
-    position: relative;
     justify-content: space-between;
     gap: 8px;
+  }
+
+  body.scrolled-past-hero .navbar-island {
     padding: 4px 12px;
   }
 
@@ -890,12 +932,13 @@ html {
   }
 
   .island-menu {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
+    top: calc(var(--island-top-offset) + 48px + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100vw - 2rem);
     padding: 8px;
     background: var(--island-bg);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
@@ -905,10 +948,12 @@ html {
     box-shadow:
       0 4px 16px rgba(0, 0, 0, 0.1),
       0 12px 40px rgba(0, 0, 0, 0.06);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity 250ms ease, visibility 250ms ease, transform 250ms var(--ease-out-expo);
+    pointer-events: auto;
+  }
+
+  .island-menu-item {
+    font-size: 1rem;
+    padding: 14px 20px;
   }
 
   [data-theme="agenticjunior-dark"] .island-menu {
@@ -919,18 +964,16 @@ html {
       0 0 40px var(--island-accent-15);
   }
 
-  .island-open .island-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  .navbar-island.island-open ~ .island-menu {
+    display: flex;
   }
 
-  .island-open .island-menu-item {
+  .navbar-island.island-open ~ .island-menu .island-menu-item {
     animation: island-item-enter 300ms var(--ease-out-expo) both;
   }
-  .island-open .island-menu-item:nth-child(1) { animation-delay: 50ms; }
-  .island-open .island-menu-item:nth-child(2) { animation-delay: 100ms; }
-  .island-open .island-menu-item:nth-child(3) { animation-delay: 150ms; }
-  .island-open .island-menu-item:nth-child(4) { animation-delay: 200ms; }
-  .island-open .island-menu-item:nth-child(5) { animation-delay: 250ms; }
+  .navbar-island.island-open ~ .island-menu .island-menu-item:nth-child(1) { animation-delay: 50ms; }
+  .navbar-island.island-open ~ .island-menu .island-menu-item:nth-child(2) { animation-delay: 100ms; }
+  .navbar-island.island-open ~ .island-menu .island-menu-item:nth-child(3) { animation-delay: 150ms; }
+  .navbar-island.island-open ~ .island-menu .island-menu-item:nth-child(4) { animation-delay: 200ms; }
+  .navbar-island.island-open ~ .island-menu .island-menu-item:nth-child(5) { animation-delay: 250ms; }
 }
