@@ -33,6 +33,20 @@
     })();
   </script>
 
+  <!-- Language: prevent FOUC -->
+  <script>
+    (function(){
+      var lang;
+      try { lang = localStorage.getItem("aj-lang"); } catch(e){}
+      if (!lang) lang = (navigator.language || "").startsWith("es") ? "es" : "en";
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("data-lang", lang);
+    })();
+  </script>
+
+  <!-- i18n dictionary -->
+  <script src="assets/js/i18n.js"></script>
+
   <!-- Tailwind CSS v4 (browser build) -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -128,10 +142,10 @@
 <body class="bg-base-100 text-base-content">
 
   <!-- Skip to content -->
-  <a href="#main" class="skip-link">Skip to main content</a>
+  <a href="#main" class="skip-link" data-i18n="a11y.skipLink">Skip to main content</a>
 
   <!-- ====== ISLAND NAVBAR ====== -->
-  <nav class="navbar navbar--island" aria-label="Main navigation">
+  <nav class="navbar navbar--island" aria-label="Main navigation" data-i18n="a11y.navLabel" data-i18n-attr="aria-label">
     <div class="navbar-island">
       <!-- Brand -->
       <a href="/" class="island-brand" aria-label="AgenticJunior Home">
@@ -148,7 +162,7 @@
               <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
             </svg>
           </span>
-          <span class="island-step-label">Features</span>
+          <span class="island-step-label" data-i18n="nav.features">Features</span>
         </a>
         <a href="/#skills" class="island-step" data-section="skills">
           <span class="island-step-icon" aria-hidden="true">
@@ -156,7 +170,7 @@
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
             </svg>
           </span>
-          <span class="island-step-label">Skills</span>
+          <span class="island-step-label" data-i18n="nav.skills">Skills</span>
         </a>
         <a href="/#pricing" class="island-step" data-section="pricing">
           <span class="island-step-icon" aria-hidden="true">
@@ -164,18 +178,28 @@
               <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
             </svg>
           </span>
-          <span class="island-step-label">Pricing</span>
+          <span class="island-step-label" data-i18n="nav.pricing">Pricing</span>
         </a>
         <div class="island-indicator" aria-hidden="true"></div>
       </div>
       <div class="island-divider" aria-hidden="true"></div>
 
       <!-- Links -->
-      <a href="faq.html" class="island-link island-link--active">FAQ</a>
+      <a href="faq.html" class="island-link island-link--active" data-i18n="nav.faq">FAQ</a>
       <div class="island-divider" aria-hidden="true"></div>
 
       <!-- Actions -->
       <div class="island-actions">
+        <button class="island-lang-toggle" id="lang-toggle" aria-label="Cambiar a español">
+          <svg class="island-lang-globe" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span class="island-lang-label" data-lang-show="en">ES</span>
+          <span class="island-lang-label" data-lang-show="es">EN</span>
+        </button>
         <button class="island-theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
           <svg class="island-sun" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -189,19 +213,19 @@
           <span class="island-hamburger-bar"></span>
           <span class="island-hamburger-bar"></span>
         </button>
-        <a href="/#pricing" class="island-cta">Get Started</a>
+        <a href="/#pricing" class="island-cta" data-i18n="nav.getStarted">Get Started</a>
       </div>
 
     </div>
     <!-- Mobile menu -->
-    <div class="island-menu" id="island-menu-faq" role="region" aria-label="Navigation menu">
+    <div class="island-menu" id="island-menu-faq" role="region" aria-label="Navigation menu" data-i18n="a11y.navMenuLabel" data-i18n-attr="aria-label">
       <a href="/#features" class="island-menu-item">
         <span class="island-menu-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
           </svg>
         </span>
-        <span class="island-menu-label">Features</span>
+        <span class="island-menu-label" data-i18n="nav.features">Features</span>
       </a>
       <a href="/#skills" class="island-menu-item">
         <span class="island-menu-icon" aria-hidden="true">
@@ -209,7 +233,7 @@
             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
           </svg>
         </span>
-        <span class="island-menu-label">Skills</span>
+        <span class="island-menu-label" data-i18n="nav.skills">Skills</span>
       </a>
       <a href="/#pricing" class="island-menu-item">
         <span class="island-menu-icon" aria-hidden="true">
@@ -217,7 +241,7 @@
             <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
           </svg>
         </span>
-        <span class="island-menu-label">Pricing</span>
+        <span class="island-menu-label" data-i18n="nav.pricing">Pricing</span>
       </a>
       <a href="faq.html" class="island-menu-item island-menu-item--active">
         <span class="island-menu-icon" aria-hidden="true">
@@ -225,7 +249,7 @@
             <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
           </svg>
         </span>
-        <span class="island-menu-label">FAQ</span>
+        <span class="island-menu-label" data-i18n="nav.faq">FAQ</span>
       </a>
     </div>
   </nav>
@@ -242,15 +266,15 @@
         <!-- Breadcrumb -->
         <nav class="text-sm text-base-content/50 mb-6" aria-label="Breadcrumb">
           <ol class="flex items-center justify-center gap-2">
-            <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+            <li><a href="/" class="hover:text-primary transition-colors" data-i18n="faq.breadcrumbHome">Home</a></li>
             <li aria-hidden="true"><svg class="w-4 h-4 inline" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></li>
-            <li class="text-base-content/80 font-semibold" aria-current="page">FAQ</li>
+            <li class="text-base-content/80 font-semibold" aria-current="page" data-i18n="faq.breadcrumbCurrent">FAQ</li>
           </ol>
         </nav>
 
         <h1 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-4">
-          Frequently asked<br>
-          <span class="gradient-text">questions</span>
+          <span data-i18n="faq.headline">Frequently asked</span><br>
+          <span class="gradient-text" data-i18n="faq.headlineAccent">questions</span>
         </h1>
       </div>
     </section>
@@ -339,9 +363,9 @@
         <div class="reveal card bg-base-100 rounded-2xl card-glow border border-base-300/50">
           <div class="card-body py-12">
             <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight mb-3">
-              Still have <span class="gradient-text">questions?</span>
+              <span data-i18n="faq.contact.headline">Still have</span> <span class="gradient-text" data-i18n="faq.contact.headlineAccent">questions?</span>
             </h2>
-            <p class="text-base-content/60 mb-6 max-w-md mx-auto">
+            <p class="text-base-content/60 mb-6 max-w-md mx-auto" data-i18n="faq.contact.subtitle">
               We'd love to hear from you. Drop us a line and we'll get back to you as soon as possible.
             </p>
             <div class="flex justify-center">
@@ -349,7 +373,7 @@
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
                 </svg>
-                Contact Us
+                <span data-i18n="faq.contact.button">Contact Us</span>
               </a>
             </div>
           </div>
@@ -360,40 +384,28 @@
   </main>
 
   <!-- ====== FOOTER ====== -->
-  <footer class="footer footer-center bg-base-300 text-base-content p-10">
-    <div class="max-w-6xl mx-auto w-full">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 w-full text-left mb-10">
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Product</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="/#features" class="link link-hover text-sm">Features</a></li>
-            <li><a href="/#pricing" class="link link-hover text-sm">Pricing</a></li>
-            <li><a href="faq.html" class="link link-hover text-sm">FAQ</a></li>
-          </ul>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/images/logo.png" alt="AgenticJunior" class="island-brand-logo" width="24" height="24">
+          <p class="footer-tagline" data-i18n="footer.tagline">AI-powered junior developer for your team</p>
         </div>
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Company</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="https://ainvirion.com" class="link link-hover text-sm" rel="noopener">About</a></li>
-            <li><a href="mailto:hello@ainvirion.com" class="link link-hover text-sm">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Legal</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="#" class="link link-hover text-sm">Privacy Policy</a></li>
-            <li><a href="#" class="link link-hover text-sm">Terms of Service</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Connect</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="mailto:hello@ainvirion.com" class="link link-hover text-sm">hello@ainvirion.com</a></li>
-          </ul>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="/#features" data-i18n="nav.features">Features</a>
+          <a href="/#pricing" data-i18n="nav.pricing">Pricing</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:hello@ainvirion.com">hello@ainvirion.com</a>
         </div>
       </div>
-      <div class="border-t border-base-content/10 pt-6">
-        <p class="text-sm text-base-content/40">&copy; 2026 AInvirion. All rights reserved.</p>
+      <div class="footer-bottom">
+        <p class="footer-legal" data-i18n="footer.copyright">&copy; 2026 AInvirion LLC &middot; Spokane, WA</p>
+        <nav class="footer-legal-links" aria-label="Legal">
+          <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer.terms">Terms of Service</a>
+        </nav>
       </div>
     </div>
   </footer>
@@ -407,69 +419,46 @@
   (function () {
     "use strict";
 
-    // ---- FAQ Data with Categories ----
-    var faqCategories = [
-      {
-        id: "security",
-        label: "Security & Privacy",
-        items: [
-          {
-            q: "How does AgenticJunior protect my data?",
-            a: "Your data is encrypted at rest, isolated per user with PostgreSQL Row-Level Security, and automatically cleaned up based on your retention settings. We don\u2019t use your data for model training. Ever."
-          },
-          {
-            q: "What happens to my data if I cancel?",
-            a: "Your data is automatically cleaned up according to your tier\u2019s retention policy. When you cancel, remaining data is purged within 30 days. You can request immediate deletion at any time."
-          }
-        ]
-      },
-      {
-        id: "billing",
-        label: "Billing",
-        items: [
-          {
-            q: "How does billing work?",
-            a: "AgenticJunior is currently in free beta \u2014 no credit card required. When billing launches, all plans will be billed monthly with no long-term commitment. You\u2019ll be able to upgrade, downgrade, or cancel at any time."
-          }
-        ]
-      },
-      {
-        id: "features",
-        label: "Features & Integrations",
-        items: [
-          {
-            q: "What integrations are supported?",
-            a: "AgenticJunior connects with Gmail, Google Calendar, GitHub, and Telegram. It supports voice message transcription and a Skills Marketplace with pre-built skills like PDF reading, web research, and more. Slack, Microsoft Teams, and WhatsApp are on our roadmap and coming soon."
-          },
-          {
-            q: "What is the Skills Marketplace?",
-            a: "The Skills Marketplace is a curated collection of pre-built capabilities you can add to your AgenticJunior with one click. Skills include PDF reading, spreadsheet analysis, web research, meeting notes generation, and more. All skills are vetted for security and quality. Available on Pro and Ultimate plans."
-          },
-          {
-            q: "Is there an API for developers?",
-            a: "The Ultimate plan includes webhooks API, scheduled jobs, custom prompts (triggered via /command), and custom agents (triggered via @agent). These let you integrate AgenticJunior into your own workflows and automate recurring tasks programmatically."
-          },
-          {
-            q: "Why no shell access or browser automation?",
-            a: "Because security is a design choice, not a tradeoff. We deliberately exclude shell access and browser automation \u2014 not because we can\u2019t build them, but because in a multi-tenant environment, your safety matters more than a feature checklist. What AgenticJunior can\u2019t do is just as important as what it can."
-          }
-        ]
-      },
-      {
-        id: "general",
-        label: "General",
-        items: [
-          {
-            q: "How is this different from self-hosted alternatives?",
-            a: "Self-hosted solutions require you to manage infrastructure, security patches, and updates. AgenticJunior gives you the same productivity benefits with zero DevOps overhead, proper multi-user isolation, and enterprise integrations built in."
-          },
-          {
-            q: "Can I use AgenticJunior with my team?",
-            a: "Yes! AgenticJunior is built as a multi-tenant platform from the ground up. Each user gets their own isolated workspace with proper security boundaries. Team plans with shared features are coming soon."
-          }
-        ]
-      }
-    ];
+    // ---- FAQ Data with Categories (i18n) ----
+    var t = window.AJ_I18N ? window.AJ_I18N.t : function (k) { return k; };
+
+    function getFaqCategories() {
+      return [
+        {
+          id: "security",
+          label: t("faq.cat.security"),
+          items: [
+            { q: t("faq.security.0.q"), a: t("faq.security.0.a") },
+            { q: t("faq.security.1.q"), a: t("faq.security.1.a") }
+          ]
+        },
+        {
+          id: "billing",
+          label: t("faq.cat.billing"),
+          items: [
+            { q: t("faq.billing.0.q"), a: t("faq.billing.0.a") }
+          ]
+        },
+        {
+          id: "features",
+          label: t("faq.cat.features"),
+          items: [
+            { q: t("faq.features.0.q"), a: t("faq.features.0.a") },
+            { q: t("faq.features.1.q"), a: t("faq.features.1.a") },
+            { q: t("faq.features.2.q"), a: t("faq.features.2.a") },
+            { q: t("faq.features.3.q"), a: t("faq.features.3.a") }
+          ]
+        },
+        {
+          id: "general",
+          label: t("faq.cat.general"),
+          items: [
+            { q: t("faq.general.0.q"), a: t("faq.general.0.a") },
+            { q: t("faq.general.1.q"), a: t("faq.general.1.a") }
+          ]
+        }
+      ];
+    }
 
     // ---- FAQPage Component ----
     var FAQPage = {
@@ -477,10 +466,11 @@
         this.activeCategory = "all";
         this.openIndex = null;
         // Check URL hash for category deep-link
+        var cats = getFaqCategories();
         var hash = window.location.hash.replace("#", "");
         if (hash) {
-          for (var i = 0; i < faqCategories.length; i++) {
-            if (faqCategories[i].id === hash) {
+          for (var i = 0; i < cats.length; i++) {
+            if (cats[i].id === hash) {
               this.activeCategory = hash;
               break;
             }
@@ -496,9 +486,10 @@
       },
       view: function () {
         var self = this;
+        var faqCategories = getFaqCategories();
 
         // Build tab list
-        var tabs = [{ id: "all", label: "All" }];
+        var tabs = [{ id: "all", label: t("faq.tab.all") }];
         faqCategories.forEach(function (cat) {
           tabs.push({ id: cat.id, label: cat.label });
         });
@@ -596,6 +587,9 @@
       if (faqPageEl) m.mount(faqPageEl, FAQPage);
 
       initScrollReveal();
+
+      // Re-render Mithril on language change
+      document.addEventListener("aj-lang-change", function () { m.redraw(); });
     }
 
     // Run on DOM ready

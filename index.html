@@ -33,6 +33,20 @@
     })();
   </script>
 
+  <!-- Language: prevent FOUC -->
+  <script>
+    (function(){
+      var lang;
+      try { lang = localStorage.getItem("aj-lang"); } catch(e){}
+      if (!lang) lang = (navigator.language || "").startsWith("es") ? "es" : "en";
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("data-lang", lang);
+    })();
+  </script>
+
+  <!-- i18n dictionary -->
+  <script src="assets/js/i18n.js"></script>
+
   <!-- Tailwind CSS v4 (browser build) -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -90,10 +104,10 @@
 <body class="bg-base-100 text-base-content">
 
   <!-- Skip to content -->
-  <a href="#main" class="skip-link">Skip to main content</a>
+  <a href="#main" class="skip-link" data-i18n="a11y.skipLink">Skip to main content</a>
 
   <!-- ====== ISLAND NAVBAR ====== -->
-  <nav class="navbar navbar--island" aria-label="Main navigation">
+  <nav class="navbar navbar--island" aria-label="Main navigation" data-i18n="a11y.navLabel" data-i18n-attr="aria-label">
     <div class="navbar-island">
       <!-- Brand -->
       <a href="/" class="island-brand" aria-label="AgenticJunior Home">
@@ -110,7 +124,7 @@
               <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
             </svg>
           </span>
-          <span class="island-step-label">Features</span>
+          <span class="island-step-label" data-i18n="nav.features">Features</span>
         </a>
         <a href="#skills" class="island-step" data-section="skills">
           <span class="island-step-icon" aria-hidden="true">
@@ -118,7 +132,7 @@
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
             </svg>
           </span>
-          <span class="island-step-label">Skills</span>
+          <span class="island-step-label" data-i18n="nav.skills">Skills</span>
         </a>
         <a href="#pricing" class="island-step" data-section="pricing">
           <span class="island-step-icon" aria-hidden="true">
@@ -126,18 +140,28 @@
               <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
             </svg>
           </span>
-          <span class="island-step-label">Pricing</span>
+          <span class="island-step-label" data-i18n="nav.pricing">Pricing</span>
         </a>
         <div class="island-indicator" aria-hidden="true"></div>
       </div>
       <div class="island-divider" aria-hidden="true"></div>
 
       <!-- Links -->
-      <a href="faq.html" class="island-link">FAQ</a>
+      <a href="faq.html" class="island-link" data-i18n="nav.faq">FAQ</a>
       <div class="island-divider" aria-hidden="true"></div>
 
       <!-- Actions -->
       <div class="island-actions">
+        <button class="island-lang-toggle" id="lang-toggle" aria-label="Cambiar a español">
+          <svg class="island-lang-globe" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span class="island-lang-label" data-lang-show="en">ES</span>
+          <span class="island-lang-label" data-lang-show="es">EN</span>
+        </button>
         <button class="island-theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
           <svg class="island-sun" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -151,19 +175,19 @@
           <span class="island-hamburger-bar"></span>
           <span class="island-hamburger-bar"></span>
         </button>
-        <a href="#pricing" class="island-cta">Get Started</a>
+        <a href="#pricing" class="island-cta" data-i18n="nav.getStarted">Get Started</a>
       </div>
 
     </div>
     <!-- Mobile menu -->
-    <div class="island-menu" id="island-menu" role="region" aria-label="Navigation menu">
+    <div class="island-menu" id="island-menu" role="region" aria-label="Navigation menu" data-i18n="a11y.navMenuLabel" data-i18n-attr="aria-label">
       <a href="#features" class="island-menu-item" data-section="features">
         <span class="island-menu-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
           </svg>
         </span>
-        <span class="island-menu-label">Features</span>
+        <span class="island-menu-label" data-i18n="nav.features">Features</span>
       </a>
       <a href="#skills" class="island-menu-item" data-section="skills">
         <span class="island-menu-icon" aria-hidden="true">
@@ -171,7 +195,7 @@
             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
           </svg>
         </span>
-        <span class="island-menu-label">Skills</span>
+        <span class="island-menu-label" data-i18n="nav.skills">Skills</span>
       </a>
       <a href="#pricing" class="island-menu-item" data-section="pricing">
         <span class="island-menu-icon" aria-hidden="true">
@@ -179,7 +203,7 @@
             <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
           </svg>
         </span>
-        <span class="island-menu-label">Pricing</span>
+        <span class="island-menu-label" data-i18n="nav.pricing">Pricing</span>
       </a>
       <a href="faq.html" class="island-menu-item">
         <span class="island-menu-icon" aria-hidden="true">
@@ -187,7 +211,7 @@
             <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
           </svg>
         </span>
-        <span class="island-menu-label">FAQ</span>
+        <span class="island-menu-label" data-i18n="nav.faq">FAQ</span>
       </a>
       <a href="#pricing" class="island-menu-item">
         <span class="island-menu-icon" aria-hidden="true">
@@ -195,7 +219,7 @@
             <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
           </svg>
         </span>
-        <span class="island-menu-label">Get Started</span>
+        <span class="island-menu-label" data-i18n="nav.getStarted">Get Started</span>
       </a>
     </div>
   </nav>
@@ -212,14 +236,14 @@
 
       <div class="max-w-7xl mx-auto px-4 pt-28 pb-20 relative z-10 text-center">
         <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">
-          Your AI chief of staff.<br>
-          <span class="gradient-text">Managed, Secure, Ready.</span>
+          <span data-i18n="hero.headline">Your AI chief of staff.</span><br>
+          <span class="gradient-text" data-i18n="hero.headlineAccent">Managed, Secure, Ready.</span>
         </h1>
         <p class="text-2xl md:text-4xl font-semibold text-base-content/80 max-w-2xl mx-auto mb-2">
           AgenticJunior <span id="rotate-feature" class="text-primary">manages your inbox</span>
         </p>
         <p class="text-lg md:text-xl text-base-content/60 max-w-2xl mx-auto mb-4">
-          — so you can <span id="rotate-benefit" class="text-primary font-semibold">focus on what matters</span>.
+          <span data-i18n="hero.soYouCan">— so you can</span> <span id="rotate-benefit" class="text-primary font-semibold">focus on what matters</span>.
         </p>
         <noscript>
           <p class="text-2xl md:text-4xl font-semibold text-base-content/80 max-w-2xl mx-auto mb-2">
@@ -229,14 +253,10 @@
             — so you can focus on what matters.
           </p>
         </noscript>
-        <p class="text-base text-base-content/50 mb-4">No setup, no servers, no complexity.</p>
-        <div class="flex gap-2 justify-center mb-10">
-          <span class="badge badge-outline badge-sm">EN</span>
-          <span class="badge badge-outline badge-sm">ES</span>
-        </div>
+        <p class="text-base text-base-content/50 mb-4" data-i18n="hero.tagline">No setup, no servers, no complexity.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#pricing" class="btn btn-primary btn-lg text-lg px-8">Get Started Free</a>
-          <a href="#features" class="btn btn-outline btn-lg text-lg px-8">See How It Works</a>
+          <a href="#pricing" class="btn btn-primary btn-lg text-lg px-8" data-i18n="hero.ctaPrimary">Get Started Free</a>
+          <a href="#features" class="btn btn-outline btn-lg text-lg px-8" data-i18n="hero.ctaSecondary">See How It Works</a>
         </div>
       </div>
     </section>
@@ -248,8 +268,8 @@
       <div class="max-w-5xl mx-auto px-4">
         <div class="reveal">
           <h2 class="font-display text-3xl md:text-5xl font-bold text-center mb-16 tracking-tight">
-            Managing email, calendar, and tasks<br>
-            <span class="text-base-content/50">shouldn't be a full-time job</span>
+            <span data-i18n="problem.headline">Managing email, calendar, and tasks</span><br>
+            <span class="text-base-content/50" data-i18n="problem.headlineSub">shouldn't be a full-time job</span>
           </h2>
         </div>
         <div id="problem-carousel" class="reveal"></div>
@@ -259,22 +279,22 @@
               <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
                 <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
               </div>
-              <h3 class="font-display font-bold text-lg mb-2">Inbox overload</h3>
-              <p class="text-base-content/60">Hours spent sorting, reading, and responding to emails that could be triaged automatically.</p>
+              <h3 class="font-display font-bold text-lg mb-2" data-i18n="problem.inboxTitle">Inbox overload</h3>
+              <p class="text-base-content/60" data-i18n="problem.inboxDesc">Hours spent sorting, reading, and responding to emails that could be triaged automatically.</p>
             </div>
             <div class="flex flex-col items-center text-center p-8">
               <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
                 <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
               </div>
-              <h3 class="font-display font-bold text-lg mb-2">Calendar chaos</h3>
-              <p class="text-base-content/60">Back-to-back meetings, double bookings, and forgotten follow-ups drain your mental energy.</p>
+              <h3 class="font-display font-bold text-lg mb-2" data-i18n="problem.calendarTitle">Calendar chaos</h3>
+              <p class="text-base-content/60" data-i18n="problem.calendarDesc">Back-to-back meetings, double bookings, and forgotten follow-ups drain your mental energy.</p>
             </div>
             <div class="flex flex-col items-center text-center p-8">
               <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mb-5">
                 <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15a2.25 2.25 0 012.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25"/></svg>
               </div>
-              <h3 class="font-display font-bold text-lg mb-2">Task fragmentation</h3>
-              <p class="text-base-content/60">Action items scattered across apps, chats, and sticky notes — nothing gets tracked properly.</p>
+              <h3 class="font-display font-bold text-lg mb-2" data-i18n="problem.tasksTitle">Task fragmentation</h3>
+              <p class="text-base-content/60" data-i18n="problem.tasksDesc">Action items scattered across apps, chats, and sticky notes — nothing gets tracked properly.</p>
             </div>
           </div>
         </noscript>
@@ -288,9 +308,9 @@
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Eight agents. <span class="gradient-text">One assistant.</span>
+            <span data-i18n="features.headline">Eight agents.</span> <span class="gradient-text" data-i18n="features.headlineAccent">One assistant.</span>
           </h2>
-          <p class="text-lg text-base-content/60 max-w-xl mx-auto">Specialized AI agents that work together to manage your digital life.</p>
+          <p class="text-lg text-base-content/60 max-w-xl mx-auto" data-i18n="features.subtitle">Specialized AI agents that work together to manage your digital life.</p>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
           <!-- Email Agent -->
@@ -301,8 +321,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">Email Agent</h3>
-              <p class="text-base-content/60">Reads, classifies, and drafts email responses. Smart triage so you only see what matters.</p>
+              <h3 class="card-title font-display text-lg" data-i18n="features.email.title">Email Agent</h3>
+              <p class="text-base-content/60" data-i18n="features.email.desc">Reads, classifies, and drafts email responses. Smart triage so you only see what matters.</p>
             </div>
           </div>
           <!-- Calendar Agent -->
@@ -313,8 +333,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">Calendar Agent</h3>
-              <p class="text-base-content/60">Schedules meetings, avoids conflicts, and sends daily agenda summaries in plain English.</p>
+              <h3 class="card-title font-display text-lg" data-i18n="features.calendar.title">Calendar Agent</h3>
+              <p class="text-base-content/60" data-i18n="features.calendar.desc">Schedules meetings, avoids conflicts, and sends daily agenda summaries in plain English.</p>
             </div>
           </div>
           <!-- Tasks Agent -->
@@ -325,8 +345,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">Tasks Agent</h3>
-              <p class="text-base-content/60">Extracts action items from emails and chats. Tracks deadlines and sends reminders.</p>
+              <h3 class="card-title font-display text-lg" data-i18n="features.tasks.title">Tasks Agent</h3>
+              <p class="text-base-content/60" data-i18n="features.tasks.desc">Extracts action items from emails and chats. Tracks deadlines and sends reminders.</p>
             </div>
           </div>
           <!-- Contacts Agent -->
@@ -337,8 +357,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">Contacts Agent</h3>
-              <p class="text-base-content/60">Keeps your network organized. Quick lookups, relationship notes, and contact enrichment.</p>
+              <h3 class="card-title font-display text-lg" data-i18n="features.contacts.title">Contacts Agent</h3>
+              <p class="text-base-content/60" data-i18n="features.contacts.desc">Keeps your network organized. Quick lookups, relationship notes, and contact enrichment.</p>
             </div>
           </div>
           <!-- GitHub Agent -->
@@ -349,8 +369,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">GitHub Agent <span class="badge badge-sm badge-primary badge-outline">Pro</span></h3>
-              <p class="text-base-content/60">Manages issues, reviews PRs, and queries your repos. Your dev workflow, streamlined.</p>
+              <h3 class="card-title font-display text-lg"><span data-i18n="features.github.title">GitHub Agent</span> <span class="badge badge-sm badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
+              <p class="text-base-content/60" data-i18n="features.github.desc">Manages issues, reviews PRs, and queries your repos. Your dev workflow, streamlined.</p>
             </div>
           </div>
           <!-- Content Creator -->
@@ -361,8 +381,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">Content Creator <span class="badge badge-sm badge-secondary badge-outline">Ultimate</span></h3>
-              <p class="text-base-content/60">Drafts posts, summaries, and documents. From quick replies to long-form content.</p>
+              <h3 class="card-title font-display text-lg"><span data-i18n="features.content.title">Content Creator</span> <span class="badge badge-sm badge-secondary badge-outline" data-i18n="badge.ultimate">Ultimate</span></h3>
+              <p class="text-base-content/60" data-i18n="features.content.desc">Drafts posts, summaries, and documents. From quick replies to long-form content.</p>
             </div>
           </div>
           <!-- Notes Agent -->
@@ -373,8 +393,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">Notes Agent <span class="badge badge-sm badge-primary badge-outline">Pro</span></h3>
-              <p class="text-base-content/60">Encrypted notes with tags, pinning, and search. Discovers related notes automatically.</p>
+              <h3 class="card-title font-display text-lg"><span data-i18n="features.notes.title">Notes Agent</span> <span class="badge badge-sm badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
+              <p class="text-base-content/60" data-i18n="features.notes.desc">Encrypted notes with tags, pinning, and search. Discovers related notes automatically.</p>
             </div>
           </div>
           <!-- Files Agent -->
@@ -385,15 +405,15 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-lg">Files Agent</h3>
-              <p class="text-base-content/60">Parse PDFs, analyze spreadsheets, and extract data from documents.</p>
+              <h3 class="card-title font-display text-lg" data-i18n="features.files.title">Files Agent</h3>
+              <p class="text-base-content/60" data-i18n="features.files.desc">Parse PDFs, analyze spreadsheets, and extract data from documents.</p>
             </div>
           </div>
         </div>
 
         <!-- Channel logos -->
         <div class="mt-16 text-center reveal">
-          <p class="text-sm text-base-content/40 mb-6 uppercase tracking-widest font-semibold">Works where you work</p>
+          <p class="text-sm text-base-content/40 mb-6 uppercase tracking-widest font-semibold" data-i18n="features.channels">Works where you work</p>
           <div class="channel-logos">
             <!-- Active integrations (colored) -->
             <span class="channel-logo-active font-semibold text-sm flex items-center gap-1.5">
@@ -419,15 +439,15 @@
             <!-- Coming soon (dimmed) -->
             <span class="channel-logo-inactive font-semibold text-sm flex items-center gap-1.5">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
-              Slack <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+              Slack <span class="badge badge-xs badge-outline opacity-60" data-i18n="badge.comingSoon">Coming soon</span>
             </span>
             <span class="channel-logo-inactive font-semibold text-sm flex items-center gap-1.5">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.404 6.65l-5.998-5.608c-.564-.527-1.255-.79-1.952-.79-.696 0-1.389.264-1.95.79l-5.997 5.607c-.568.53-.9 1.266-.9 2.035v8.578c0 1.513 1.228 2.741 2.741 2.741h2.233V13.7c0-.684.555-1.238 1.239-1.238h5.36c.684 0 1.239.554 1.239 1.238v6.304h2.233c1.513 0 2.741-1.228 2.741-2.741V8.686c0-.77-.332-1.506-.9-2.036z"/></svg>
-              Teams <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+              Teams <span class="badge badge-xs badge-outline opacity-60" data-i18n="badge.comingSoon">Coming soon</span>
             </span>
             <span class="channel-logo-inactive font-semibold text-sm flex items-center gap-1.5">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              WhatsApp <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+              WhatsApp <span class="badge badge-xs badge-outline opacity-60" data-i18n="badge.comingSoon">Coming soon</span>
             </span>
           </div>
         </div>
@@ -441,9 +461,9 @@
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Extend with <span class="gradient-text">Skills</span>
+            <span data-i18n="skills.headline">Extend with</span> <span class="gradient-text" data-i18n="skills.headlineAccent">Skills</span>
           </h2>
-          <p class="text-lg text-base-content/60 max-w-xl mx-auto">A curated marketplace of pre-built skills. One-click install, instant productivity.</p>
+          <p class="text-lg text-base-content/60 max-w-xl mx-auto" data-i18n="skills.subtitle">A curated marketplace of pre-built skills. One-click install, instant productivity.</p>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
           <!-- PDF Reader -->
@@ -455,8 +475,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold">PDF Reader</h3>
-                <p class="text-sm text-base-content/60">Extract and summarize content from PDF documents.</p>
+                <h3 class="font-display font-bold" data-i18n="skills.pdfReader.title">PDF Reader</h3>
+                <p class="text-sm text-base-content/60" data-i18n="skills.pdfReader.desc">Extract and summarize content from PDF documents.</p>
               </div>
             </div>
           </div>
@@ -469,8 +489,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold">Spreadsheet Agent</h3>
-                <p class="text-sm text-base-content/60">Analyze CSV and Excel files with natural language queries.</p>
+                <h3 class="font-display font-bold" data-i18n="skills.spreadsheet.title">Spreadsheet Agent</h3>
+                <p class="text-sm text-base-content/60" data-i18n="skills.spreadsheet.desc">Analyze CSV and Excel files with natural language queries.</p>
               </div>
             </div>
           </div>
@@ -483,8 +503,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold">Web Research</h3>
-                <p class="text-sm text-base-content/60">Search the web and summarize findings on any topic.</p>
+                <h3 class="font-display font-bold" data-i18n="skills.webResearch.title">Web Research</h3>
+                <p class="text-sm text-base-content/60" data-i18n="skills.webResearch.desc">Search the web and summarize findings on any topic.</p>
               </div>
             </div>
           </div>
@@ -497,8 +517,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold">Meeting Notes Generator</h3>
-                <p class="text-sm text-base-content/60">Turn meeting recordings into structured notes and action items.</p>
+                <h3 class="font-display font-bold" data-i18n="skills.meetingNotes.title">Meeting Notes Generator</h3>
+                <p class="text-sm text-base-content/60" data-i18n="skills.meetingNotes.desc">Turn meeting recordings into structured notes and action items.</p>
               </div>
             </div>
           </div>
@@ -511,8 +531,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold">YouTube Transcription</h3>
-                <p class="text-sm text-base-content/60">Transcribe and summarize YouTube videos automatically.</p>
+                <h3 class="font-display font-bold" data-i18n="skills.youtube.title">YouTube Transcription</h3>
+                <p class="text-sm text-base-content/60" data-i18n="skills.youtube.desc">Transcribe and summarize YouTube videos automatically.</p>
               </div>
             </div>
           </div>
@@ -525,8 +545,8 @@
                 </svg>
               </div>
               <div>
-                <h3 class="font-display font-bold text-base-content/50">More coming soon</h3>
-                <p class="text-sm text-base-content/40">New skills added regularly to the marketplace.</p>
+                <h3 class="font-display font-bold text-base-content/50" data-i18n="skills.moreSoon.title">More coming soon</h3>
+                <p class="text-sm text-base-content/40" data-i18n="skills.moreSoon.desc">New skills added regularly to the marketplace.</p>
               </div>
             </div>
           </div>
@@ -541,10 +561,10 @@
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Why <span class="gradient-text">AgenticJunior</span>
+            <span data-i18n="why.headline">Why</span> <span class="gradient-text">AgenticJunior</span>
           </h2>
-          <p class="text-lg text-base-content/60">Security isn't a feature. It's the foundation.</p>
-          <p class="mt-4 max-w-2xl mx-auto text-base-content/50">Most AI platforms bolt on security as an afterthought. We built AgenticJunior the other way around: security first, then capabilities. Every feature included — and every feature deliberately excluded — reflects this philosophy.</p>
+          <p class="text-lg text-base-content/60" data-i18n="why.subtitle">Security isn't a feature. It's the foundation.</p>
+          <p class="mt-4 max-w-2xl mx-auto text-base-content/50" data-i18n="why.desc">Most AI platforms bolt on security as an afterthought. We built AgenticJunior the other way around: security first, then capabilities. Every feature included — and every feature deliberately excluded — reflects this philosophy.</p>
         </div>
         <div class="grid sm:grid-cols-2 gap-8 reveal-stagger">
           <!-- Secure by Default -->
@@ -555,8 +575,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-xl">Secure by Default</h3>
-              <p class="text-base-content/60">Multi-tenant isolation with Row-Level Security. Encrypted OAuth tokens. No shell access, no file system exposure, no attack surface.</p>
+              <h3 class="card-title font-display text-xl" data-i18n="why.secure.title">Secure by Default</h3>
+              <p class="text-base-content/60" data-i18n="why.secure.desc">Multi-tenant isolation with Row-Level Security. Encrypted OAuth tokens. No shell access, no file system exposure, no attack surface.</p>
             </div>
           </div>
           <!-- Managed Architecture -->
@@ -567,8 +587,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-xl">Managed Architecture</h3>
-              <p class="text-base-content/60">Zero infrastructure to manage. Automatic updates, auto-scaling, health monitoring. We handle the servers, you handle your day.</p>
+              <h3 class="card-title font-display text-xl" data-i18n="why.managed.title">Managed Architecture</h3>
+              <p class="text-base-content/60" data-i18n="why.managed.desc">Zero infrastructure to manage. Automatic updates, auto-scaling, health monitoring. We handle the servers, you handle your day.</p>
             </div>
           </div>
           <!-- Curated Tools -->
@@ -579,8 +599,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.18 1.029-5.999L2.1 7.58l6.023-.876L11.42 1.5l3.297 5.204 6.023.876-4.965 4.771 1.029 5.999z"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-xl">Curated Tools</h3>
-              <p class="text-base-content/60">Every tool vetted. Every integration tested. 8 specialized agents plus a curated Skills Marketplace — quality over 3,000 unvetted community plugins.</p>
+              <h3 class="card-title font-display text-xl" data-i18n="why.curated.title">Curated Tools</h3>
+              <p class="text-base-content/60" data-i18n="why.curated.desc">Every tool vetted. Every integration tested. 8 specialized agents plus a curated Skills Marketplace — quality over 3,000 unvetted community plugins.</p>
             </div>
           </div>
           <!-- GDPR-Friendly Memory -->
@@ -591,8 +611,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
-              <h3 class="card-title font-display text-xl">GDPR-Friendly Memory</h3>
-              <p class="text-base-content/60">Configurable data retention. Conversations auto-delete based on your plan. Data minimization by design, not as an afterthought.</p>
+              <h3 class="card-title font-display text-xl" data-i18n="why.gdpr.title">GDPR-Friendly Memory</h3>
+              <p class="text-base-content/60" data-i18n="why.gdpr.desc">Configurable data retention. Conversations auto-delete based on your plan. Data minimization by design, not as an afterthought.</p>
             </div>
           </div>
         </div>
@@ -606,32 +626,32 @@
       <div class="max-w-4xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Self-hosted vs <span class="gradient-text">AgenticJunior</span>
+            <span data-i18n="comparison.headline">Self-hosted vs</span> <span class="gradient-text">AgenticJunior</span>
           </h2>
-          <p class="text-lg text-base-content/60">All the benefits. None of the headaches.</p>
+          <p class="text-lg text-base-content/60" data-i18n="comparison.subtitle">All the benefits. None of the headaches.</p>
         </div>
         <div class="reveal overflow-x-auto">
           <table class="table table-zebra w-full">
             <thead>
               <tr>
-                <th class="font-display text-base">Feature</th>
-                <th class="font-display text-base text-center">Self-Hosted</th>
+                <th class="font-display text-base" data-i18n="comparison.feature">Feature</th>
+                <th class="font-display text-base text-center" data-i18n="comparison.selfHosted">Self-Hosted</th>
                 <th class="font-display text-base text-center">AgenticJunior</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Setup time</td><td class="text-center">Hours / days</td><td class="text-center comparison-check">Minutes</td></tr>
-              <tr><td>Infrastructure</td><td class="text-center">You manage</td><td class="text-center comparison-check">We manage</td></tr>
-              <tr><td>Security updates</td><td class="text-center">Manual</td><td class="text-center comparison-check">Automatic</td></tr>
-              <tr><td>Multi-user</td><td class="text-center comparison-cross">No</td><td class="text-center comparison-check">Yes</td></tr>
-              <tr><td>Slack / Teams</td><td class="text-center">DIY</td><td class="text-center">Coming soon</td></tr>
-              <tr><td>Memory</td><td class="text-center">Infinite (your storage)</td><td class="text-center comparison-check">Smart retention</td></tr>
-              <tr><td>Skills / plugins</td><td class="text-center">3,000+ unvetted</td><td class="text-center comparison-check">Curated &amp; secure</td></tr>
-              <tr><td>Shell access</td><td class="text-center comparison-cross">Yes (risky)</td><td class="text-center comparison-check">No (by design)</td></tr>
-              <tr><td>Browser control</td><td class="text-center comparison-cross">Yes (risky)</td><td class="text-center comparison-check">No (by design)</td></tr>
-              <tr><td>Custom agents &amp; prompts</td><td class="text-center">N/A</td><td class="text-center comparison-check">Yes (Ultimate)</td></tr>
-              <tr><td>Scheduled automation</td><td class="text-center">Manual cron</td><td class="text-center comparison-check">Built-in</td></tr>
-              <tr><td>Price</td><td class="text-center">Free + time + infra</td><td class="text-center comparison-check">$5–29/mo</td></tr>
+              <tr><td data-i18n="comparison.setupTime">Setup time</td><td class="text-center" data-i18n="comparison.setupSelf">Hours / days</td><td class="text-center comparison-check" data-i18n="comparison.setupAj">Minutes</td></tr>
+              <tr><td data-i18n="comparison.infra">Infrastructure</td><td class="text-center" data-i18n="comparison.infraSelf">You manage</td><td class="text-center comparison-check" data-i18n="comparison.infraAj">We manage</td></tr>
+              <tr><td data-i18n="comparison.security">Security updates</td><td class="text-center" data-i18n="comparison.securitySelf">Manual</td><td class="text-center comparison-check" data-i18n="comparison.securityAj">Automatic</td></tr>
+              <tr><td data-i18n="comparison.multiUser">Multi-user</td><td class="text-center comparison-cross" data-i18n="comparison.no">No</td><td class="text-center comparison-check" data-i18n="comparison.yes">Yes</td></tr>
+              <tr><td data-i18n="comparison.slackTeams">Slack / Teams</td><td class="text-center" data-i18n="comparison.diy">DIY</td><td class="text-center" data-i18n="badge.comingSoon">Coming soon</td></tr>
+              <tr><td data-i18n="comparison.memory">Memory</td><td class="text-center" data-i18n="comparison.memorySelf">Infinite (your storage)</td><td class="text-center comparison-check" data-i18n="comparison.memoryAj">Smart retention</td></tr>
+              <tr><td data-i18n="comparison.plugins">Skills / plugins</td><td class="text-center" data-i18n="comparison.pluginsSelf">3,000+ unvetted</td><td class="text-center comparison-check" data-i18n="comparison.pluginsAj">Curated &amp; secure</td></tr>
+              <tr><td data-i18n="comparison.shell">Shell access</td><td class="text-center comparison-cross" data-i18n="comparison.shellSelf">Yes (risky)</td><td class="text-center comparison-check" data-i18n="comparison.shellAj">No (by design)</td></tr>
+              <tr><td data-i18n="comparison.browser">Browser control</td><td class="text-center comparison-cross" data-i18n="comparison.browserSelf">Yes (risky)</td><td class="text-center comparison-check" data-i18n="comparison.browserAj">No (by design)</td></tr>
+              <tr><td data-i18n="comparison.customAgents">Custom agents &amp; prompts</td><td class="text-center" data-i18n="comparison.customSelf">N/A</td><td class="text-center comparison-check" data-i18n="comparison.customAj">Yes (Ultimate)</td></tr>
+              <tr><td data-i18n="comparison.scheduled">Scheduled automation</td><td class="text-center" data-i18n="comparison.scheduledSelf">Manual cron</td><td class="text-center comparison-check" data-i18n="comparison.scheduledAj">Built-in</td></tr>
+              <tr><td data-i18n="comparison.price">Price</td><td class="text-center" data-i18n="comparison.priceSelf">Free + time + infra</td><td class="text-center comparison-check" data-i18n="comparison.priceAj">$5–29/mo</td></tr>
             </tbody>
           </table>
         </div>
@@ -645,16 +665,16 @@
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            Simple, transparent <span class="gradient-text">pricing</span>
+            <span data-i18n="pricing.headline">Simple, transparent</span> <span class="gradient-text" data-i18n="pricing.headlineAccent">pricing</span>
           </h2>
-          <p class="text-lg text-base-content/60">Start free. Scale as you grow.</p>
+          <p class="text-lg text-base-content/60" data-i18n="pricing.subtitle">Start free. Scale as you grow.</p>
         </div>
         <div class="grid md:grid-cols-3 gap-8 reveal-stagger">
           <!-- Starter -->
           <div class="reveal card bg-base-100 rounded-2xl card-glow border border-base-300/50">
             <div class="card-body text-center">
-              <h3 class="font-display text-2xl font-bold mb-1">Starter</h3>
-              <p class="text-base-content/50 text-sm mb-6">Essential AI assistance</p>
+              <h3 class="font-display text-2xl font-bold mb-1" data-i18n="pricing.starter.title">Starter</h3>
+              <p class="text-base-content/50 text-sm mb-6" data-i18n="pricing.starter.subtitle">Essential AI assistance</p>
               <div class="mb-6">
                 <span class="font-display text-5xl font-bold">$5</span>
                 <span class="text-base-content/50">/mo</span>
@@ -662,38 +682,38 @@
               <ul class="text-left space-y-3 mb-8 text-sm">
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Email, Calendar, Tasks, Contacts agents
+                  <span data-i18n="pricing.starter.f1">Email, Calendar, Tasks, Contacts agents</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Files Agent (PDF, spreadsheets)
+                  <span data-i18n="pricing.starter.f2">Files Agent (PDF, spreadsheets)</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Web + Telegram
+                  <span data-i18n="pricing.starter.f3">Web + Telegram</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Voice message transcription
+                  <span data-i18n="pricing.starter.f4">Voice message transcription</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  24-hour memory <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+                  <span data-i18n="pricing.starter.f5">24-hour memory</span> <span class="badge badge-xs badge-outline opacity-60" data-i18n="badge.comingSoon">Coming soon</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Encrypted &amp; isolated
+                  <span data-i18n="pricing.starter.f6">Encrypted &amp; isolated</span>
                 </li>
               </ul>
-              <a href="mailto:hello@ainvirion.com?subject=AgenticJunior%20Starter%20—%20Beta%20Access" class="btn btn-outline btn-primary w-full">Get Started</a>
+              <a href="mailto:hello@ainvirion.com?subject=AgenticJunior%20Starter%20—%20Beta%20Access" class="btn btn-outline btn-primary w-full" data-i18n="nav.getStarted">Get Started</a>
             </div>
           </div>
           <!-- Pro -->
           <div class="reveal card bg-base-100 rounded-2xl card-glow border-2 border-primary relative">
-            <div class="badge badge-primary badge-popular absolute -top-3 right-4">Popular</div>
+            <div class="badge badge-primary badge-popular absolute -top-3 right-4" data-i18n="badge.popular">Popular</div>
             <div class="card-body text-center">
-              <h3 class="font-display text-2xl font-bold mb-1">Pro</h3>
-              <p class="text-base-content/50 text-sm mb-6">For professionals</p>
+              <h3 class="font-display text-2xl font-bold mb-1" data-i18n="pricing.pro.title">Pro</h3>
+              <p class="text-base-content/50 text-sm mb-6" data-i18n="pricing.pro.subtitle">For professionals</p>
               <div class="mb-6">
                 <span class="font-display text-5xl font-bold gradient-text">$12</span>
                 <span class="text-base-content/50">/mo</span>
@@ -701,37 +721,37 @@
               <ul class="text-left space-y-3 mb-8 text-sm">
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Everything in Starter
+                  <span data-i18n="pricing.pro.f1">Everything in Starter</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Notes Agent (encrypted, searchable)
+                  <span data-i18n="pricing.pro.f2">Notes Agent (encrypted, searchable)</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  GitHub Agent
+                  <span data-i18n="pricing.pro.f3">GitHub Agent</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Skills Marketplace
+                  <span data-i18n="pricing.pro.f4">Skills Marketplace</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  7-day memory <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+                  <span data-i18n="pricing.pro.f5">7-day memory</span> <span class="badge badge-xs badge-outline opacity-60" data-i18n="badge.comingSoon">Coming soon</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Slack + WhatsApp + Teams <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+                  <span data-i18n="pricing.pro.f6">Slack + WhatsApp + Teams</span> <span class="badge badge-xs badge-outline opacity-60" data-i18n="badge.comingSoon">Coming soon</span>
                 </li>
               </ul>
-              <a href="mailto:hello@ainvirion.com?subject=AgenticJunior%20Pro%20—%20Beta%20Access" class="btn btn-primary w-full">Get Started</a>
+              <a href="mailto:hello@ainvirion.com?subject=AgenticJunior%20Pro%20—%20Beta%20Access" class="btn btn-primary w-full" data-i18n="nav.getStarted">Get Started</a>
             </div>
           </div>
           <!-- Ultimate -->
           <div class="reveal card bg-base-100 rounded-2xl card-glow border border-base-300/50">
             <div class="card-body text-center">
-              <h3 class="font-display text-2xl font-bold mb-1">Ultimate</h3>
-              <p class="text-base-content/50 text-sm mb-6">Full power</p>
+              <h3 class="font-display text-2xl font-bold mb-1" data-i18n="pricing.ultimate.title">Ultimate</h3>
+              <p class="text-base-content/50 text-sm mb-6" data-i18n="pricing.ultimate.subtitle">Full power</p>
               <div class="mb-6">
                 <span class="font-display text-5xl font-bold">$29</span>
                 <span class="text-base-content/50">/mo</span>
@@ -739,34 +759,34 @@
               <ul class="text-left space-y-3 mb-8 text-sm">
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Everything in Pro
+                  <span data-i18n="pricing.ultimate.f1">Everything in Pro</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Content Creator Agent
+                  <span data-i18n="pricing.ultimate.f2">Content Creator Agent</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Custom prompts (/command triggers)
+                  <span data-i18n="pricing.ultimate.f3">Custom prompts (/command triggers)</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Custom agents (@agent triggers)
+                  <span data-i18n="pricing.ultimate.f4">Custom agents (@agent triggers)</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Scheduled jobs &amp; automation
+                  <span data-i18n="pricing.ultimate.f5">Scheduled jobs &amp; automation</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  Webhooks API
+                  <span data-i18n="pricing.ultimate.f6">Webhooks API</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                  30-day memory <span class="badge badge-xs badge-outline opacity-60">Coming soon</span>
+                  <span data-i18n="pricing.ultimate.f7">30-day memory</span> <span class="badge badge-xs badge-outline opacity-60" data-i18n="badge.comingSoon">Coming soon</span>
                 </li>
               </ul>
-              <a href="mailto:hello@ainvirion.com?subject=AgenticJunior%20Ultimate%20—%20Beta%20Access" class="btn btn-outline btn-primary w-full">Get Started</a>
+              <a href="mailto:hello@ainvirion.com?subject=AgenticJunior%20Ultimate%20—%20Beta%20Access" class="btn btn-outline btn-primary w-full" data-i18n="nav.getStarted">Get Started</a>
             </div>
           </div>
         </div>
@@ -777,18 +797,18 @@
             <table class="table table-sm">
               <thead>
                 <tr>
-                  <th class="font-display text-sm">Tier</th>
-                  <th class="font-display text-sm">Conversation Memory</th>
+                  <th class="font-display text-sm" data-i18n="pricing.retention.tier">Tier</th>
+                  <th class="font-display text-sm" data-i18n="pricing.retention.memory">Conversation Memory</th>
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Starter</td><td>24 hours <span class="text-base-content/40">(planned)</span></td></tr>
-                <tr><td>Pro</td><td>7 days <span class="text-base-content/40">(planned)</span></td></tr>
-                <tr><td>Ultimate</td><td>30 days <span class="text-base-content/40">(planned)</span></td></tr>
+                <tr><td>Starter</td><td>24 hours <span class="text-base-content/40" data-i18n="pricing.retention.planned">(planned)</span></td></tr>
+                <tr><td>Pro</td><td>7 days <span class="text-base-content/40" data-i18n="pricing.retention.planned">(planned)</span></td></tr>
+                <tr><td>Ultimate</td><td>30 days <span class="text-base-content/40" data-i18n="pricing.retention.planned">(planned)</span></td></tr>
               </tbody>
             </table>
           </div>
-          <p class="text-xs text-base-content/40 mt-3">During beta, all accounts have 48-hour conversation memory. Tiered retention is coming soon. No credit card required to start.</p>
+          <p class="text-xs text-base-content/40 mt-3" data-i18n="pricing.retention.betaNote">During beta, all accounts have 48-hour conversation memory. Tiered retention is coming soon. No credit card required to start.</p>
         </div>
       </div>
     </section>
@@ -799,12 +819,12 @@
       <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
         <div class="reveal">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-6">
-            Ready to reclaim<br><span class="gradient-text">your time?</span>
+            <span data-i18n="cta.headline">Ready to reclaim</span><br><span class="gradient-text" data-i18n="cta.headlineAccent">your time?</span>
           </h2>
-          <p class="text-lg text-base-content/60 mb-10">
+          <p class="text-lg text-base-content/60 mb-10" data-i18n="cta.subtitle">
             Stop managing your AI assistant. Start using one.
           </p>
-          <a href="#pricing" class="btn btn-primary btn-lg text-lg px-12">Get Started Free</a>
+          <a href="#pricing" class="btn btn-primary btn-lg text-lg px-12" data-i18n="hero.ctaPrimary">Get Started Free</a>
         </div>
       </div>
     </section>
@@ -812,40 +832,28 @@
   </main>
 
   <!-- ====== FOOTER ====== -->
-  <footer class="footer footer-center bg-base-300 text-base-content p-10">
-    <div class="max-w-6xl mx-auto w-full">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 w-full text-left mb-10">
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Product</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="#features" class="link link-hover text-sm">Features</a></li>
-            <li><a href="#pricing" class="link link-hover text-sm">Pricing</a></li>
-            <li><a href="faq.html" class="link link-hover text-sm">FAQ</a></li>
-          </ul>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/images/logo.png" alt="AgenticJunior" class="island-brand-logo" width="24" height="24">
+          <p class="footer-tagline" data-i18n="footer.tagline">AI-powered junior developer for your team</p>
         </div>
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Company</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="https://ainvirion.com" class="link link-hover text-sm" rel="noopener">About</a></li>
-            <li><a href="mailto:hello@ainvirion.com" class="link link-hover text-sm">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Legal</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="#" class="link link-hover text-sm">Privacy Policy</a></li>
-            <li><a href="#" class="link link-hover text-sm">Terms of Service</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-title font-display text-sm uppercase tracking-wider opacity-60">Connect</h4>
-          <ul class="space-y-2 mt-3">
-            <li><a href="mailto:hello@ainvirion.com" class="link link-hover text-sm">hello@ainvirion.com</a></li>
-          </ul>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:hello@ainvirion.com">hello@ainvirion.com</a>
         </div>
       </div>
-      <div class="border-t border-base-content/10 pt-6">
-        <p class="text-sm text-base-content/40">&copy; 2026 AInvirion. All rights reserved.</p>
+      <div class="footer-bottom">
+        <p class="footer-legal" data-i18n="footer.copyright">&copy; 2026 AInvirion LLC &middot; Spokane, WA</p>
+        <nav class="footer-legal-links" aria-label="Legal">
+          <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer.terms">Terms of Service</a>
+        </nav>
       </div>
     </div>
   </footer>
