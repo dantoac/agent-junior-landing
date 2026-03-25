@@ -21,6 +21,10 @@
   <meta name="twitter:title" content="FAQ — AgenticJunior">
   <meta name="twitter:description" content="Frequently asked questions about AgenticJunior — security, billing, integrations, Skills Marketplace, and more.">
 
+  <!-- Theme color -->
+  <meta name="theme-color" content="#f8f5f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1729" media="(prefers-color-scheme: dark)">
+
   <!-- Theme: prevent FOUC -->
   <script>
     (function(){
@@ -173,7 +177,7 @@
     <div class="navbar-island">
       <!-- Brand -->
       <a href="/" class="island-brand" aria-label="AgenticJunior Home">
-        <img src="/assets/images/logo.png" alt="" class="island-brand-logo" width="24" height="24" aria-hidden="true">
+        <img src="/assets/images/logo-48.png" alt="" class="island-brand-logo" width="24" height="24" aria-hidden="true">
         <span class="island-brand-text">Agentic<span class="gradient-text">Junior</span></span>
       </a>
       <div class="island-divider" aria-hidden="true"></div>
@@ -316,7 +320,7 @@
           <div class="space-y-8">
             <!-- Security & Privacy -->
             <div>
-              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">Security &amp; Privacy</h3>
+              <h2 class="font-display text-lg font-bold text-base-content/50 mb-3">Security &amp; Privacy</h2>
               <div class="space-y-3">
                 <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
                   <summary class="collapse-title text-lg font-display font-bold">How does AgenticJunior protect my data?</summary>
@@ -330,7 +334,7 @@
             </div>
             <!-- Billing -->
             <div>
-              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">Billing</h3>
+              <h2 class="font-display text-lg font-bold text-base-content/50 mb-3">Billing</h2>
               <div class="space-y-3">
                 <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
                   <summary class="collapse-title text-lg font-display font-bold">How does billing work?</summary>
@@ -340,7 +344,7 @@
             </div>
             <!-- Features & Integrations -->
             <div>
-              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">Features &amp; Integrations</h3>
+              <h2 class="font-display text-lg font-bold text-base-content/50 mb-3">Features &amp; Integrations</h2>
               <div class="space-y-3">
                 <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
                   <summary class="collapse-title text-lg font-display font-bold">What integrations are supported?</summary>
@@ -374,7 +378,7 @@
             </div>
             <!-- General -->
             <div>
-              <h3 class="font-display text-lg font-bold text-base-content/50 mb-3">General</h3>
+              <h2 class="font-display text-lg font-bold text-base-content/50 mb-3">General</h2>
               <div class="space-y-3">
                 <details class="collapse collapse-arrow bg-base-200 rounded-2xl">
                   <summary class="collapse-title text-lg font-display font-bold">How is this different from self-hosted alternatives?</summary>
@@ -424,7 +428,7 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/assets/images/logo.png" alt="AgenticJunior" class="island-brand-logo" width="24" height="24">
+          <img src="/assets/images/logo-48.png" alt="AgenticJunior" class="island-brand-logo" width="24" height="24">
           <p class="footer-tagline" data-i18n="footer.tagline">AI-powered junior developer for your team</p>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
@@ -439,8 +443,8 @@
       <div class="footer-bottom">
         <p class="footer-legal" data-i18n="footer.copyright">&copy; 2026 AInvirion LLC &middot; Spokane, WA</p>
         <nav class="footer-legal-links" aria-label="Legal">
-          <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
-          <a href="#" data-i18n="footer.terms">Terms of Service</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="terms.html" data-i18n="footer.terms">Terms of Service</a>
         </nav>
       </div>
     </div>
@@ -587,7 +591,7 @@
               });
 
               return m("div", { key: cat.id }, [
-                m("h3", {
+                m("h2", {
                   class: "font-display text-lg font-bold text-base-content/50 mb-3" + (catIdx > 0 ? " mt-8" : "")
                 }, cat.label),
                 m("div", { class: "space-y-3" }, categoryItems)

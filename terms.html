@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="agenticjunior-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — AgenticJunior</title>
+  <meta name="description" content="Terms of Service for AgenticJunior — the AI assistant platform by AInvirion LLC.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://agentic-junior.com/terms.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agentic-junior.com/terms.html">
+  <meta property="og:title" content="Terms of Service — AgenticJunior">
+  <meta property="og:description" content="Terms of Service for AgenticJunior — the AI assistant platform by AInvirion LLC.">
+  <meta property="og:site_name" content="AgenticJunior">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Terms of Service — AgenticJunior">
+  <meta name="twitter:description" content="Terms of Service for AgenticJunior — the AI assistant platform by AInvirion LLC.">
+
+  <!-- Theme color -->
+  <meta name="theme-color" content="#f8f5f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1729" media="(prefers-color-scheme: dark)">
+
+  <!-- Theme: prevent FOUC -->
+  <script>
+    (function(){
+      var t;
+      try { t = localStorage.getItem("aj-theme"); } catch(e){}
+      if (t === "agentjunior-dark") t = "agenticjunior-dark";
+      if (t === "agentjunior-light") t = "agenticjunior-light";
+      if (!t) t = window.matchMedia("(prefers-color-scheme: light)").matches ? "agenticjunior-light" : "agenticjunior-dark";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+
+  <!-- Language: prevent FOUC -->
+  <script>
+    (function(){
+      var lang;
+      try { lang = localStorage.getItem("aj-lang"); } catch(e){}
+      if (!lang) lang = (navigator.language || "").startsWith("es") ? "es" : "en";
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("data-lang", lang);
+    })();
+  </script>
+
+  <!-- i18n dictionary -->
+  <script src="assets/js/i18n.js"></script>
+
+  <!-- Tailwind CSS v4 (browser build) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- DaisyUI v5 -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom Styles -->
+  <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-base-100 text-base-content">
+
+  <!-- Skip to content -->
+  <a href="#main" class="skip-link" data-i18n="a11y.skipLink">Skip to main content</a>
+
+  <!-- ====== ISLAND NAVBAR ====== -->
+  <nav class="navbar navbar--island" aria-label="Main navigation" data-i18n="a11y.navLabel" data-i18n-attr="aria-label">
+    <div class="navbar-island">
+      <!-- Brand -->
+      <a href="/" class="island-brand" aria-label="AgenticJunior Home">
+        <img src="/assets/images/logo-48.png" alt="" class="island-brand-logo" width="24" height="24" aria-hidden="true">
+        <span class="island-brand-text">Agentic<span class="gradient-text">Junior</span></span>
+      </a>
+      <div class="island-divider" aria-hidden="true"></div>
+
+      <!-- Nav links -->
+      <div class="island-steps">
+        <a href="/#features" class="island-step" data-section="features">
+          <span class="island-step-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </span>
+          <span class="island-step-label" data-i18n="nav.features">Features</span>
+        </a>
+        <a href="/#skills" class="island-step" data-section="skills">
+          <span class="island-step-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </span>
+          <span class="island-step-label" data-i18n="nav.skills">Skills</span>
+        </a>
+        <a href="/#pricing" class="island-step" data-section="pricing">
+          <span class="island-step-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </span>
+          <span class="island-step-label" data-i18n="nav.pricing">Pricing</span>
+        </a>
+        <div class="island-indicator" aria-hidden="true"></div>
+      </div>
+      <div class="island-divider" aria-hidden="true"></div>
+
+      <!-- Links -->
+      <a href="faq.html" class="island-link" data-i18n="nav.faq">FAQ</a>
+      <div class="island-divider" aria-hidden="true"></div>
+
+      <!-- Actions -->
+      <div class="island-actions">
+        <button class="island-lang-toggle" id="lang-toggle" aria-label="Cambiar a español">
+          <svg class="island-lang-globe" width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span class="island-lang-label" data-lang-show="en">ES</span>
+          <span class="island-lang-label" data-lang-show="es">EN</span>
+        </button>
+        <button class="island-theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+          <svg class="island-sun" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg class="island-moon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+        <button class="island-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="island-menu-terms">
+          <span class="island-hamburger-bar"></span>
+          <span class="island-hamburger-bar"></span>
+          <span class="island-hamburger-bar"></span>
+        </button>
+        <a href="/#pricing" class="island-cta" data-i18n="nav.getStarted">Get Started</a>
+      </div>
+
+    </div>
+    <!-- Mobile menu -->
+    <div class="island-menu" id="island-menu-terms" role="region" aria-label="Navigation menu" data-i18n="a11y.navMenuLabel" data-i18n-attr="aria-label">
+      <a href="/#features" class="island-menu-item">
+        <span class="island-menu-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </span>
+        <span class="island-menu-label" data-i18n="nav.features">Features</span>
+      </a>
+      <a href="/#skills" class="island-menu-item">
+        <span class="island-menu-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </span>
+        <span class="island-menu-label" data-i18n="nav.skills">Skills</span>
+      </a>
+      <a href="/#pricing" class="island-menu-item">
+        <span class="island-menu-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </span>
+        <span class="island-menu-label" data-i18n="nav.pricing">Pricing</span>
+      </a>
+      <a href="faq.html" class="island-menu-item">
+        <span class="island-menu-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </span>
+        <span class="island-menu-label" data-i18n="nav.faq">FAQ</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ====== MAIN ====== -->
+  <main id="main" class="max-w-3xl mx-auto px-6 py-20 pt-32">
+
+    <article>
+      <!-- Header -->
+      <header class="mb-12">
+        <nav class="text-sm text-base-content/50 mb-6" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2">
+            <li><a href="/" class="hover:text-primary transition-colors">Home</a></li>
+            <li aria-hidden="true"><svg class="w-4 h-4 inline" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></li>
+            <li class="text-base-content/80 font-semibold" aria-current="page" data-i18n="terms.title">Terms of Service</li>
+          </ol>
+        </nav>
+        <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-3" data-i18n="terms.title">Terms of Service</h1>
+        <p class="text-base-content/50 text-sm" data-i18n="terms.lastUpdated">Last updated: March 25, 2026</p>
+      </header>
+
+      <!-- Content -->
+      <div class="space-y-10 text-base-content/80 leading-relaxed">
+
+        <section>
+          <p class="text-lg">
+            These Terms of Service govern your use of AgenticJunior, an AI assistant platform operated by AInvirion LLC ("AInvirion", "we", "us"). By creating an account, you agree to these terms. Please read them.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">The service</h2>
+          <p class="mb-4">
+            AgenticJunior is a Software-as-a-Service (SaaS) platform that provides an AI assistant capable of managing email, calendar, tasks, contacts, notes, and more through natural language. The service is accessible via a web dashboard, Telegram bot, and email.
+          </p>
+          <p>
+            AgenticJunior is currently in <strong class="text-base-content">public beta</strong>. Features may change, be added, or be removed without prior notice. We will do our best to communicate significant changes in advance.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Accounts</h2>
+          <ul class="space-y-3 list-none pl-0">
+            <li class="flex gap-3">
+              <span class="text-primary mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span>You sign in with Google OAuth. One account per person.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-primary mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span>You must be at least 13 years old to use the service (16 in the EU/EEA).</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-primary mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span>You are responsible for all activity that occurs under your account.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-primary mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span>You may not share your account with others or create accounts on behalf of others without their consent.</span>
+            </li>
+          </ul>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Service tiers</h2>
+          <p class="mb-4">AgenticJunior is offered in three tiers during beta:</p>
+          <div class="overflow-x-auto">
+            <table class="table table-zebra rounded-xl w-full">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>Highlights</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-semibold text-base-content">Starter</td>
+                  <td>Core assistant, email, calendar, tasks, contacts, notes. 24-hour conversation retention.</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold text-base-content">Pro</td>
+                  <td>Everything in Starter plus GitHub integration, Skills Marketplace, agent templates, 7-day retention.</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold text-base-content">Ultimate</td>
+                  <td>Everything in Pro plus webhooks API, scheduled jobs, custom prompts, custom agents, 30-day retention.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4">All tiers are free during beta. Pricing will be announced before billing goes live and existing users will be given advance notice.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Acceptable use</h2>
+          <p class="mb-4">You agree not to use AgenticJunior to:</p>
+          <ul class="space-y-3 list-none pl-0">
+            <li class="flex gap-3">
+              <span class="text-error mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
+              <span>Engage in any illegal activity or violate any laws.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-error mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
+              <span>Send spam, phishing emails, or unsolicited bulk messages through the email integration.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-error mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
+              <span>Attempt to reverse engineer, scrape, or exploit the platform.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-error mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
+              <span>Abuse the API or deliberately generate excessive load on our infrastructure.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-error mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
+              <span>Harass, impersonate, or harm other users.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-error mt-1 shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
+              <span>Attempt to gain unauthorized access to other users' data or to our systems.</span>
+            </li>
+          </ul>
+          <p class="mt-4">We reserve the right to suspend or terminate accounts that violate these terms without prior notice.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">What AgenticJunior does not do</h2>
+          <p class="mb-4">
+            AgenticJunior deliberately excludes shell access and browser automation. This is a security design decision, not a limitation we plan to remove. In a multi-tenant environment where the assistant acts on your behalf, these capabilities would create unacceptable risk.
+          </p>
+          <p>
+            The assistant can call external APIs via the <code class="font-mono text-sm bg-base-200 px-1 rounded">http_fetch</code> tool (limited to approved hosts configured per skill). It cannot execute arbitrary code or control a browser.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Your data</h2>
+          <p class="mb-4">
+            You own your data. All content you create in AgenticJunior — tasks, notes, contacts, conversation history — belongs to you. By using the service, you grant AInvirion a limited license to store and process that data solely for the purpose of providing the service.
+          </p>
+          <p>
+            We do not claim any intellectual property rights over your data. We do not use your data for model training. See the <a href="privacy.html" class="link link-primary">Privacy Policy</a> for full details on data handling and retention.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Uptime and availability</h2>
+          <p class="mb-4">
+            We aim to keep AgenticJunior available and reliable, but we do not offer a Service Level Agreement (SLA) during beta. The service is provided on a best-effort basis.
+          </p>
+          <p>
+            We may perform maintenance that temporarily interrupts the service. When possible, we will give advance notice. We are not liable for any loss caused by planned or unplanned downtime.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Termination</h2>
+          <p class="mb-4">
+            <strong class="text-base-content">You</strong> can close your account at any time from the account settings page or by emailing <a href="mailto:support@ainvirion.com" class="link link-primary">support@ainvirion.com</a>. Your data will be deleted per the retention policy, with full purge within 30 days.
+          </p>
+          <p>
+            <strong class="text-base-content">We</strong> may suspend or terminate your account if you violate these terms, if we have reason to believe your account is being used fraudulently, or if we discontinue the service. In the event of discontinuation, we will give at least 30 days notice and provide a way to export your data.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Limitation of liability</h2>
+          <p class="mb-4">
+            AgenticJunior is provided "as is" during beta. To the maximum extent permitted by law, AInvirion disclaims all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement.
+          </p>
+          <p class="mb-4">
+            AInvirion is not liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, profits, or business, arising from your use of or inability to use the service.
+          </p>
+          <p>
+            Because the assistant acts on your behalf (sending emails, creating calendar events, etc.), you are responsible for reviewing its actions before they are taken where possible, and for any consequences of those actions. Always verify important actions performed by the assistant.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Governing law</h2>
+          <p>
+            These terms are governed by the laws of the State of Washington, USA, without regard to its conflict of law provisions. Any disputes arising from these terms or your use of the service shall be resolved in the state or federal courts located in Spokane County, Washington.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Changes to these terms</h2>
+          <p>
+            We may update these terms from time to time. When we do, we will update the "Last updated" date at the top of this page and notify you by email if the changes are material. Continued use of the service after the effective date constitutes acceptance of the updated terms.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-base-content mb-4">Contact</h2>
+          <p>
+            Questions about these terms? Contact us at <a href="mailto:support@ainvirion.com" class="link link-primary">support@ainvirion.com</a>.
+          </p>
+          <p class="mt-3 text-base-content/60 text-sm">
+            AInvirion LLC &middot; Spokane, WA, USA
+          </p>
+        </section>
+
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/images/logo-48.png" alt="AgenticJunior" class="island-brand-logo" width="24" height="24">
+          <p class="footer-tagline" data-i18n="footer.tagline">AI-powered junior developer for your team</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="/#features" data-i18n="nav.features">Features</a>
+          <a href="/#pricing" data-i18n="nav.pricing">Pricing</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </nav>
+        <div class="footer-contact">
+          <a href="mailto:support@ainvirion.com">support@ainvirion.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal" data-i18n="footer.copyright">&copy; 2026 AInvirion LLC &middot; Spokane, WA</p>
+        <nav class="footer-legal-links" aria-label="Legal">
+          <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+          <a href="terms.html" class="footer-legal-link--active" data-i18n="footer.terms">Terms of Service</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mithril.js v2 -->
+  <script src="https://unpkg.com/mithril@2/mithril.min.js"></script>
+  <script src="/assets/js/app.js"></script>
+
+</body>
+</html>

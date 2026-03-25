@@ -453,14 +453,60 @@
       this.morphed = false;
       this.timer = null;
       this.morphTimer = null;
+      this._paused = false;
+      this._onMouseEnter = null;
+      this._onMouseLeave = null;
+      this._onFocusIn = null;
+      this._onFocusOut = null;
     },
     oncreate: function () {
+      var self = this;
       this._startTimer();
       this._triggerMorph();
+
+      this._onMouseEnter = function () {
+        self._paused = true;
+        clearInterval(self.timer);
+        self.timer = null;
+      };
+      this._onMouseLeave = function () {
+        if (self._paused) {
+          self._paused = false;
+          self._startTimer();
+        }
+      };
+      this._onFocusIn = function () {
+        self._paused = true;
+        clearInterval(self.timer);
+        self.timer = null;
+      };
+      this._onFocusOut = function (e) {
+        // Only resume if focus left the container entirely
+        if (self._paused && !e.currentTarget.contains(e.relatedTarget)) {
+          self._paused = false;
+          self._startTimer();
+        }
+      };
+
+      var el = document.getElementById("problem-carousel");
+      if (el) {
+        el.addEventListener("mouseenter", this._onMouseEnter);
+        el.addEventListener("mouseleave", this._onMouseLeave);
+        el.addEventListener("focusin", this._onFocusIn);
+        el.addEventListener("focusout", this._onFocusOut);
+      }
     },
     onremove: function () {
       clearInterval(this.timer);
       clearTimeout(this.morphTimer);
+
+      var el = document.getElementById("problem-carousel");
+      if (el) {
+        if (this._onMouseEnter) el.removeEventListener("mouseenter", this._onMouseEnter);
+        if (this._onMouseLeave) el.removeEventListener("mouseleave", this._onMouseLeave);
+        if (this._onFocusIn) el.removeEventListener("focusin", this._onFocusIn);
+        if (this._onFocusOut) el.removeEventListener("focusout", this._onFocusOut);
+      }
     },
     _reducedMotion: function () {
       return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
