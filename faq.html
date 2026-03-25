@@ -134,6 +134,30 @@
           "@type": "Answer",
           "text": "Yes! AgenticJunior is built as a multi-tenant platform from the ground up. Each user gets their own isolated workspace with proper security boundaries. Team plans with shared features are coming soon."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "What are Agent Templates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Agent Templates are pre-configured agents for specific workflows. Choose from 11 templates like Meeting Assistant, Sales Outreach, Weekly Digest, GitHub Triage, and more. Each template comes with optimized prompts and tool configurations. Available on Pro and Ultimate tiers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do notifications work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AgenticJunior sends notifications via Telegram and email for task reminders, scheduled jobs, inbound emails, and GitHub events. Configure quiet hours, choose per-notification-type channels, and set default reminder times."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can AgenticJunior analyze images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Send images via Telegram or the web dashboard and AgenticJunior can perform OCR, analyze receipts, read diagrams, and extract text from photos. Images are processed in memory and never stored for privacy."
+        }
       }
     ]
   }
@@ -334,6 +358,18 @@
                   <summary class="collapse-title text-lg font-display font-bold">Why no shell access or browser automation?</summary>
                   <div class="collapse-content"><p>Because security is a design choice, not a tradeoff. We deliberately exclude shell access and browser automation — not because we can't build them, but because in a multi-tenant environment, your safety matters more than a feature checklist. What AgenticJunior can't do is just as important as what it can.</p></div>
                 </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl" data-category="features">
+                  <summary class="collapse-title text-lg font-display font-bold" data-i18n="faq.templates.q">What are Agent Templates?</summary>
+                  <div class="collapse-content"><p data-i18n="faq.templates.a">Agent Templates are pre-configured agents for specific workflows. Choose from 11 templates like Meeting Assistant, Sales Outreach, Weekly Digest, GitHub Triage, and more. Each template comes with optimized prompts and tool configurations. Available on Pro and Ultimate tiers.</p></div>
+                </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl" data-category="features">
+                  <summary class="collapse-title text-lg font-display font-bold" data-i18n="faq.notifications.q">How do notifications work?</summary>
+                  <div class="collapse-content"><p data-i18n="faq.notifications.a">AgenticJunior sends notifications via Telegram and email for task reminders, scheduled jobs, inbound emails, and GitHub events. Configure quiet hours, choose per-notification-type channels, and set default reminder times.</p></div>
+                </details>
+                <details class="collapse collapse-arrow bg-base-200 rounded-2xl" data-category="features">
+                  <summary class="collapse-title text-lg font-display font-bold" data-i18n="faq.images.q">Can AgenticJunior analyze images?</summary>
+                  <div class="collapse-content"><p data-i18n="faq.images.a">Yes. Send images via Telegram or the web dashboard and AgenticJunior can perform OCR, analyze receipts, read diagrams, and extract text from photos. Images are processed in memory and never stored for privacy.</p></div>
+                </details>
               </div>
             </div>
             <!-- General -->
@@ -446,7 +482,10 @@
             { q: t("faq.features.0.q"), a: t("faq.features.0.a") },
             { q: t("faq.features.1.q"), a: t("faq.features.1.a") },
             { q: t("faq.features.2.q"), a: t("faq.features.2.a") },
-            { q: t("faq.features.3.q"), a: t("faq.features.3.a") }
+            { q: t("faq.features.3.q"), a: t("faq.features.3.a") },
+            { q: t("faq.templates.q"), a: t("faq.templates.a") },
+            { q: t("faq.notifications.q"), a: t("faq.notifications.a") },
+            { q: t("faq.images.q"), a: t("faq.images.a") }
           ]
         },
         {

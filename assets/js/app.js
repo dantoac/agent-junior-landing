@@ -10,6 +10,9 @@
 
   function labelForTheme() {
     var isDark = document.documentElement.getAttribute("data-theme") === "agenticjunior-dark";
+    if (window.AJ_I18N) {
+      return isDark ? window.AJ_I18N.t("a11y.themeToggle.dark") : window.AJ_I18N.t("a11y.themeToggle.light");
+    }
     return isDark ? "Switch to light mode" : "Switch to dark mode";
   }
 
@@ -167,7 +170,7 @@
     navbarIsland.classList.add("island-open");
     hamburger.classList.add("is-open");
     hamburger.setAttribute("aria-expanded", "true");
-    hamburger.setAttribute("aria-label", "Close navigation menu");
+    hamburger.setAttribute("aria-label", window.AJ_I18N ? window.AJ_I18N.t("a11y.closeMenu") : "Close navigation menu");
     scrollGuard = Date.now();
   }
 
@@ -175,7 +178,7 @@
     navbarIsland.classList.remove("island-open");
     hamburger.classList.remove("is-open");
     hamburger.setAttribute("aria-expanded", "false");
-    hamburger.setAttribute("aria-label", "Open navigation menu");
+    hamburger.setAttribute("aria-label", window.AJ_I18N ? window.AJ_I18N.t("a11y.openMenu") : "Open navigation menu");
   }
 
   function isOpen() {
@@ -206,42 +209,31 @@
   });
 })();
 
+// === Language Toggle ===
+(function () {
+  "use strict";
+  var btn = document.getElementById("lang-toggle");
+  if (!btn || !window.AJ_I18N) return;
+
+  btn.addEventListener("click", function () {
+    window.AJ_I18N.toggle();
+    // Re-measure island width after text changes
+    window.dispatchEvent(new Event("resize"));
+  });
+})();
+
 // === Mithril Components ===
 (function () {
   "use strict";
 
-  // ---- Randomized Fade Rotator Hero ----
-  var heroFeatures = [
-    "manages your inbox",
-    "schedules your meetings",
-    "tracks your deadlines",
-    "organizes your contacts",
-    "handles your GitHub issues",
-    "drafts your content",
-    "triages your notifications",
-    "plans your day",
-    "remembers what you forget",
-    "does the boring stuff",
-    "parses your documents",
-    "takes encrypted notes",
-    "transcribes your voice messages",
-    "automates your routines"
-  ];
+  // i18n helper — resolves at call-time so language switches take effect immediately
+  function t(key) {
+    return window.AJ_I18N ? window.AJ_I18N.t(key) : key;
+  }
 
-  var heroBenefits = [
-    "focus on what matters",
-    "take longer lunches",
-    "actually enjoy Mondays",
-    "stop forgetting birthdays",
-    "pretend you have a secretary",
-    "finally reply to that email from 2024",
-    "nap between meetings",
-    "tell your boss you're 'delegating'",
-    "touch grass once in a while",
-    "finish work on time",
-    "stop copy-pasting from PDFs",
-    "automate the repetitive stuff"
-  ];
+  // ---- Randomized Fade Rotator Hero ----
+  function getHeroFeatures() { return t("hero.features"); }
+  function getHeroBenefits() { return t("hero.benefits"); }
 
   function randomIdx(len, exclude) {
     var next;
@@ -249,7 +241,7 @@
     return next;
   }
 
-  function createRotator(phrases, displayTime) {
+  function createRotator(getPhrases, displayTime) {
     var fadeTime = 400;
     var r = {
       idx: 0,
@@ -264,7 +256,7 @@
           r.fading = true;
           m.redraw();
           r.tick = setTimeout(function () {
-            r.idx = randomIdx(phrases.length, r.idx);
+            r.idx = randomIdx(getPhrases().length, r.idx);
             r.fading = false;
             m.redraw();
             r.tick = setTimeout(next, displayTime);
@@ -280,13 +272,14 @@
     return r;
   }
 
-  var featureRotator = createRotator(heroFeatures, 3000);
-  var benefitRotator = createRotator(heroBenefits, 4200);
+  var featureRotator = createRotator(getHeroFeatures, 3000);
+  var benefitRotator = createRotator(getHeroBenefits, 4200);
 
-  function lockRotatorHeight(el, phrases) {
+  function lockRotatorHeight(el, getPhrases) {
     var p = el.closest("p");
     if (!p) return function () {};
     function recalc() {
+      var phrases = getPhrases();
       var saved = el.textContent;
       p.style.minHeight = "";
       var maxH = 0;
@@ -307,7 +300,7 @@
 
   var FeatureSlot = {
     oncreate: function (vnode) {
-      vnode._unlockHeight = lockRotatorHeight(vnode.dom, heroFeatures);
+      vnode._unlockHeight = lockRotatorHeight(vnode.dom, getHeroFeatures);
       featureRotator.start();
     },
     onremove: function (vnode) {
@@ -315,16 +308,17 @@
       featureRotator.stop();
     },
     view: function () {
+      var phrases = getHeroFeatures();
       return m("span", {
         class: "fade-phrase" + (featureRotator.fading ? " fade-out" : ""),
         "aria-live": "polite"
-      }, heroFeatures[featureRotator.idx]);
+      }, phrases[featureRotator.idx % phrases.length]);
     }
   };
 
   var BenefitSlot = {
     oncreate: function (vnode) {
-      vnode._unlockHeight = lockRotatorHeight(vnode.dom, heroBenefits);
+      vnode._unlockHeight = lockRotatorHeight(vnode.dom, getHeroBenefits);
       benefitRotator.start();
     },
     onremove: function (vnode) {
@@ -332,10 +326,11 @@
       benefitRotator.stop();
     },
     view: function () {
+      var phrases = getHeroBenefits();
       return m("span", {
         class: "fade-phrase" + (benefitRotator.fading ? " fade-out" : ""),
         "aria-live": "polite"
-      }, heroBenefits[benefitRotator.idx]);
+      }, phrases[benefitRotator.idx % phrases.length]);
     }
   };
 
@@ -380,75 +375,77 @@
   }
 
   // ---- Problem Carousel ----
-  var pcSlides = [
-    {
-      type: "email",
-      message: "Triage my inbox",
-      items: [
-        { sender: "John Smith", subject: "Q4 Report — Review needed", tag: "Urgent", color: "error" },
-        { sender: "Sarah Lee", subject: "Meeting tomorrow at 3pm", tag: "Follow-up", color: "warning" },
-        { sender: "GitHub", subject: "PR #42 successfully merged", tag: "FYI", color: "success" },
-        { sender: "Newsletter", subject: "Weekly digest — Dec 16", tag: "Archive", color: "ghost" }
-      ]
-    },
-    {
-      type: "calendar",
-      message: "Schedule team sync tomorrow at 2pm",
-      slots: [
-        { time: "1:00 PM", event: null },
-        { time: "2:00 PM", event: { title: "Team Sync", meta: "1hr \u00b7 4 people", isNew: true } },
-        { time: "3:00 PM", event: null },
-        { time: "4:00 PM", event: { title: "Focus time", meta: "2hr block", isNew: false } }
-      ]
-    },
-    {
-      type: "tasks",
-      message: "Extract action items from today's emails",
-      tasks: [
-        { text: "Confirm meeting time", source: "From Sarah\u2019s email", done: true },
-        { text: "Review Q4 report", source: "From John\u2019s email", done: false },
-        { text: "Follow up on PR feedback", source: "From GitHub notification", done: false }
-      ]
-    },
-    {
-      type: "pdf",
-      message: "Summarize this quarterly report",
-      sections: [
-        { title: "Executive Summary", finding: "Revenue up 23% YoY", badge: "Key Finding", color: "success" },
-        { title: "Market Analysis", finding: "3 new competitors entered", badge: "Action Item", color: "warning" },
-        { title: "Financial Details", finding: "12 pages of tables", badge: "Skip", color: "ghost" },
-        { title: "Recommendations", finding: "Expand to APAC market", badge: "Key Finding", color: "success" }
-      ]
-    },
-    {
-      type: "spreadsheet",
-      message: "What were our top 3 products last quarter?",
-      rows: [
-        { product: "Enterprise Suite", revenue: "$1.2M", rank: 1, isTop: true },
-        { product: "Pro Plan", revenue: "$890K", rank: 2, isTop: true },
-        { product: "Starter Pack", revenue: "$650K", rank: 3, isTop: true },
-        { product: "Add-ons", revenue: "$120K", rank: null, isTop: false }
-      ]
-    },
-    {
-      type: "research",
-      message: "Research competitor pricing for CRM tools",
-      results: [
-        { title: "Salesforce \u2014 Enterprise CRM", source: "salesforce.com", snippet: "Starting at $25/user/mo", badge: "Leader" },
-        { title: "HubSpot \u2014 Free CRM", source: "hubspot.com", snippet: "Free tier, paid from $20/mo", badge: "Freemium" },
-        { title: "Pipedrive \u2014 Sales CRM", source: "pipedrive.com", snippet: "From $14.90/user/mo", badge: "Budget" }
-      ]
-    },
-    {
-      type: "draft",
-      message: "Draft a follow-up email to the client",
-      fields: [
-        { label: "To", value: "sarah.chen@acme.co" },
-        { label: "Subject", value: "Re: Project timeline update" },
-        { label: "Body", value: "Hi Sarah, following up on our discussion yesterday. The revised timeline is attached with all milestones updated per your feedback." }
-      ]
-    }
-  ];
+  function getPcSlides() {
+    return [
+      {
+        type: "email",
+        message: t("carousel.email.message"),
+        items: [
+          { sender: t("carousel.email.0.sender"), subject: t("carousel.email.0.subject"), tag: t("carousel.email.0.tag"), color: "error" },
+          { sender: t("carousel.email.1.sender"), subject: t("carousel.email.1.subject"), tag: t("carousel.email.1.tag"), color: "warning" },
+          { sender: t("carousel.email.2.sender"), subject: t("carousel.email.2.subject"), tag: t("carousel.email.2.tag"), color: "success" },
+          { sender: t("carousel.email.3.sender"), subject: t("carousel.email.3.subject"), tag: t("carousel.email.3.tag"), color: "ghost" }
+        ]
+      },
+      {
+        type: "calendar",
+        message: t("carousel.calendar.message"),
+        slots: [
+          { time: "1:00 PM", event: null },
+          { time: "2:00 PM", event: { title: t("carousel.calendar.event.title"), meta: t("carousel.calendar.event.meta"), isNew: true } },
+          { time: "3:00 PM", event: null },
+          { time: "4:00 PM", event: { title: t("carousel.calendar.focus.title"), meta: t("carousel.calendar.focus.meta"), isNew: false } }
+        ]
+      },
+      {
+        type: "tasks",
+        message: t("carousel.tasks.message"),
+        tasks: [
+          { text: t("carousel.tasks.0.text"), source: t("carousel.tasks.0.source"), done: true },
+          { text: t("carousel.tasks.1.text"), source: t("carousel.tasks.1.source"), done: false },
+          { text: t("carousel.tasks.2.text"), source: t("carousel.tasks.2.source"), done: false }
+        ]
+      },
+      {
+        type: "pdf",
+        message: t("carousel.pdf.message"),
+        sections: [
+          { title: t("carousel.pdf.0.title"), finding: t("carousel.pdf.0.finding"), badge: t("carousel.pdf.0.badge"), color: "success" },
+          { title: t("carousel.pdf.1.title"), finding: t("carousel.pdf.1.finding"), badge: t("carousel.pdf.1.badge"), color: "warning" },
+          { title: t("carousel.pdf.2.title"), finding: t("carousel.pdf.2.finding"), badge: t("carousel.pdf.2.badge"), color: "ghost" },
+          { title: t("carousel.pdf.3.title"), finding: t("carousel.pdf.3.finding"), badge: t("carousel.pdf.3.badge"), color: "success" }
+        ]
+      },
+      {
+        type: "spreadsheet",
+        message: t("carousel.spreadsheet.message"),
+        rows: [
+          { product: "Enterprise Suite", revenue: "$1.2M", rank: 1, isTop: true },
+          { product: "Pro Plan", revenue: "$890K", rank: 2, isTop: true },
+          { product: "Starter Pack", revenue: "$650K", rank: 3, isTop: true },
+          { product: "Add-ons", revenue: "$120K", rank: null, isTop: false }
+        ]
+      },
+      {
+        type: "research",
+        message: t("carousel.research.message"),
+        results: [
+          { title: t("carousel.research.0.title"), source: "salesforce.com", snippet: t("carousel.research.0.snippet"), badge: t("carousel.research.0.badge") },
+          { title: t("carousel.research.1.title"), source: "hubspot.com", snippet: t("carousel.research.1.snippet"), badge: t("carousel.research.1.badge") },
+          { title: t("carousel.research.2.title"), source: "pipedrive.com", snippet: t("carousel.research.2.snippet"), badge: t("carousel.research.2.badge") }
+        ]
+      },
+      {
+        type: "draft",
+        message: t("carousel.draft.message"),
+        fields: [
+          { label: "To", value: "sarah.chen@acme.co" },
+          { label: "Subject", value: t("carousel.draft.subject") },
+          { label: "Body", value: t("carousel.draft.body") }
+        ]
+      }
+    ];
+  }
 
   var ProblemCarousel = {
     oninit: function () {
@@ -483,7 +480,7 @@
       if (self._reducedMotion()) return;
       self.timer = setInterval(function () {
         self.morphed = false;
-        self.current = (self.current + 1) % pcSlides.length;
+        self.current = (self.current + 1) % getPcSlides().length;
         m.redraw();
         self._triggerMorph();
       }, 6000);
@@ -498,9 +495,10 @@
     },
     view: function () {
       var self = this;
+      var slides = getPcSlides();
       return m("div", [
         m("div", { class: "pc-wrap" },
-          pcSlides.map(function (slide, i) {
+          slides.map(function (slide, i) {
             var isActive = self.current === i;
             return m("div", { class: "pc-slide" + (isActive ? " active" : ""), key: "pc-" + i }, [
               m("div", { class: "pc-bubble inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-2xl rounded-br-md px-5 py-3 mb-6 max-w-lg" }, [
@@ -516,10 +514,10 @@
           })
         ),
         m("div", { class: "flex justify-center gap-2 mt-8" },
-          pcSlides.map(function (_, i) {
+          slides.map(function (_, i) {
             return m("button", {
               class: "pc-indicator " + (self.current === i ? "active bg-primary" : "bg-base-content/20"),
-              "aria-label": "Slide " + (i + 1),
+              "aria-label": t("a11y.slide") + " " + (i + 1),
               onclick: function () { self._goto(i); }
             });
           })
@@ -694,6 +692,11 @@
     initScrollReveal();
     initSmoothScroll();
   }
+
+  // Language change listener — re-render Mithril components
+  document.addEventListener("aj-lang-change", function () {
+    m.redraw();
+  });
 
   // Run on DOM ready
   if (document.readyState === "loading") {
