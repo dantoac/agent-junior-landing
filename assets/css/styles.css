@@ -8,8 +8,8 @@
 /* --- DaisyUI v5 Theme: Dark (default) --- */
 [data-theme="agenticjunior-dark"] {
   color-scheme: dark;
-  --color-primary: oklch(65% 0.22 15);
-  --color-primary-content: oklch(98% 0.01 15);
+  --color-primary: oklch(65% 0.18 250);
+  --color-primary-content: oklch(98% 0.01 250);
   --color-secondary: oklch(72% 0.15 195);
   --color-secondary-content: oklch(15% 0.02 195);
   --color-accent: oklch(85% 0.18 85);
@@ -40,10 +40,10 @@
   --island-bg: oklch(16% 0.015 260 / 0.85);
   --island-border: oklch(25% 0.02 260 / 0.5);
   --island-border-strong: oklch(35% 0.03 260);
-  --island-accent: oklch(65% 0.22 15);
-  --island-accent-soft: oklch(65% 0.22 15 / 0.12);
-  --island-accent-15: oklch(65% 0.22 15 / 0.15);
-  --island-accent-30: oklch(65% 0.22 15 / 0.30);
+  --island-accent: oklch(65% 0.18 250);
+  --island-accent-soft: oklch(65% 0.18 250 / 0.12);
+  --island-accent-15: oklch(65% 0.18 250 / 0.15);
+  --island-accent-30: oklch(65% 0.18 250 / 0.30);
   --island-text: oklch(93% 0.005 260);
   --island-text-secondary: oklch(75% 0.01 260);
   --island-top-offset: 0px;
@@ -53,8 +53,8 @@
 /* --- DaisyUI v5 Theme: Light --- */
 [data-theme="agenticjunior-light"] {
   color-scheme: light;
-  --color-primary: oklch(55% 0.20 15);
-  --color-primary-content: oklch(98% 0.01 15);
+  --color-primary: oklch(55% 0.18 250);
+  --color-primary-content: oklch(98% 0.01 250);
   --color-secondary: oklch(50% 0.15 195);
   --color-secondary-content: oklch(98% 0.01 195);
   --color-accent: oklch(65% 0.18 85);
@@ -85,10 +85,10 @@
   --island-bg: oklch(98% 0.005 260 / 0.90);
   --island-border: oklch(90% 0.01 260 / 0.5);
   --island-border-strong: oklch(80% 0.01 260);
-  --island-accent: oklch(55% 0.20 15);
-  --island-accent-soft: oklch(55% 0.20 15 / 0.10);
-  --island-accent-15: oklch(55% 0.20 15 / 0.15);
-  --island-accent-30: oklch(55% 0.20 15 / 0.30);
+  --island-accent: oklch(55% 0.18 250);
+  --island-accent-soft: oklch(55% 0.18 250 / 0.10);
+  --island-accent-15: oklch(55% 0.18 250 / 0.15);
+  --island-accent-30: oklch(55% 0.18 250 / 0.30);
   --island-text: oklch(20% 0.02 260);
   --island-text-secondary: oklch(45% 0.01 260);
   --island-top-offset: 0px;
@@ -132,30 +132,30 @@ h1, h2, h3, h4, h5, h6,
 
 /* --- Signature Gradient --- */
 .gradient-text {
-  background: linear-gradient(135deg, oklch(65% 0.22 15), oklch(72% 0.15 195));
+  background: linear-gradient(135deg, oklch(65% 0.18 250), oklch(72% 0.15 195));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-border {
-  border-image: linear-gradient(135deg, oklch(65% 0.22 15), oklch(72% 0.15 195)) 1;
+  border-image: linear-gradient(135deg, oklch(65% 0.18 250), oklch(72% 0.15 195)) 1;
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, oklch(65% 0.22 15) 0%, oklch(72% 0.15 195) 100%);
+  background: linear-gradient(135deg, oklch(65% 0.18 250) 0%, oklch(72% 0.15 195) 100%);
 }
 
 /* Fallback for browsers without oklch */
-@supports not (color: oklch(65% 0.22 15)) {
+@supports not (color: oklch(65% 0.18 250)) {
   .gradient-text {
-    background: linear-gradient(135deg, #f97066, #22d3ee);
+    background: linear-gradient(135deg, #4B7BE5, #22d3ee);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .gradient-bg {
-    background: linear-gradient(135deg, #f97066 0%, #22d3ee 100%);
+    background: linear-gradient(135deg, #4B7BE5 0%, #22d3ee 100%);
   }
 }
 
@@ -171,8 +171,8 @@ h1, h2, h3, h4, h5, h6,
   pointer-events: none;
 }
 
-.hero-glow--coral {
-  background: oklch(65% 0.22 15);
+.hero-glow--blue {
+  background: oklch(65% 0.18 250);
   top: -200px;
   left: -100px;
 }
@@ -192,12 +192,12 @@ h1, h2, h3, h4, h5, h6,
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .card-glow:hover {
-  box-shadow: 0 0 30px -5px oklch(65% 0.22 15 / 0.2), 0 0 60px -10px oklch(72% 0.15 195 / 0.15);
+  box-shadow: 0 0 30px -5px oklch(65% 0.18 250 / 0.2), 0 0 60px -10px oklch(72% 0.15 195 / 0.15);
   transform: translateY(-2px);
 }
 
 [data-theme="agenticjunior-light"] .card-glow:hover {
-  box-shadow: 0 4px 30px -5px oklch(55% 0.20 15 / 0.15), 0 8px 40px -10px oklch(50% 0.15 195 / 0.1);
+  box-shadow: 0 4px 30px -5px oklch(55% 0.18 250 / 0.15), 0 8px 40px -10px oklch(50% 0.15 195 / 0.1);
 }
 
 /* --- Scroll Reveal Animation --- */
@@ -335,11 +335,11 @@ h1, h2, h3, h4, h5, h6,
 /* --- Section divider --- */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, oklch(65% 0.22 15 / 0.3), oklch(72% 0.15 195 / 0.3), transparent);
+  background: linear-gradient(90deg, transparent, oklch(65% 0.18 250 / 0.3), oklch(72% 0.15 195 / 0.3), transparent);
 }
 
 [data-theme="agenticjunior-light"] .section-divider {
-  background: linear-gradient(90deg, transparent, oklch(55% 0.20 15 / 0.2), oklch(50% 0.15 195 / 0.2), transparent);
+  background: linear-gradient(90deg, transparent, oklch(55% 0.18 250 / 0.2), oklch(50% 0.15 195 / 0.2), transparent);
 }
 
 /* --- Problem Carousel --- */
@@ -459,7 +459,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* Morph: spreadsheet row highlight */
 .pc-row-top {
-  background-color: oklch(65% 0.22 15 / 0.06);
+  background-color: oklch(65% 0.18 250 / 0.06);
   transition: background-color 0.4s ease;
 }
 
