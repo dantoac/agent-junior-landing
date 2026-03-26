@@ -102,6 +102,7 @@
       "features.rss.title": "RSS Agent",
       "features.rss.desc": "Subscribe to feeds, track trending topics, classify articles, and get smart summaries — your personal news curator.",
       "features.channels": "Works where you work",
+      "features.advanced": "Pro & Ultimate agents",
 
       // -- Badges --
       "badge.pro": "Pro",
@@ -433,6 +434,7 @@
       "features.rss.title": "Agente RSS",
       "features.rss.desc": "Suscr\u00edbete a feeds, rastrea temas tendencia, clasifica art\u00edculos y obtiene res\u00famenes inteligentes — tu curador de noticias personal.",
       "features.channels": "Funciona donde t\u00fa trabajas",
+      "features.advanced": "Agentes Pro y Ultimate",
 
       // -- Badges --
       "badge.pro": "Pro",

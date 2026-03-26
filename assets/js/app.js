@@ -282,11 +282,15 @@
       var phrases = getPhrases();
       var saved = el.textContent;
       p.style.minHeight = "";
+      // Batch DOM writes first, then read once at the end
       var maxH = 0;
+      var heights = [];
       for (var i = 0; i < phrases.length; i++) {
         el.textContent = phrases[i];
-        var h = p.offsetHeight;
-        if (h > maxH) maxH = h;
+        heights.push(p.offsetHeight);
+      }
+      for (var j = 0; j < heights.length; j++) {
+        if (heights[j] > maxH) maxH = heights[j];
       }
       el.textContent = saved;
       p.style.minHeight = maxH + "px";
@@ -367,7 +371,9 @@
         if (target) {
           e.preventDefault();
           target.scrollIntoView({ behavior: "smooth", block: "start" });
-          // Update URL without scroll jump
+          // Move focus to target for keyboard/screen reader users
+          if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+          target.focus({ preventScroll: true });
           history.pushState(null, "", id);
         }
       });

@@ -265,7 +265,7 @@
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <hr class="section-divider" aria-hidden="true">
 
     <!-- ====== PROBLEM ====== -->
     <section class="py-24 bg-base-200">
@@ -305,19 +305,19 @@
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <hr class="section-divider" aria-hidden="true">
 
     <!-- ====== FEATURES: 9 AGENTS ====== -->
     <section id="features" class="py-24 scroll-mt-20">
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            <span data-i18n="features.headline">Nine agents.</span> <span class="gradient-text" data-i18n="features.headlineAccent">One assistant.</span>
+            <span data-i18n="features.headline">Nine agents.</span> <span data-i18n="features.headlineAccent">One assistant.</span>
           </h2>
           <p class="text-lg text-base-content/60 max-w-xl mx-auto" data-i18n="features.subtitle">Specialized AI agents that work together to manage your digital life.</p>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
-          <!-- Email Agent -->
+        <!-- Core agents (Starter) — 2x2 featured grid -->
+        <div class="grid sm:grid-cols-2 gap-6 reveal-stagger">
           <div class="reveal card bg-base-200 rounded-2xl card-glow">
             <div class="card-body">
               <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
@@ -329,7 +329,6 @@
               <p class="text-base-content/60" data-i18n="features.email.desc">Reads, classifies, and drafts email responses. Smart triage so you only see what matters.</p>
             </div>
           </div>
-          <!-- Calendar Agent -->
           <div class="reveal card bg-base-200 rounded-2xl card-glow">
             <div class="card-body">
               <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-2">
@@ -341,7 +340,6 @@
               <p class="text-base-content/60" data-i18n="features.calendar.desc">Schedules meetings, avoids conflicts, and sends daily agenda summaries in plain English.</p>
             </div>
           </div>
-          <!-- Tasks Agent -->
           <div class="reveal card bg-base-200 rounded-2xl card-glow">
             <div class="card-body">
               <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-2">
@@ -350,10 +348,9 @@
                 </svg>
               </div>
               <h3 class="card-title font-display text-lg" data-i18n="features.tasks.title">Tasks Agent</h3>
-              <p class="text-base-content/60" data-i18n="features.tasks.desc">Extracts action items from emails and chats. Tracks deadlines and sends reminders.</p>
+              <p class="text-base-content/60" data-i18n="features.tasks.desc">Creates, organizes, and manages tasks with subtasks, tags, and team assignments. Auto-completes parent tasks when all subtasks finish.</p>
             </div>
           </div>
-          <!-- Contacts Agent -->
           <div class="reveal card bg-base-200 rounded-2xl card-glow">
             <div class="card-body">
               <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
@@ -365,64 +362,56 @@
               <p class="text-base-content/60" data-i18n="features.contacts.desc">Keeps your network organized. Quick lookups, relationship notes, and contact enrichment.</p>
             </div>
           </div>
-          <!-- GitHub Agent -->
-          <div class="reveal card bg-base-200 rounded-2xl card-glow">
-            <div class="card-body">
-              <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-2">
-                <svg class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
-                </svg>
+        </div>
+
+        <!-- Advanced agents (Pro & Ultimate) — compact horizontal list -->
+        <div class="mt-10 reveal">
+          <p class="text-xs text-base-content/40 uppercase tracking-widest font-semibold mb-4" data-i18n="features.advanced">Pro &amp; Ultimate agents</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-base-200/60">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
+              </svg>
+              <div>
+                <h3 class="font-display text-sm font-bold"><span data-i18n="features.github.title">GitHub Agent</span> <span class="badge badge-xs badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
+                <p class="text-xs text-base-content/50 mt-1" data-i18n="features.github.desc">Manages issues, reviews PRs, and queries your repos. Your dev workflow, streamlined.</p>
               </div>
-              <h3 class="card-title font-display text-lg"><span data-i18n="features.github.title">GitHub Agent</span> <span class="badge badge-sm badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
-              <p class="text-base-content/60" data-i18n="features.github.desc">Manages issues, reviews PRs, and queries your repos. Your dev workflow, streamlined.</p>
             </div>
-          </div>
-          <!-- Content Creator -->
-          <div class="reveal card bg-base-200 rounded-2xl card-glow">
-            <div class="card-body">
-              <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-2">
-                <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
-                </svg>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-base-200/60">
+              <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+              </svg>
+              <div>
+                <h3 class="font-display text-sm font-bold"><span data-i18n="features.content.title">Content Creator</span> <span class="badge badge-xs badge-secondary badge-outline" data-i18n="badge.ultimate">Ultimate</span></h3>
+                <p class="text-xs text-base-content/50 mt-1" data-i18n="features.content.desc">Drafts posts, summaries, and documents. From quick replies to long-form content.</p>
               </div>
-              <h3 class="card-title font-display text-lg"><span data-i18n="features.content.title">Content Creator</span> <span class="badge badge-sm badge-secondary badge-outline" data-i18n="badge.ultimate">Ultimate</span></h3>
-              <p class="text-base-content/60" data-i18n="features.content.desc">Drafts posts, summaries, and documents. From quick replies to long-form content.</p>
             </div>
-          </div>
-          <!-- Notes Agent -->
-          <div class="reveal card bg-base-200 rounded-2xl card-glow">
-            <div class="card-body">
-              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
-                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
-                </svg>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-base-200/60">
+              <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+              </svg>
+              <div>
+                <h3 class="font-display text-sm font-bold"><span data-i18n="features.notes.title">Notes Agent</span> <span class="badge badge-xs badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
+                <p class="text-xs text-base-content/50 mt-1" data-i18n="features.notes.desc">Encrypted notes with tags, pinning, and search. Discovers related notes automatically.</p>
               </div>
-              <h3 class="card-title font-display text-lg"><span data-i18n="features.notes.title">Notes Agent</span> <span class="badge badge-sm badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
-              <p class="text-base-content/60" data-i18n="features.notes.desc">Encrypted notes with tags, pinning, and search. Discovers related notes automatically.</p>
             </div>
-          </div>
-          <!-- Files Agent -->
-          <div class="reveal card bg-base-200 rounded-2xl card-glow">
-            <div class="card-body">
-              <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-2">
-                <svg class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776"/>
-                </svg>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-base-200/60">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776"/>
+              </svg>
+              <div>
+                <h3 class="font-display text-sm font-bold" data-i18n="features.files.title">Files Agent</h3>
+                <p class="text-xs text-base-content/50 mt-1" data-i18n="features.files.desc">Analyzes PDFs, spreadsheets, docs, and images with OCR. Extracts data from receipts, diagrams, and photos.</p>
               </div>
-              <h3 class="card-title font-display text-lg" data-i18n="features.files.title">Files Agent</h3>
-              <p class="text-base-content/60" data-i18n="features.files.desc">Parse PDFs, analyze spreadsheets, and extract data from documents.</p>
             </div>
-          </div>
-          <!-- RSS Agent -->
-          <div class="reveal card bg-base-200 rounded-2xl card-glow">
-            <div class="card-body">
-              <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-accent" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 11.25a8.25 8.25 0 0 1 8.25 8.25M3.75 7.5a12.75 12.75 0 0 1 12.75 12.75M3.75 3a17.25 17.25 0 0 1 17.25 17.25M3.75 20.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
-                </svg>
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-base-200/60">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 11.25a8.25 8.25 0 0 1 8.25 8.25M3.75 7.5a12.75 12.75 0 0 1 12.75 12.75M3.75 3a17.25 17.25 0 0 1 17.25 17.25M3.75 20.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+              </svg>
+              <div>
+                <h3 class="font-display text-sm font-bold"><span data-i18n="features.rss.title">RSS Agent</span> <span class="badge badge-xs badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
+                <p class="text-xs text-base-content/50 mt-1" data-i18n="features.rss.desc">Subscribe to feeds, track trending topics, classify articles, and get smart summaries -- your personal news curator.</p>
               </div>
-              <h3 class="card-title font-display text-lg"><span data-i18n="features.rss.title">RSS Agent</span> <span class="badge badge-sm badge-primary badge-outline" data-i18n="badge.pro">Pro</span></h3>
-              <p class="text-base-content/60" data-i18n="features.rss.desc">Monitors RSS and Atom feeds. Delivers curated digests and alerts from your favorite sources.</p>
             </div>
           </div>
         </div>
@@ -470,14 +459,14 @@
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <hr class="section-divider" aria-hidden="true">
 
     <!-- ====== SKILLS MARKETPLACE ====== -->
     <section id="skills" class="py-24 bg-base-200 scroll-mt-20">
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            <span data-i18n="skills.headline">Extend with</span> <span class="gradient-text" data-i18n="skills.headlineAccent">Skills</span>
+            <span data-i18n="skills.headline">Extend with</span> <span data-i18n="skills.headlineAccent">Skills</span>
           </h2>
           <p class="text-lg text-base-content/60 max-w-xl mx-auto" data-i18n="skills.subtitle">A curated marketplace of pre-built skills. One-click install, instant productivity.</p>
         </div>
@@ -570,14 +559,14 @@
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <hr class="section-divider" aria-hidden="true">
 
     <!-- ====== WHY AGENTJUNIOR ====== -->
     <section class="py-24 bg-base-200">
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            <span data-i18n="why.headline">Why</span> <span class="gradient-text">AgenticJunior</span>
+            <span data-i18n="why.headline">Why</span> <span>AgenticJunior</span>
           </h2>
           <p class="text-lg text-base-content/60" data-i18n="why.subtitle">Security isn't a feature. It's the foundation.</p>
           <p class="mt-4 max-w-2xl mx-auto text-base-content/50" data-i18n="why.desc">Most AI platforms bolt on security as an afterthought. We built AgenticJunior the other way around: security first, then capabilities. Every feature included — and every feature deliberately excluded — reflects this philosophy.</p>
@@ -635,14 +624,14 @@
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <hr class="section-divider" aria-hidden="true">
 
     <!-- ====== COMPARISON TABLE ====== -->
     <section class="py-24">
       <div class="max-w-4xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            <span data-i18n="comparison.headline">Self-hosted vs</span> <span class="gradient-text">AgenticJunior</span>
+            <span data-i18n="comparison.headline">Self-hosted vs</span> <span>AgenticJunior</span>
           </h2>
           <p class="text-lg text-base-content/60" data-i18n="comparison.subtitle">All the benefits. None of the headaches.</p>
         </div>
@@ -675,14 +664,14 @@
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <hr class="section-divider" aria-hidden="true">
 
     <!-- ====== PRICING ====== -->
     <section id="pricing" class="py-24 bg-base-200 scroll-mt-20">
       <div class="max-w-6xl mx-auto px-4">
         <div class="reveal text-center mb-16">
           <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">
-            <span data-i18n="pricing.headline">Simple, transparent</span> <span class="gradient-text" data-i18n="pricing.headlineAccent">pricing</span>
+            <span data-i18n="pricing.headline">Simple, transparent</span> <span data-i18n="pricing.headlineAccent">pricing</span>
           </h2>
           <p class="text-lg text-base-content/60" data-i18n="pricing.subtitle">Start free. Scale as you grow.</p>
         </div>
