@@ -215,6 +215,9 @@
       "pricing.retention.tier": "Tier",
       "pricing.retention.memory": "Conversation Memory",
       "pricing.retention.planned": "(planned)",
+      "pricing.retention.starter": "24 hours",
+      "pricing.retention.pro": "7 days",
+      "pricing.retention.ultimate": "30 days",
       "pricing.retention.betaNote": "During beta, all accounts have 48-hour conversation memory. Tiered retention is coming soon. No credit card required to start.",
 
       // -- Footer CTA --
@@ -547,6 +550,9 @@
       "pricing.retention.tier": "Plan",
       "pricing.retention.memory": "Memoria de Conversaci\u00f3n",
       "pricing.retention.planned": "(planificado)",
+      "pricing.retention.starter": "24 horas",
+      "pricing.retention.pro": "7 d\u00edas",
+      "pricing.retention.ultimate": "30 d\u00edas",
       "pricing.retention.betaNote": "Durante la beta, todas las cuentas tienen 48 horas de memoria de conversaci\u00f3n. La retenci\u00f3n por planes llega pronto. No se requiere tarjeta de cr\u00e9dito.",
 
       // -- Footer CTA --
